@@ -88,17 +88,21 @@ t1_comms = commsThread(1, "Communication Thread", server_info,q)
 #t2_commsSimulink.start()
 t1_comms.start()
 
-for i in party_addr:
-    while True:
-        try:
-            sock.TCPclient(i[0], i[1], ['flag', 1])
+while True:
+      try:
+            sock.TCPclient(party_addr[5][0], party_addr[5][1], ['flag', 1])
             break
-        except:
+      except:
             time.sleep(1)
-            continue
+      continue
 
+print('Connected to 5!')
 #p.start()
 
 
-sock.TCPclient(self.party_addr[5][0], self.party_addr[5][1], ['output' + str(self.i) , int(str(64))])
+sock.TCPclient(party_addr[5][0], party_addr[5][1], ['output', int(str(64))])
+
+while True:
+      if not q.empty():
+            print(q.get())
             
