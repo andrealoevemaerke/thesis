@@ -11,6 +11,14 @@ import time
 import queue as que
 from cloud_code import party
 import os
+import time
+from scipy import linalg
+from scipy.linalg import toeplitz
+from numpy.linalg import inv
+import random 
+from numpy.linalg import matrix_rank
+from threading import Thread
+import FFArithmetic as field
 
 port = 62
 
@@ -77,10 +85,87 @@ class dealer():
 
 m = 7979490791
 mm = 97
-F = field.GF(m)            
+#F = field.GF(m)            
 n = 4 
 t = 1
 x = 5 #np.random.randint(0,50,40)
+
+F = field.GF(792606555396977)   # prime, if larger the variables overfloat
+								# if smaller, the scaling must be smaller to 
+								# to be within the field and the precision 
+								# decreases too much to return correct output
+				 
+#n = 3
+#t = 1
+#serv = server(F, n, t, 1500)
+
+# Matrix dimensions
+m = 2   # number of A rows
+nn = 2  # number of A coloums
+l = 1   # number of b rows
+mu=min(nn,m)
+
+# Protocol inputs 
+A= 0 # initialize
+b= 0 # initialize
+
+tt = 1      # secret
+hh = 1      # secret
+
+# Secret matrices, input
+H= np.array([[2, 3], [4 , 9]])      # A, secret
+G= np.array([[6],[15]])             # b, secret
+iden_n=np.identity(nn)
+    
+AB=np.hstack((H,G))
+
+rankAB=np.array(matrix_rank(AB))
+rankA= np.array(matrix_rank(H))
+
+#    if rankA==rankAB:
+#        print('System is solvable')
+#    else:
+#        print('Preconditioning fails, system not solvable')
+#    
+# Generate Upper/Lower Toeplitz matrices (open)
+# OBS: random variables small range due to overfloat caused by scaling  
+# to avoid floats when inverting
+
+L = toeplitz([1,random.randint(1,10)])  
+U = toeplitz([1,random.randint(1,10)])
+
+L= np.array(np.tril(L) )               # remove upper triangular entries
+U= np.array(np.triu(U) )               # remove lower triangular entires
+
+ran= random.randint(1,51)
+iden= 0
+
+# Generate random vector (open)   
+
+z = np.random.randint(1,100,(1,m))
+
+# create shares of each matrix entry
+gr=ground(F, A, b, hh, tt, iden, ran, n, t, server_info) #serv) # hh, tt)
+
+for p in range(0, m):
+	b=G[p]
+	b=int(b)
+
+	gr.distribute_shares(b,'b'+str(p))
+
+	
+	for q in range(0, nn):
+		A=H[p,q]
+		A=int(A)
+		iden_ny=iden_n[p,q]
+		iden_ny=int(iden_ny)
+
+		gr.distribute_shares(A,'a'+str(p)+str(q))
+		gr.distribute_shares(iden_ny,'iden'+str(p)+str(q)) 
+		
+gr.distribute_shares(gr.hh,'h_shares') #hh
+gr.distribute_shares(gr.tt,'t_shares') #tt
+gr.distribute_shares(gr.ran,'ran_shares') #tt
 
 ipv4 = os.popen('ip addr show eth0').read().split("inet ")[1].split("/")[0]
 pnr = party_addr.index([ipv4, port])

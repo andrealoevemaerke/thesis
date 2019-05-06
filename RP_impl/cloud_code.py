@@ -14,6 +14,15 @@ import proc
 import TcpSocket5 as sock
 import queue as que
 import time
+from scipy import linalg
+from scipy.linalg import toeplitz
+from numpy.linalg import inv
+import random 
+from numpy.linalg import matrix_rank
+from threading import Thread
+import FFArithmetic as field
+
+
 ite = 1800
 np.random.seed(2)
 dd = np.random.randint(30, size=ite)
