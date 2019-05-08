@@ -123,9 +123,10 @@ share=[]
 dic={}
 t=True     
 for i in range(3,6):
+    t=True    
     while t==True: 
         if 'input'+str(i) not in dic.keys():   
-            if not q.empty():
+            while not q.empty():
                 temp= q.get()
                 #print('temp', temp)
                 #print('temp_index0', temp[0])
@@ -142,19 +143,20 @@ share_sum=sum(share)
 for i in range(3,6):
     sock.TCPclient(party_addr[i][0], party_addr[i][1], ['output'+str(pnr) , int(str(share_sum))])
 print('transmission')
+share=[]  
 
-t=True    
 for i in range(3,6):
+    t=True    
     while t==True: 
         if 'output'+str(i) not in dic.keys():   
-            if not q.empty():
+            while not q.empty():
                 temp= q.get()
                 #print('temp', temp)
                 #print('temp_index0', temp[0])
                 dic[temp[1][0]]=temp[1][1] 
                 
         else:
-            share.append(dic['output'+str(i-3)])
+            share.append(dic['output'+str(i)])
             t=False    
 print('recieve')      
 result=ss.rec(F, share)        
