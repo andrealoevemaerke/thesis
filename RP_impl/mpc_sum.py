@@ -77,11 +77,11 @@ q = que.Queue()
 q2 = que.Queue()
 q3 = que.Queue()
 
-if pnr == 4:
+if pnr == 3:
     x=3
-elif pnr ==5:
+elif pnr ==4:
     x=5
-elif pnr ==6:
+elif pnr ==5:
     x=7
 else:
     print('Fail')    
@@ -121,7 +121,7 @@ for i in range(n):
 share=[]  
 dic={}
 t=True     
-for i in range(4,7):
+for i in range(3,6):
     while t==True: 
         if 'input'+str(i) not in dic.keys():   
             if not q.empty():
@@ -135,10 +135,10 @@ for i in range(4,7):
            
 share_sum=sum(share)
 
-for i in range(4,7):
+for i in range(3,6):
     sock.TCPclient(party_addr[i][0], party_addr[i][1], ['output'+str(pnr) , int(str(share_sum))])
 t=True    
-for i in range(4,7):
+for i in range(3,6):
     while t==True: 
         if 'output'+str(i) not in dic.keys():   
             if not q.empty():
