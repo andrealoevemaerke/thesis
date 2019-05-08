@@ -121,7 +121,7 @@ for i in range(n):
 share=[]  
 dic={}
 t=True     
-for i in range(n):
+for i in range(4,7):
     while t==True: 
         if 'input'+str(i) not in dic.keys():   
             if not q.empty():
@@ -132,12 +132,13 @@ for i in range(n):
             share.append(dic['input'+str(i)])
             t=False
            
+           
 share_sum=sum(share)
 
-for i in range(n):
+for i in range(4,7):
     sock.TCPclient(party_addr[i][0], party_addr[i][1], ['output'+str(pnr) , int(str(share_sum))])
 t=True    
-for i in range(n):
+for i in range(4,7):
     while t==True: 
         if 'output'+str(i) not in dic.keys():   
             if not q.empty():
