@@ -129,6 +129,7 @@ for i in range(3,6):
                 temp= q.get()
                 print('temp', temp)
                 print('temp_index0', temp[0])
+                print('temp_index0', temp[1])
                 #dic[temp[0]]=temp[1] 
                 
         else:
