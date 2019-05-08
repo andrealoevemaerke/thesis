@@ -77,11 +77,11 @@ q = que.Queue()
 q2 = que.Queue()
 q3 = que.Queue()
 
-if pnr == 0:
+if pnr == 4:
     x=3
-elif pnr ==1:
+elif pnr ==5:
     x=5
-elif pnr ==2:
+elif pnr ==6:
     x=7
 else:
     print('Fail')    
