@@ -117,7 +117,8 @@ print('connection ')
 
 x_share=ss.share(F, x, t, n)
 for i in range(3,6):
-    sock.TCPclient(party_addr[i][0], party_addr[i][1], ['input'+str(pnr) , int(str(x_share[i]))])
+  
+    sock.TCPclient(party_addr[i][0], party_addr[i][1], ['input'+str(pnr) , int(str(x_share[i-3]))])
 share=[]  
 dic={}
 t=True     
@@ -148,7 +149,7 @@ for i in range(3,6):
                 dic[temp[0]]=temp[1] 
                 
         else:
-            share.append(dic['output'+str(i)])
+            share.append(dic['output'+str(i-3)])
             t=False    
 print('recieve')      
 result=ss.rec(F, share)        
