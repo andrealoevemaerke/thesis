@@ -127,7 +127,8 @@ for i in range(3,6):
         if 'input'+str(i) not in dic.keys():   
             if not q.empty():
                 temp= q.get()
-                dic[temp[0]]=temp[1] 
+                print('temp', temp)
+                #dic[temp[0]]=temp[1] 
                 
         else:
             share.append(dic['input'+str(i)])
@@ -147,7 +148,8 @@ for i in range(3,6):
             if not q.empty():
                 temp= q.get()
                 print('temp', temp)
-                dic[temp[0]]=temp[1] 
+                
+                #dic[temp[0]]=temp[1] 
                 
         else:
             share.append(dic['output'+str(i-3)])
