@@ -146,6 +146,7 @@ for i in range(3,6):
         if 'output'+str(i) not in dic.keys():   
             if not q.empty():
                 temp= q.get()
+                print('temp', temp)
                 dic[temp[0]]=temp[1] 
                 
         else:
