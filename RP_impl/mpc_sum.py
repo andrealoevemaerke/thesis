@@ -148,7 +148,7 @@ for i in range(3,6):
             if not q.empty():
                 temp= q.get()
                 print('temp', temp)
-                
+                print('temp_index0', temp[0])
                 #dic[temp[0]]=temp[1] 
                 
         else:
