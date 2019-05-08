@@ -76,7 +76,7 @@ pnr = party_addr.index([ipv4, port])
 q = que.Queue()
 q2 = que.Queue()
 q3 = que.Queue()
-
+print('pnr:', pnr)
 if pnr == 3:
     x=3
 elif pnr ==4:
@@ -104,7 +104,7 @@ t1_comms = commsThread(1, "Communication Thread", server_info,q)
 #t2_commsSimulink.start()
 t1_comms.start()
 
-for i in range(n):
+for i in range(3,6):
     while True:
         try:
           sock.TCPclient(party_addr[i][0], party_addr[i][1], ['flag', 1])
@@ -116,7 +116,7 @@ print('connection ')
 #p.start()
 
 x_share=ss.share(F, x, t, n)
-for i in range(n):
+for i in range(3,6):
     sock.TCPclient(party_addr[i][0], party_addr[i][1], ['input'+str(pnr) , int(str(x_share[i]))])
 share=[]  
 dic={}
@@ -132,7 +132,7 @@ for i in range(3,6):
             share.append(dic['input'+str(i)])
             t=False
            
-           
+print('share:', share)           
 share_sum=sum(share)
 
 for i in range(3,6):
