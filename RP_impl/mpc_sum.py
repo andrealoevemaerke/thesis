@@ -112,7 +112,7 @@ for i in range(n):
         except:
           time.sleep(1)
           continue
-
+print('connection ')
 #p.start()
 
 x_share=ss.share(F, x, t, n)
@@ -137,6 +137,8 @@ share_sum=sum(share)
 
 for i in range(3,6):
     sock.TCPclient(party_addr[i][0], party_addr[i][1], ['output'+str(pnr) , int(str(share_sum))])
+print('transmission')
+
 t=True    
 for i in range(3,6):
     while t==True: 
@@ -148,6 +150,6 @@ for i in range(3,6):
         else:
             share.append(dic['output'+str(i)])
             t=False    
-      
+print('recieve')      
 result=ss.rec(F, share)        
 print('Result is:', result)            
