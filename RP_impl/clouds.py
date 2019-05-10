@@ -76,7 +76,7 @@ q = que.Queue()
 q2 = que.Queue()
 q3 = que.Queue()
 
-
+print('pnr:', pnr)
 #Initialization..
 #TCP_IP = '192.168.100.246'
 #TCP_PORT = 62
