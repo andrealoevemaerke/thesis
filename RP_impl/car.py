@@ -115,14 +115,15 @@ print('connection ok')
 #p.start()
 
 # shares of a, b, h, t, r must be created
-x_share=ss.share(F, x, t, n)
-x=y
-y_share=ss.share(F, x, t, n)
+a1_share=ss.share(F, x, t, n)
+x= y
+a2_share= ss.share(F, x, t, n)
 
 # send shares to clouds :
-for i in range(n+1):
-    sock.TCPclient(party_addr[i][0], party_addr[i][1], ['input'+str(pnr) , int(str(x_share[i-3]))])
-    sock.TCPclient(party_addr[i][0], party_addr[i][1], ['input'+str(pnr) , int(str(y_share[i-3]))])
+for i in range(n):
+    sock.TCPclient(party_addr[i+1][0], party_addr[i+1][1], ['a1'+str(pnr) , int(str(a1_share[i]))])
+    sock.TCPclient(party_addr[i+1][0], party_addr[i+1][1], ['a2'+str(pnr) , int(str(a1_share[i]))])
+   
     # dublere linje for alle shares eller skal der tjekkes for forbindelse hver gang?  
 
 
@@ -134,29 +135,29 @@ for i in range(n+1):
 
 
 # recieve shares from cloud of result
-share=[]  
-dic={}
+share_res=[]  
+dic_res={}
 t=True 
 
 # modtage result shares
 for i in range(n+1):
     t=True    
     while t==True: 
-        if 'input'+str(i) not in dic.keys():   
+        if 'output'+str(i) not in dic.keys():   
             while not q.empty():
                 temp= q.get()
                 #print('temp', temp)
                 #print('temp_index0', temp[0])
                 #print('temp_index1', temp[1])
-                dic[temp[1][0]]=temp[1][1] 
+                dic_res[temp[1][0]]=temp[1][1] 
 
         else:
-            share.append(dic['input'+str(i)])
+            share_res.append(dic_res['output'+str(i)])
             t=False
 
-print('share x:', share) 
+#print('share x:', share) 
 
 # reconstruct solution x
 print('recieve')      
-result=ss.rec(F, share)        
+result=ss.rec(F, share_res)        
 print('Result is:', result)  
