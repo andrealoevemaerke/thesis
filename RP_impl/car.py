@@ -18,6 +18,14 @@ import queue as que
 from participantCodePLOT import party
 import matplotlib.pyplot as plt
 import os
+from numpy.linalg import matrix_rank
+#from scipy import linalg
+#from scipy.linalg import toeplitz
+#from numpy.linalg import inv
+import random 
+from threading import Thread
+
+
 
 port = 62
 
@@ -116,15 +124,85 @@ for i in range(n):
 print('connection ok')
 #p.start()
 
+m = 2   # number of A rows
+nn = 2  # number of A coloums
+l = 1   # number of b rows
+mu=min(nn,m)
+AA= np.array([[2, 3], [4 , 9]])      # A, secret
+bb= np.array([[6],[15]])             # b, secret
+iden_n=np.identity(nn)
+
+AB=np.hstack((AA,bb))
+
+rankAB=np.array(matrix_rank(AB))
+rankA= np.array(matrix_rank(AA))
+L=np.array(([1,0],[11,11]))
+U=np.array(([1,8],[0,1]))
+ran=7
+
+#L = toeplitz([1,random.randint(1,10)])  
+#U = toeplitz([1,random.randint(1,10)])
+    
+#L= np.array(np.tril(L) )               # remove upper triangular entries
+#U= np.array(np.triu(U) )               # remove lower triangular entires
+    
+#ran= random.randint(1,51)
+#iden= 0
+
+#
+#l11=L[0][0]
+#l12=L[0][1]
+#l21=L[1][0]
+#l22=L[1][1]
+#u11=U[0][0]
+#u12=U[0][1]
+#u21=U[1][0]
+#u22=U[1][1]
+h= 1
+t= 1
+iden_22=np.identity(nn)
+
+
+
+
+
 # shares of a, b, h, t, r must be created
 a1_share=ss.share(F, x, t, n)
-x= y
-a2_share= ss.share(F, x, t, n)
+a2_share= ss.share(F, y, t, n)
+
+
+
+
+b_share=np.zeros((2,1))
+A_share=np.zeros((2,2))
+iden_share= np.zeros((2,2))
+
+for p in range(0, m):
+        b=bb[p]
+        b=int(b)
+    
+        #b_share[p]=ss.share(F, b, t, n)
+        #returns 3 shares that must be stored somehow without loosing array index SATURDAY
+        print(ss.share(F, b, t, n))
+        
+#        for q in range(0, nn):
+#            A=AA[p,q]
+#            A=int(A)
+#            iden_ny=iden_22[p,q]
+#            iden_ny=int(iden_ny)
+#    
+#            A_share[p][q]=ss.share(F,A,t,n)
+#            iden_share[p][q]=ss.share(F,iden_ny,t,n)
+#
+#h_share= ss.share(F, x, t, n)
+#t_share= ss.share(F, x, t, n)
+#ran_share=ss.share(F, x, t, n)            
+
 print('constructed shares in car')
 # send shares to clouds :
 for i in range(n):
-    sock.TCPclient(party_addr[i][0], party_addr[i][1], ['a1'+str(pnr) , int(str(a1_share[i]))])
-    #sock.TCPclient(party_addr[i][0], party_addr[i][1], ['a2'+str(pnr) , int(str(a2_share[i]))])
+    sock.TCPclient(party_addr[i][0], party_addr[i][1], ['a1'+str(i) , int(str(a1_share[i]))])
+    sock.TCPclient(party_addr[i][0], party_addr[i][1], ['a2'+str(i) , int(str(a2_share[i]))])
    
     # dublere linje for alle shares eller skal der tjekkes for forbindelse hver gang?  
 print('car has send shares')
