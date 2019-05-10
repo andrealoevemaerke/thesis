@@ -22,9 +22,9 @@ port = 62
 party_addr = [['192.168.100.1', 62], #car
               ['192.168.100.4', 62], #cloud 1
               ['192.168.100.5', 62], #cloud 2
-              ['192.168.100.6', 62]  #cloud 3
+              ['192.168.100.6', 62], #cloud 3
               ['192.168.100.2', 62], #not used
-              ['192.168.100.3', 62], #not used
+              ['192.168.100.3', 62] #not used
               ]
 
 ccu_adr = '192.168.100.246'
@@ -32,9 +32,9 @@ ccu_adr = '192.168.100.246'
 server_addr = [[ccu_adr, 4031], #car 
                [ccu_adr, 4050], #cloud 1
                [ccu_adr, 4060], #cloud 2
-               [ccu_adr, 4061]  #cloud 3
+               [ccu_adr, 4061], #cloud 3
                [ccu_adr, 4040], #not used
-               [ccu_adr, 4041], #not used
+               [ccu_adr, 4041] #not used
               ]
 
 
