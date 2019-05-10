@@ -97,7 +97,7 @@ t1_comms = commsThread(1, "Communication Thread", server_info,q)
 #t2_commsSimulink.start()
 t1_comms.start()
 
-for i in range(n+1):
+for i in range(n): # n+1 to include car
     while True:
         try:
           sock.TCPclient(party_addr[i][0], party_addr[i][1], ['flag', 1])
@@ -123,7 +123,7 @@ for i in range(n):
     t=True    
     while t==True: 
         
-        if 'a1'+str(i) and 'a2'+str(i) not in dica1.keys():  
+        if 'a1'+str(i) not in dica1.keys():  
            
             while not q.empty():
                 temp= q.get()
@@ -142,19 +142,7 @@ for i in range(n):
             print('sharea1:', sharea1)
             t=False
     print('first data ok')    
-    t=True
-    while t == True:
-        if 'a2'+str(i) not in dica2.keys():   
-            while not q.empty():
-                temp= q.get()
-                #print('temp', temp)
-                #print('temp_index0', temp[0])
-                #print('temp_index1', temp[1])
-                dica2[temp[1][0]]=temp[1][1] 
-                
-        else:
-            sharea2.append(dica2['a2'+str(i)])
-            t=False
+   
           
 print('recieved shares from car')
 # shares has been recieved by clouds 
