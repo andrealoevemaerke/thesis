@@ -152,7 +152,7 @@ print('recieved shares from car')
 # shares has been recieved by clouds 
            
 #AA=np.array([[sharea1[pnv-1], sharea2[pnv-1]]])
-sum_result= sum(sharea1[pnr-1], sharea2[pnr-1])
+sum_result= sum(sharea1[pnr], sharea2[pnr])
 
 # send result to car
 sock.TCPclient(party_addr[3][0], party_addr[3][1], ['output'+str(pnr) , int(str(sum_result))])
