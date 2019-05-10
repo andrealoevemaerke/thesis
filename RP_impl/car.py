@@ -104,7 +104,7 @@ t1_comms.start()
 
 
 # check for connection to clouds (4,5,6)
-for i in range(n+1):
+for i in range(n):
     while True:
         try:
           sock.TCPclient(party_addr[i][0], party_addr[i][1], ['flag', 1])
