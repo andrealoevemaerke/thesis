@@ -143,17 +143,14 @@ while t==True:
         print('sharea2:', sharea2)
         t=False
             
-            
-            
-    print('first data ok')    
    
           
 print('recieved shares from car')
 # shares has been recieved by clouds 
            
-#AA=np.array([[sharea1[pnv-1], sharea2[pnv-1]]])
-sum_result= sum(sharea1[pnr], sharea2[pnr])
 
+sum_result= sharea1+ sharea2
+print(sum_result)
 # send result to car
 sock.TCPclient(party_addr[3][0], party_addr[3][1], ['output'+str(pnr) , int(str(sum_result))])
 print('transmission')
