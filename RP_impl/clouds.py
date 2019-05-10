@@ -141,6 +141,22 @@ for i in range(n):
             sharea1.append(dica1['a1'+str(i)])
             print('sharea1:', sharea1)
             t=False
+            
+            
+    t=True
+    while t == True:
+        if 'a2'+str(i) not in dica2.keys():   
+            while not q.empty():
+                temp= q.get()
+                #print('temp', temp)
+                #print('temp_index0', temp[0])
+                #print('temp_index1', temp[1])
+                dica2[temp[1][0]]=temp[1][1] 
+                print('dica2',dica2)
+                
+        else:
+            sharea2.append(dica2['a2'+str(i)])
+            t=False         
     print('first data ok')    
    
           
