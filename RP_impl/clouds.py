@@ -152,10 +152,7 @@ for i in range(1,4): # range skal passe til forskellige værdier bilen sender
 sum_result= sum(sharea1[pnv-1], sharea2[pnv-1])
 
 # send result to car
-sock.TCPclient(party_addr[0][0], party_addr[0][1], ['output'+str(pnr) , int(str(sum_result)])
+sock.TCPclient(party_addr[0][0], party_addr[0][1], ['output'+str(pnr) , int(str(sum_result))])
 print('transmission')
 
                                                            
-
-x_share=ss.share(F, x, t, n)
-for i in range(n+1):
