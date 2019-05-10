@@ -117,9 +117,12 @@ dica1={}
 dica2={}
     
 for i in range(1,4):
+  print('i=',i)
     t=True    
     while t==True: 
-        if 'a1'+str(i) not in dica1.keys():   
+        print('while entered')
+        if 'a1'+str(i) not in dica1.keys():  
+            print('if entered')
             while not q.empty():
                 temp= q.get()
                 #print('temp', temp)
