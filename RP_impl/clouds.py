@@ -118,31 +118,30 @@ sharea2=[]
 dica1={}
 dica2={}
     
-for i in range(n):
-    print('i=',i)
-    t=True    
-    while t==True: 
-        
-        if 'a1'+str(i) and 'a2'+str(i) not in dica1.keys():  
-           
-            while not q.empty():
-                temp= q.get()
-                
-                #print('temp', temp)
-                #print('temp_index0', temp[0])
-                #print('temp_index1', temp[1])
-                #if temp[1][0] == 'a1'+str(i)
-                #print('temp is:', temp[1][0])
-                #if 'a1'+str(i) in temp[1][0]
-                 #   print('if entered')
-                dica1[temp[1][0]]=temp[1][1] 
-                print('dica1', dica1)
-        else:
-            sharea1.append(dica1['a1'+str(i)])
-            sharea2.append(dica1['a2'+str(i)])
-            print('sharea1:', sharea1)
-            print('sharea2:', sharea2)
-            t=False
+
+  t=True    
+  while t==True: 
+      
+      if 'a1'+str(pnv) and 'a2'+str(pnv) not in dica1.keys():  
+         
+          while not q.empty():
+              temp= q.get()
+              
+              #print('temp', temp)
+              #print('temp_index0', temp[0])
+              #print('temp_index1', temp[1])
+              #if temp[1][0] == 'a1'+str(i)
+              #print('temp is:', temp[1][0])
+              #if 'a1'+str(i) in temp[1][0]
+               #   print('if entered')
+              dica1[temp[1][0]]=temp[1][1] 
+              print('dica1', dica1)
+      else:
+          sharea1.append(dica1['a1'+str(pnv)])
+          sharea2.append(dica1['a2'+str(pnv)])
+          print('sharea1:', sharea1)
+          print('sharea2:', sharea2)
+          t=False
             
             
             
