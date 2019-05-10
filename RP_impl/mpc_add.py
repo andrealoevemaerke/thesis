@@ -132,6 +132,7 @@ for i in range(3,6):
                 #print('temp_index0', temp[0])
                 #print('temp_index1', temp[1])
                 dic[temp[1][0]]=temp[1][1] 
+                print('dic' ,dic, i)
                 
         else:
             share.append(dic['input'+str(i)])
