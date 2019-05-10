@@ -123,7 +123,7 @@ for i in range(n):
     t=True    
     while t==True: 
         
-        if 'a1'+str(i) and 'a1'+str(i) not in dica1.keys():  
+        if 'a1'+str(i) and 'a2'+str(i) not in dica1.keys():  
            
             while not q.empty():
                 temp= q.get()
@@ -139,7 +139,9 @@ for i in range(n):
                 print('dica1', dica1)
         else:
             sharea1.append(dica1['a1'+str(i)])
+            sharea2.append(dica1['a2'+str(i)])
             print('sharea1:', sharea1)
+            print('sharea2:', sharea2)
             t=False
             
             
