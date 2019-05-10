@@ -125,10 +125,11 @@ for i in range(1,4):
            
             while not q.empty():
                 temp= q.get()
-                print('temp is:', temp)
+                print('temp is:', temp[1][0])
                 #print('temp', temp)
                 #print('temp_index0', temp[0])
                 #print('temp_index1', temp[1])
+                
                 dica1[temp[1][0]]=temp[1][1] 
         else:
             sharea1.append(dica1['a1'+str(i)])
