@@ -143,7 +143,7 @@ t=True
 for i in range(n+1):
     t=True    
     while t==True: 
-        if 'output'+str(i) not in dic.keys():   
+        if 'output'+str(i) not in dic_res.keys():   
             while not q.empty():
                 temp= q.get()
                 #print('temp', temp)
