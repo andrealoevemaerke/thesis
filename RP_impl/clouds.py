@@ -118,12 +118,12 @@ sharea2=[]
 dica1={}
 dica2={}
     
-for i in range(n+1):
+for i in range(n):
     print('i=',i)
     t=True    
     while t==True: 
         
-        if 'a1'+str(i) not in dica1.keys():  
+        if 'a1'+str(i) and 'a2'+str(i) not in dica1.keys():  
            
             while not q.empty():
                 temp= q.get()
