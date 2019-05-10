@@ -117,11 +117,11 @@ dica1={}
 dica2={}
 
 t=True     
-for i in range(1,4): # range skal passe til forskellige værdier bilen sender
+for i in range(1,3): # range skal passe til forskellige værdier bilen sender
 # skal sikre hvis append bruges at rækkefølge af værdier er fast så data ikke mixes
     t=True    
     while t==True: 
-        if 'a1'+str(i) not in dic.keys():   
+        if 'a1'+str(i) not in dica1.keys():   
             while not q.empty():
                 temp= q.get()
                 #print('temp', temp)
@@ -134,7 +134,7 @@ for i in range(1,4): # range skal passe til forskellige værdier bilen sender
         
     t=True
     while t == True:
-        if 'a2'+str(i) not in dic.keys():   
+        if 'a2'+str(i) not in dica2.keys():   
             while not q.empty():
                 temp= q.get()
                 #print('temp', temp)
