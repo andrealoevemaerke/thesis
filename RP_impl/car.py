@@ -121,8 +121,8 @@ a2_share= ss.share(F, x, t, n)
 print('constructed shares in car')
 # send shares to clouds :
 for i in range(1,n+1):
-    sock.TCPclient(party_addr[i][0], party_addr[i][1], ['a1'+str(pnr) , int(str(a1_share[i]))])
-    sock.TCPclient(party_addr[i][0], party_addr[i][1], ['a2'+str(pnr) , int(str(a2_share[i]))])
+    sock.TCPclient(party_addr[i][0], party_addr[i][1], ['a1'+str(pnr) , int(str(a1_share[i-1]))])
+    sock.TCPclient(party_addr[i][0], party_addr[i][1], ['a2'+str(pnr) , int(str(a2_share[i-1]))])
    
     # dublere linje for alle shares eller skal der tjekkes for forbindelse hver gang?  
 print('car has send shares')
