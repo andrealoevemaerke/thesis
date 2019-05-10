@@ -117,7 +117,7 @@ dica1={}
 dica2={}
     
 for i in range(1,4):
-  print('i=',i)
+    print('i=',i)
     t=True    
     while t==True: 
         print('while entered')
