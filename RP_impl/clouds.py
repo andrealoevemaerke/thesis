@@ -120,11 +120,12 @@ for i in range(1,4):
     print('i=',i)
     t=True    
     while t==True: 
-        print('while entered')
+        
         if 'a1'+str(i) not in dica1.keys():  
-            print('if entered')
+           
             while not q.empty():
                 temp= q.get()
+                print('temp is:', temp)
                 #print('temp', temp)
                 #print('temp_index0', temp[0])
                 #print('temp_index1', temp[1])
