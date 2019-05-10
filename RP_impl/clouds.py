@@ -115,8 +115,7 @@ sharea1=[]
 sharea2=[] 
 dica1={}
 dica2={}
-
-t=True     
+    
 for i in range(1,4):
     t=True    
     while t==True: 
@@ -130,7 +129,7 @@ for i in range(1,4):
         else:
             sharea1.append(dica1['a1'+str(i)])
             t=False
-        
+    print('first data ok')    
     t=True
     while t == True:
         if 'a2'+str(i) not in dica2.keys():   
