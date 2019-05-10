@@ -122,7 +122,7 @@ dica2={}
 t=True    
 while t==True: 
     
-    if 'a1'+str(pnv) and 'a2'+str(pnv) not in dica1.keys():  
+    if 'a1'+str(pnr) and 'a2'+str(pnr) not in dica1.keys():  
        
         while not q.empty():
             temp= q.get()
@@ -137,8 +137,8 @@ while t==True:
             dica1[temp[1][0]]=temp[1][1] 
             print('dica1', dica1)
     else:
-        sharea1.append(dica1['a1'+str(pnv)])
-        sharea2.append(dica1['a2'+str(pnv)])
+        sharea1.append(dica1['a1'+str(pnr)])
+        sharea2.append(dica1['a2'+str(pnr)])
         print('sharea1:', sharea1)
         print('sharea2:', sharea2)
         t=False
@@ -152,7 +152,7 @@ print('recieved shares from car')
 # shares has been recieved by clouds 
            
 #AA=np.array([[sharea1[pnv-1], sharea2[pnv-1]]])
-sum_result= sum(sharea1[pnv-1], sharea2[pnv-1])
+sum_result= sum(sharea1[pnr-1], sharea2[pnr-1])
 
 # send result to car
 sock.TCPclient(party_addr[3][0], party_addr[3][1], ['output'+str(pnr) , int(str(sum_result))])
