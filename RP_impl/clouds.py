@@ -121,7 +121,7 @@ for i in range(1,4):
     t=True    
     while t==True: 
         
-        if 'a1'+str(i) not in dica1.keys():  
+        if 'a1'+str(i) and 'a2'+str(i) not in dica1.keys():  
            
             while not q.empty():
                 temp= q.get()
@@ -142,7 +142,7 @@ for i in range(1,4):
     print('first data ok')    
     t=True
     while t == True:
-        if 'a2'+str(i) not in dica2.keys():   
+        if 'a1'+str(i) and 'a2'+str(i) not in dica2.keys():   
             while not q.empty():
                 temp= q.get()
                 #print('temp', temp)
