@@ -106,117 +106,56 @@ for i in range(n+1):
 print('connection ok')
 #p.start()
 # all parties connected 
-
-dic1={}
-dic2={}
-dic3={}
-share1=[]
-share2=[]
-share3=[]
-
-# recieve share from car now
-print('pnr:', pnr)
-
-
-
-if pnr == 1:
-   t=True    
-    while t==True: 
-        if 'input'+str(pnr) not in dic.keys():   
-            while not q.empty():
-                temp= q.get()
-                #print('temp', temp)
-                #print('temp_index0', temp[0])
-                #print('temp_index1', temp[1])
-                dic1[temp[1][0]]=temp[1][1] 
-                
-        else:
-            share1.append(dic1['input'+str(pnr)])
-            t=False
-
-elif pnr ==2:
-   t=True    
-    while t==True: 
-        if 'input'+str(pnr) not in dic.keys():   
-            while not q.empty():
-                temp= q.get()
-                #print('temp', temp)
-                #print('temp_index0', temp[0])
-                #print('temp_index1', temp[1])
-                dic2[temp[1][0]]=temp[1][1] 
-                
-        else:
-            share2.append(dic2['input'+str(pnr)])
-            t=False
-            
-elif pnr ==3:
-    t=True    
-    while t==True: 
-        if 'input'+str(pnr) not in dic.keys():   
-            while not q.empty():
-                temp= q.get()
-                #print('temp', temp)
-                #print('temp_index0', temp[0])
-                #print('temp_index1', temp[1])
-                dic3[temp[1][0]]=temp[1][1] 
-                
-        else:
-            share3.append(dic3['input'+str(pnr)])
-            t=False
-   
-else:
-    print('Fail')    
+    
 
 # shares from car has been recieved 
 
 # other way to recieve shares: 
-share=[]  
-dic={}
+sharea1=[]  
+sharea2=[] 
+dica1={}
+dica2={}
+
 t=True     
 for i in range(1,4): # range skal passe til forskellige værdier bilen sender
 # skal sikre hvis append bruges at rækkefølge af værdier er fast så data ikke mixes
     t=True    
     while t==True: 
-        if 'input'+str(i) not in dic.keys():   
+        if 'a1'+str(i) not in dic.keys():   
             while not q.empty():
                 temp= q.get()
                 #print('temp', temp)
                 #print('temp_index0', temp[0])
                 #print('temp_index1', temp[1])
-                dic[temp[1][0]]=temp[1][1] 
-                
+                dica1[temp[1][0]]=temp[1][1] 
         else:
-            share.append(dic['input'+str(i)])
+            sharea1.append(dica1['a1'+str(i)])
             t=False
-           
-
-# shares has been recieve by clouds 
-           
-#print('share:', share1)           
-#share_sum=sum(share)
-
-for i in range(n+1):
-    sock.TCPclient(party_addr[i][0], party_addr[i][1], ['output'+str(pnr) , int(str(share_sum))])
-print('transmission')
-share=[]  
-
-for i in range(n+1):
-    t=True    
-    while t==True: 
-        if 'output'+str(i) not in dic.keys():   
+        
+    t=True
+    while t == True:
+        if 'a2'+str(i) not in dic.keys():   
             while not q.empty():
                 temp= q.get()
                 #print('temp', temp)
                 #print('temp_index0', temp[0])
-                dic[temp[1][0]]=temp[1][1] 
+                #print('temp_index1', temp[1])
+                dica2[temp[1][0]]=temp[1][1] 
                 
         else:
-            share.append(dic['output'+str(i)])
-            t=False    
-print('recieve')      
-result=ss.rec(F, share)        
-print('Result is:', result) 
+            sharea2.append(dica2['a2'+str(i)])
+            t=False
+            
+# shares has been recieved by clouds 
+           
+#AA=np.array([[sharea1[pnv-1], sharea2[pnv-1]]])
+sum_result= sum(sharea1[pnv-1], sharea2[pnv-1])
 
+# send result to car
+sock.TCPclient(party_addr[0][0], party_addr[0][1], ['output'+str(pnr) , int(str(sum_result)])
+print('transmission')
+
+                                                           
 
 x_share=ss.share(F, x, t, n)
 for i in range(n+1):
