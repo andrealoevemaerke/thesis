@@ -117,8 +117,7 @@ dica1={}
 dica2={}
 
 t=True     
-for i in range(1,3): # range skal passe til forskellige værdier bilen sender
-# skal sikre hvis append bruges at rækkefølge af værdier er fast så data ikke mixes
+for i in range(1,4):
     t=True    
     while t==True: 
         if 'a1'+str(i) not in dica1.keys():   
@@ -145,7 +144,8 @@ for i in range(1,3): # range skal passe til forskellige værdier bilen sender
         else:
             sharea2.append(dica2['a2'+str(i)])
             t=False
-            
+          
+print('recieved shares from car')
 # shares has been recieved by clouds 
            
 #AA=np.array([[sharea1[pnv-1], sharea2[pnv-1]]])
