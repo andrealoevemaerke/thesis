@@ -19,20 +19,22 @@ import os
 
 port = 62
 
-party_addr = [['192.168.100.1', 62], #car
+party_addr = [
               ['192.168.100.4', 62], #cloud 1
               ['192.168.100.5', 62], #cloud 2
               ['192.168.100.6', 62], #cloud 3
+              ['192.168.100.1', 62], #car
               ['192.168.100.2', 62], #not used
               ['192.168.100.3', 62] #not used
               ]
 
 ccu_adr = '192.168.100.246'
 
-server_addr = [[ccu_adr, 4031], #car 
+server_addr = [
                [ccu_adr, 4050], #cloud 1
                [ccu_adr, 4060], #cloud 2
                [ccu_adr, 4061], #cloud 3
+               [ccu_adr, 4031], #car 
                [ccu_adr, 4040], #not used
                [ccu_adr, 4041] #not used
               ]
@@ -116,12 +118,12 @@ sharea2=[]
 dica1={}
 dica2={}
     
-for i in range(1,4):
+for i in range(n+1):
     print('i=',i)
     t=True    
     while t==True: 
         
-        if 'a1'+str(i) and 'a2'+str(i) not in dica1.keys():  
+        if 'a1'+str(i) not in dica1.keys():  
            
             while not q.empty():
                 temp= q.get()
@@ -142,7 +144,7 @@ for i in range(1,4):
     print('first data ok')    
     t=True
     while t == True:
-        if 'a1'+str(i) and 'a2'+str(i) not in dica2.keys():   
+        if 'a2'+str(i) not in dica2.keys():   
             while not q.empty():
                 temp= q.get()
                 #print('temp', temp)
@@ -161,7 +163,7 @@ print('recieved shares from car')
 sum_result= sum(sharea1[pnv-1], sharea2[pnv-1])
 
 # send result to car
-sock.TCPclient(party_addr[0][0], party_addr[0][1], ['output'+str(pnr) , int(str(sum_result))])
+sock.TCPclient(party_addr[3][0], party_addr[3][1], ['output'+str(pnr) , int(str(sum_result))])
 print('transmission')
 
                                                            
