@@ -21,22 +21,22 @@ import os
 
 port = 62
 
-party_addr = [['192.168.100.1', 62], #P0  # car
+party_addr = [['192.168.100.1', 62], # car
+              ['192.168.100.4', 62], # cloud1
+              ['192.168.100.5', 62], # cloud2
+              ['192.168.100.6', 62], # cloud3
               ['192.168.100.2', 62], #P1
-              ['192.168.100.3', 62], #P2
-              ['192.168.100.4', 62], #P3  # cloud
-              ['192.168.100.5', 62], #P3  # cloud
-              ['192.168.100.6', 62]  #P3  # cloud
+              ['192.168.100.3', 62] #P2
               ]
 
 ccu_adr = '192.168.100.246'
 
-server_addr = [[ccu_adr, 4031], #P0
+server_addr = [[ccu_adr, 4031], #car
+               [ccu_adr, 4050], #cloud 1
+               [ccu_adr, 4060], #cloud 2
+               [ccu_adr, 4061], #cloud 3
                [ccu_adr, 4040], #P1
-               [ccu_adr, 4041], #P2
-               [ccu_adr, 4050], #P3
-               [ccu_adr, 4060], #Reciever 4
-               [ccu_adr, 4061]  #Reciever 5
+               [ccu_adr, 4041] #P2
               ]
 
 
@@ -102,7 +102,7 @@ t1_comms.start()
 
 
 # check for connection to clouds (4,5,6)
-for i in range(3,6):
+for i in range(n+1):
     while True:
         try:
           sock.TCPclient(party_addr[i][0], party_addr[i][1], ['flag', 1])
@@ -120,7 +120,7 @@ x=y
 y_share=ss.share(F, x, t, n)
 
 # send shares to clouds :
-for i in range(3,6):
+for i in range(n+1):
     sock.TCPclient(party_addr[i][0], party_addr[i][1], ['input'+str(pnr) , int(str(x_share[i-3]))])
     sock.TCPclient(party_addr[i][0], party_addr[i][1], ['input'+str(pnr) , int(str(y_share[i-3]))])
     # dublere linje for alle shares eller skal der tjekkes for forbindelse hver gang?  
@@ -139,7 +139,7 @@ dic={}
 t=True 
 
 # modtage result shares
-for i in range(3,6):
+for i in range(n+1):
     t=True    
     while t==True: 
         if 'input'+str(i) not in dic.keys():   
