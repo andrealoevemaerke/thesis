@@ -131,11 +131,13 @@ for i in range(1,4):
                 #print('temp_index1', temp[1])
                 #if temp[1][0] == 'a1'+str(i)
                 #print('temp is:', temp[1][0])
-                if 'a1'+str(i) in temp[1][0]
-                    print('if entered')
-                    dica1[temp[1][0]]=temp[1][1] 
+                #if 'a1'+str(i) in temp[1][0]
+                 #   print('if entered')
+                dica1[temp[1][0]]=temp[1][1] 
+                print('dica1', dica1)
         else:
             sharea1.append(dica1['a1'+str(i)])
+            print('sharea1:', sharea1)
             t=False
     print('first data ok')    
     t=True
