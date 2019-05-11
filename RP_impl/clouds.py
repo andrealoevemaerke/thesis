@@ -179,20 +179,21 @@ for i in range(n):
 print('transmission2')
 share=[]  
 
-for i in range(n):
-    t=True    
-    while t==True: 
-        if 'out_th'+str(i) and 'a1'+str(pnr) and 'a2'+str(pnr) and 'hh'+str(pnr) and 'tt'+str(pnr) and 'ran'+str(pnr) not in dicc.keys():   
-            while not q.empty():
-                temp2= q.get()
-                #print('temp', temp)
-                #print('temp_index0', temp[0])
-                dicc[temp2[1][0]]=temp2[1][1] 
-                print(dicc)
-                
-        else:
-            share.append(dicc['out_th'+str(i)])
-            t=False    
+
+t=True    
+while t==True: 
+    if 'out_th'+str(pnr) and 'a1'+str(pnr) and 'a2'+str(pnr) and 'hh'+str(pnr) and 'tt'+str(pnr) and 'ran'+str(pnr) not in dicc.keys():   
+        while not q.empty():
+            temp2= q.get()
+            #print('temp', temp)
+            #print('temp_index0', temp[0])
+            dicc[temp2[1][0]]=temp2[1][1] 
+            print(dicc)
+            
+    else:
+        share.append(dicc['out_th'+str(pnr)])
+        t=False    
+        
 print('recieve 2')      
 res_th=ss.rec(F, share)        
 print('th product:', res_th)                                                       
