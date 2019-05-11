@@ -328,9 +328,10 @@ class party(Thread):
              r.append(1)
           else: 
              print('error message')
+          
           print('2print')   
           # protocol line 6:
-          print('h type', type(shareh))
+          
           C_shares[mu+k,k] = shareh
 
           f.append(shareh)
