@@ -169,7 +169,7 @@ print('recieved shares from car')
 # shares has been recieved by clouds 
            
 
-sum_result= sharea1[0]+ sharea2[0]
+sum_result= sharea1+ sharea2
 #sum_th= sharet[0]+ shareh[0]
 
 b0=int(b0_s)
