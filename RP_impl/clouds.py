@@ -184,8 +184,9 @@ sum_result= sharea1+ sharea2
 print('a element: ', A00_s)
 #for i in range(n):
   #print('a element:' A00_s(i),)
-A_matrix=np.array([[A00_s, A01_s], [A10_s, A11_s]], dtype=object)
+A_matrix=np.array([[A00_s, A01_s], [A10_s, A11_s]])
 print('A matrix: ',A_matrix)
+print('AA matrix:' , A_matrix@A_matrix )
 print('b0', b0_s)
 print('b1', b1_s)
 print('A00', A00_s)
