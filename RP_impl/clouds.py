@@ -167,6 +167,13 @@ print('recieved shares from car')
 sum_result= sharea1+ sharea2
 
 # Niek protocol
+
+m = 2   # number of A rows
+nn = 2  # number of A coloums
+l = 1   # number of b rows
+mu=min(nn,m)
+
+
 L=np.array(([1,0],[11,11]))
 U=np.array(([1,8],[0,1]))
 
