@@ -158,8 +158,8 @@ ran=7
 #u12=U[0][1]
 #u21=U[1][0]
 #u22=U[1][1]
-h= 1
-t= 1
+hh= 1
+tt= 1
 iden_22=np.identity(nn)
 
 
@@ -194,17 +194,19 @@ for p in range(0, m):
 #            A_share[p][q]=ss.share(F,A,t,n)
 #            iden_share[p][q]=ss.share(F,iden_ny,t,n)
 #
-#h_share= ss.share(F, x, t, n)
-#t_share= ss.share(F, x, t, n)
-#ran_share=ss.share(F, x, t, n)            
+h_share= ss.share(F, hh, t, n)
+t_share= ss.share(F, tt, t, n)
+ran_share=ss.share(F, ran, t, n)            
 
 print('constructed shares in car')
 # send shares to clouds :
 for i in range(n):
     sock.TCPclient(party_addr[i][0], party_addr[i][1], ['a1'+str(i) , int(str(a1_share[i]))])
     sock.TCPclient(party_addr[i][0], party_addr[i][1], ['a2'+str(i) , int(str(a2_share[i]))])
-   
-    # dublere linje for alle shares eller skal der tjekkes for forbindelse hver gang?  
+    sock.TCPclient(party_addr[i][0], party_addr[i][1], ['hh'+str(i) , int(str(h_share[i]))])
+    sock.TCPclient(party_addr[i][0], party_addr[i][1], ['tt'+str(i) , int(str(t_share[i]))])
+    sock.TCPclient(party_addr[i][0], party_addr[i][1], ['ran'+str(i) , int(str(ran_share[i]))])
+# dublere linje for alle shares eller skal der tjekkes for forbindelse hver gang?  
 print('car has send shares')
 
 
@@ -215,14 +217,15 @@ print('car has send shares')
 
 
 # recieve shares from cloud of result
-share_res=[]  
+share_res=[]
+th_res=[] 
 dic_res={}
-t=True 
+boo=True 
 
 # modtage result shares
 for i in range(n):
-    t=True    
-    while t==True: 
+    boo=True    
+    while boo==True: 
         if 'output'+str(i) not in dic_res.keys():   
             while not q.empty():
                 temp= q.get()
@@ -231,13 +234,19 @@ for i in range(n):
                 #print('temp_index1', temp[1])
                 dic_res[temp[1][0]]=temp[1][1] 
 
+        #elif 'output'+str(i) and 'out_th'+str(i) in dic_res.keys():
+            
         else:
             share_res.append(dic_res['output'+str(i)])
-            t=False
+            #th_res.append(dic_res['out_th'+str(i)])
+            boo=False
 
 #print('share x:', share) 
 
 # reconstruct solution x
 print('recieve')      
 result=ss.rec(F, share_res)        
-print('Result is:', result)  
+print('Result is:', result)
+#
+#res_tthh=ss.rec(F, th_res)
+#print('th sum is:',res_tthh)
