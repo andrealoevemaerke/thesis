@@ -128,6 +128,12 @@ sharea2=[]
 shareh=[]
 sharet=[]
 share_ran=[]
+A00_s= []
+A01_s=[]
+A10_s=[]
+A11_s=[]
+b0_s=[]
+b1_s=[]
     
 
 t_bo=True    
@@ -146,6 +152,13 @@ while t_bo==True:
         shareh.append(dic['hh'+str(pnr)])
         sharet.append(dic['tt'+str(pnr)])
         share_ran.append(dic['ran'+str(pnr)])
+        A00_s.append(dic['A00'+str(pnr)])
+        A01_s.append(dic['A01'+str(pnr)])
+        A10_s.append(['A10'+str(pnr)])
+        A11_s.append(['A11'+str(pnr)])
+        b0_s.append(['b0'+str(pnr)])
+        b1_s.append(['b1'+str(pnr)])
+        
         #print('sharea1:', sharea1)
         #print('sharea2:', sharea2)
         t_bo=False
@@ -157,8 +170,10 @@ print('recieved shares from car')
            
 
 sum_result= sharea1[0]+ sharea2[0]
-sum_th= sharet[0]+ shareh[0]
+#sum_th= sharet[0]+ shareh[0]
 
+# Niek protocol
+A_matrix=np.array([[A00])
   
 #print(sum_result)
 # send result to car
