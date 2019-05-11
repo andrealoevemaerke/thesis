@@ -167,7 +167,7 @@ while t_bo==True:
           
 print('recieved shares from car')
 # shares has been recieved by clouds 
-           
+print('type:', type(b1_s))           
 
 sum_result= sharea1+ sharea2
 #sum_th= sharet[0]+ shareh[0]
@@ -185,7 +185,7 @@ print('a element: ', A00_s)
   #print('a element:' A00_s(i),)
 A_matrix=np.array([[A00_s, A01_s], [A10_s, A11_s]], dtype=object)
 print('A matrix: ',A_matrix)
-print('AA matrix:', A_matrix@A_matrix)
+#print('AA matrix:', A_matrix@A_matrix)
   
 #print(sum_result)
 # send result to car
