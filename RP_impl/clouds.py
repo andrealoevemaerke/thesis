@@ -352,7 +352,7 @@ class party(Thread):
                       temp_C2=self.mult_shares(temp[0,1],dummy[1,0]).n
                       C_shares[i,j]=temp_C1 +temp_C2 #manuel computation 1x2 2x1 = 1x1
                             
-        
+           print('updated C:', C_shares[0,0])
         
 
         
