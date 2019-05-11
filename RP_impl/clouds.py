@@ -292,7 +292,7 @@ class party(Thread):
 
 
         A_matrix=np.array([[A00, A01], [A10, A11]])
-        print('A_matrix shares',A_matrix)
+        #print('A_matrix shares',A_matrix)
         b_vector=np.array([[b0],[b1]])
         I_2=np.array([[I00, I01], [I10, I11]])
 
@@ -300,13 +300,13 @@ class party(Thread):
         U=np.array(([1,8],[0,1]))
 
         e00=np.array(U@A_matrix@L)
-        print('e00 result shares', e00)
+        #print('e00 result shares', e00)
         e01=np.array(U@b_vector)
         e10=np.array(I_2)
         e11=np.array(np.zeros((nn,l)))
 
         C_shares=np.array(([e00[0,0], e00[0,1], e01[0,0]],[e00[1,0], e00[1,1], e01[1,0]], [e10[0,0], e10[0,1], 0],[ e10[1,0], e10[1,1], 0]))
-        print('C matrix:', C_shares)
+        #print('C matrix:', C_shares)
           
         f = []
         r_temp = []
@@ -319,9 +319,29 @@ class party(Thread):
           
           # protocol line 5 
           r_temp.append(self.reconstruct_secret('c_kk'+str(self.comr))) 
-          print('r is:', r_temp)
+          #print('r is:', r_temp)
         
-        
+          if r_temp[k] == 0:
+             r.append(0)
+          elif r_temp[k] != 0:
+             r.append(1)
+          else: 
+             print('error message')
+             
+          # protocol line 6:
+          #C_shares[mu+k,k] = h_share
+
+          #f.append(h_share)
+   
+          #t_share = self.mult_shares(t_share,h_share).n     # mult shares med Beavers
+
+          
+          # protocol line 9
+          #c_kk = (C_shares[k,k]+1-r[k])    # when c_kk !=0 then r will be 1 
+                                           # and 1-r will cancel out
+    
+          #h_share = self.mult_shares(h_share,c_kk).n 
+
         
         
         
