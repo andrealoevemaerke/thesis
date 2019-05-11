@@ -185,6 +185,13 @@ print('a element: ', A00_s)
   #print('a element:' A00_s(i),)
 A_matrix=np.array([[A00_s, A01_s], [A10_s, A11_s]], dtype=object)
 print('A matrix: ',A_matrix)
+print('b0', b0_s)
+print('b1', b1_s)
+print('A00', A00_s)
+print('A01', A01_s)
+print('A10', A10_s)
+print('A11', A11_s)
+
 #print('AA matrix:', A_matrix@A_matrix)
   
 #print(sum_result)
