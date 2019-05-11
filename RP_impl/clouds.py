@@ -172,11 +172,18 @@ print('recieved shares from car')
 sum_result= sharea1[0]+ sharea2[0]
 #sum_th= sharet[0]+ shareh[0]
 
+b0=b0_s[0]
+b1=b1_s[0]
+A00=A00_s[0]
+A01=A01_s[0]
+A10=A10_s[0]
+A11=A11_s[0]
+
 # Niek protocol
-print('a element all shares: ', A00_s)
-for i in range(n):
-  print('a element:' A00_s(i),)
-  #A_matrix=np.array([[A00_s[i], A01_s[i]], [A10_s[i], A11_s[i]]])
+print('a element: ', A00)
+#for i in range(n):
+  #print('a element:' A00_s(i),)
+A_matrix=np.array([[A00, A01], [A10, A11]])
   #print('A matrix: ',A_matrix)
   
 #print(sum_result)
