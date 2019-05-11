@@ -116,7 +116,7 @@ print('connection ok')
 
 dic={}
 dica2={}
-dichh={}
+dic_th={}
 dictt={}
 dicran={}
 
@@ -160,7 +160,28 @@ sum_th= sharet[0]+ shareh[0]
 #print(sum_result)
 # send result to car
 sock.TCPclient(party_addr[3][0], party_addr[3][1], ['output'+str(pnr) , int(str(sum_result))])
-sock.TCPclient(party_addr[3][0], party_addr[3][1], ['out_th'+str(pnr) , int(str(sum_th))])
+#sock.TCPclient(party_addr[3][0], party_addr[3][1], ['out_th'+str(pnr) , int(str(sum_th))])
 print('transmission')
 
-                                                           
+for i in range(n):
+    sock.TCPclient(party_addr[i][0], party_addr[i][1], ['out_th'+str(pnr) , int(str(sum_th))])
+
+print('transmission2')
+share=[]  
+
+for i in range(n):
+    t=True    
+    while t==True: 
+        if 'out_th'+str(i) not in dic_th.keys():   
+            while not q.empty():
+                temp= q.get()
+                #print('temp', temp)
+                #print('temp_index0', temp[0])
+                dic[temp[1][0]]=temp[1][1] 
+                
+        else:
+            share.append(dic_th['out_th'+str(i)])
+            t=False    
+print('recieve 2')      
+res_th=ss.rec(F, share)        
+print('th product:', res_th)                                                       
