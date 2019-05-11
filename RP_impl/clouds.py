@@ -188,6 +188,7 @@ for i in range(n):
                 #print('temp', temp)
                 #print('temp_index0', temp[0])
                 dicc[temp2[1][0]]=temp2[1][1] 
+                print(dicc)
                 
         else:
             share.append(dicc['out_th'+str(i)])
