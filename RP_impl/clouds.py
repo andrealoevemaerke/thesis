@@ -174,9 +174,9 @@ sum_result= sharea1[0]+ sharea2[0]
 
 # Niek protocol
 for i in range(n):
-  
-  A_matrix=np.array([[A00_s[i], A01_s[i]], [A10_s[i], A11_s[i]]])
-  print('A matrix: ',A_matrix)
+  print('a element:' A00_s[i],)
+  #A_matrix=np.array([[A00_s[i], A01_s[i]], [A10_s[i], A11_s[i]]])
+  #print('A matrix: ',A_matrix)
   
 #print(sum_result)
 # send result to car
