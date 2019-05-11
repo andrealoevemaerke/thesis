@@ -177,6 +177,7 @@ for i in range(n): # n+1 to include car
           continue
 print('connection2 ok')
 for i in range(n):
+    print('pnr is:',pnr)
     sock.TCPclient(party_addr[i][0], party_addr[i][1], ['out_th'+str(pnr) , int(str(sum_th))])
 
 print('transmission2')
@@ -184,7 +185,7 @@ share=[]
 
 
 t_bo=True  
-for i in range(n+2):
+for i in range(n):
     print('i is:', i)  
     t_bo= True
     while t_bo==True: 
@@ -198,7 +199,7 @@ for i in range(n+2):
                 
         else:
             share.append(dicc['out_th'+str(i)])
-            #t_bo=False    
+            t_bo=False    
         
 print('recieve 2')      
 res_th=ss.rec(F, share)        
