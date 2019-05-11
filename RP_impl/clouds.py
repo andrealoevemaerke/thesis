@@ -279,42 +279,58 @@ class party(Thread):
         self.get_triplets()
         #self.tt = self.get_share('b')
         
+        # Niek protocol
+
+        m = 2   # number of A rows
+        nn = 2  # number of A coloums
+        l = 1   # number of b rows
+        mu=min(nn,m)
+
+
+        L=np.array(([1,0],[11,11]))
+        U=np.array(([1,8],[0,1]))
+
+
+        A_matrix=np.array([[A00, A01], [A10, A11]])
+        b_vector=np.array([[b0],[b1]])
+        I_2=np.array([[I00, I01], [I10, I11]])
+
+        L=np.array(([1,0],[11,11]))
+        U=np.array(([1,8],[0,1]))
+
+        e00=np.array(U@A_matrix@L)
+        e01=np.array(U@b_vector)
+        e10=np.array(I_2)
+        e11=np.array(np.zeros((nn,l)))
+
+        C_shares=np.array(([e00[0,0], e00[0,1], e01[0,0]],[e00[1,0], e00[1,1], e01[1,0]], [e10[0,0], e10[0,1], 0],[ e10[1,0], e10[1,1], 0]))
+        print('C matrix:', C_shares)
+          
+        f = []
+        r_temp = []
+        r = []
+        
+        for k in range(0, mu):
+                
+          broad_ckk= self.mult_shares(share_ran,C_shares[k,k])
+          #self.broadcast('c_kk' + str(self.comr), broad_ckk)
+          
+          # protocol line 5 
+          #r_temp.append(self.reconstruct_secret('c_kk'+str(self.comr))) 
+       
+        
+        
+        
+        
+        
+
+        
 p = party(F,int(x),n,t,pnr, q, q2, q3, party_addr, server_addr)
 deal = dealer(F,n,t,50)
 p.start()
 
 
 
-# Niek protocol
-
-m = 2   # number of A rows
-nn = 2  # number of A coloums
-l = 1   # number of b rows
-mu=min(nn,m)
-
-
-L=np.array(([1,0],[11,11]))
-U=np.array(([1,8],[0,1]))
-
-
-A_matrix=np.array([[A00, A01], [A10, A11]])
-b_vector=np.array([[b0],[b1]])
-I_2=np.array([[I00, I01], [I10, I11]])
-
-L=np.array(([1,0],[11,11]))
-U=np.array(([1,8],[0,1]))
-
-e00=np.array(U@A_matrix@L)
-e01=np.array(U@b_vector)
-e10=np.array(I_2)
-e11=np.array(np.zeros((nn,l)))
-
-C_shares=np.array(([e00[0,0], e00[0,1], e01[0,0]],[e00[1,0], e00[1,1], e01[1,0]], [e10[0,0], e10[0,1], 0],[ e10[1,0], e10[1,1], 0]))
-print('C matrix:', C_shares)
-  
-f = []
-r_temp = []
-r = []
 
 #for k in range(mu):
   
