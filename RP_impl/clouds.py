@@ -113,34 +113,38 @@ print('connection ok')
 # shares from car has been recieved 
 
 # other way to recieve shares: 
+
+dic={}
+dica2={}
+dichh={}
+dictt={}
+dicran={}
+
 sharea1=[]  
 sharea2=[] 
-dica1={}
-dica2={}
+shareh=[]
+sharet=[]
+share_ran=[]
     
 
 t=True    
 while t==True: 
     
-    if 'a1'+str(pnr) and 'a2'+str(pnr) not in dica1.keys():  
+    if 'a1'+str(pnr) and 'a2'+str(pnr) and 'hh'+str(pnr) and 'tt'+str(pnr) and 'ran'+str(pnr) not in dica1.keys():  
        
         while not q.empty():
             temp= q.get()
             
-            #print('temp', temp)
-            #print('temp_index0', temp[0])
-            #print('temp_index1', temp[1])
-            #if temp[1][0] == 'a1'+str(i)
-            #print('temp is:', temp[1][0])
-            #if 'a1'+str(i) in temp[1][0]
-             #   print('if entered')
-            dica1[temp[1][0]]=temp[1][1] 
-            print('dica1', dica1)
+            dic[temp[1][0]]=temp[1][1] 
+            #print('dica1', dica1)
     else:
-        sharea1.append(dica1['a1'+str(pnr)])
-        sharea2.append(dica1['a2'+str(pnr)])
-        print('sharea1:', sharea1)
-        print('sharea2:', sharea2)
+        sharea1.append(dic['a1'+str(pnr)])
+        sharea2.append(dic['a2'+str(pnr)])
+        shareh.append(dic['hh'+str(pnr)])
+        sharet.append(dic['tt'+str(pnr)])
+        share_ran.append(dic['ran'+str(pnr)])
+        #print('sharea1:', sharea1)
+        #print('sharea2:', sharea2)
         t=False
             
    
