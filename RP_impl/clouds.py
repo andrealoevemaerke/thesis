@@ -188,47 +188,47 @@ t_bo=True
 
    
 
-    while t_bo==True: 
-        #and 'out_th'+str(1) and 'out_th'+str(2) and 'a2'+str(1) and 'a2'+str(2) and 'hh'+str(1) and 'hh'+str(2) and 'tt'+str(1) and 'tt'+str(2) and 'ran'+str(1) and 'ran'+str(2) 
-        if 'out_th'+str(0)  and 'a2'+str(0) and 'hh'+str(0) and 'tt'+str(0)  and 'ran'+str(0) not in dicc.keys():   
-            while not q.empty():
-                temp2= q.get()
-                print('temp2:', temp2)
-                #print('temp', temp)
-                #print('temp_index0', temp[0])
-                dicc[temp2[1][0]]=temp2[1][1] 
-                #print(dicc)
-                
-        else:
-            share.append(dicc['out_th'+str(0)])
-            #t_bo=False 
-               
-        if 'out_th'+str(1)  and 'a2'+str(1) and 'hh'+str(1) and 'tt'+str(1)  and 'ran'+str(1) not in dicc.keys():   
-            while not q.empty():
-              temp2= q.get()
-              print('temp2:', temp2)
-              #print('temp', temp)
-              #print('temp_index0', temp[0])
-              dicc[temp2[1][0]]=temp2[1][1] 
-              #print(dicc)
-              
-        else:
-            share.append(dicc['out_th'+str(i)])
-            #t_bo=False    
+while t_bo==True: 
+    #and 'out_th'+str(1) and 'out_th'+str(2) and 'a2'+str(1) and 'a2'+str(2) and 'hh'+str(1) and 'hh'+str(2) and 'tt'+str(1) and 'tt'+str(2) and 'ran'+str(1) and 'ran'+str(2) 
+    if 'out_th'+str(0)  and 'a2'+str(0) and 'hh'+str(0) and 'tt'+str(0)  and 'ran'+str(0) not in dicc.keys():   
+        while not q.empty():
+            temp2= q.get()
+            print('temp2:', temp2)
+            #print('temp', temp)
+            #print('temp_index0', temp[0])
+            dicc[temp2[1][0]]=temp2[1][1] 
+            #print(dicc)
             
-        if 'out_th'+str(2)  and 'a2'+str(2) and 'hh'+str(2) and 'tt'+str(2)  and 'ran'+str(2) not in dicc.keys():   
-            while not q.empty():
-              temp2= q.get()
-              print('temp2:', temp2)
-              #print('temp', temp)
-              #print('temp_index0', temp[0])
-              dicc[temp2[1][0]]=temp2[1][1] 
-              #print(dicc)
+    else:
+        share.append(dicc['out_th'+str(0)])
+        #t_bo=False 
+           
+    if 'out_th'+str(1)  and 'a2'+str(1) and 'hh'+str(1) and 'tt'+str(1)  and 'ran'+str(1) not in dicc.keys():   
+        while not q.empty():
+          temp2= q.get()
+          print('temp2:', temp2)
+          #print('temp', temp)
+          #print('temp_index0', temp[0])
+          dicc[temp2[1][0]]=temp2[1][1] 
+          #print(dicc)
           
-        else:
-            share.append(dicc['out_th'+str(i)])
-            #t_bo=False 
+    else:
+        share.append(dicc['out_th'+str(i)])
+        #t_bo=False    
         
+    if 'out_th'+str(2)  and 'a2'+str(2) and 'hh'+str(2) and 'tt'+str(2)  and 'ran'+str(2) not in dicc.keys():   
+        while not q.empty():
+          temp2= q.get()
+          print('temp2:', temp2)
+          #print('temp', temp)
+          #print('temp_index0', temp[0])
+          dicc[temp2[1][0]]=temp2[1][1] 
+          #print(dicc)
+      
+    else:
+        share.append(dicc['out_th'+str(i)])
+        #t_bo=False 
+    
 print('recieve 2')      
 res_th=ss.rec(F, share)        
 print('th product:', res_th)                                                       
