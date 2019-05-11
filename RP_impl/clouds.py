@@ -178,7 +178,7 @@ for i in range(n): # n+1 to include car
 print('connection2 ok')
 for i in range(n):
     #print('pnr is:',pnr)
-    sock.TCPclient(party_addr[i][0], party_addr[i][1], ['out_th'+str(pnr) , int(str(sum_th))])
+    sock.TCPclient(party_addr[i][0], party_addr[i][1], ['out_th'+str(i) , int(str(sum_th))])
 
 print('transmission2')
 share=[]  
