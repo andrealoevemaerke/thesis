@@ -77,6 +77,7 @@ pnr = party_addr.index([ipv4, port])
 q = que.Queue()
 q2 = que.Queue()
 q3 = que.Queue()
+qA = que.Queue()
 
 print('pnr:', pnr)
 #Initialization..
@@ -88,6 +89,7 @@ server2_info = (ipv4, UDP_PORT2)
 
 # Create new threads..
 t1_comms = commsThread(1, "Communication Thread", server_info,q)
+tA_comms = commsThread(1, "Communication Thread", server_info,qA)
 #2_commsSimulink = UDPcommsThread(2, "t2_commsSimulink", server2_info)
 #ploting = plotter(q3)
 #ploting.start()
@@ -128,8 +130,8 @@ sharet=[]
 share_ran=[]
     
 
-t=True    
-while t==True: 
+t_bo=True    
+while t_bo==True: 
     
     if 'a1'+str(pnr) and 'a2'+str(pnr) and 'hh'+str(pnr) and 'tt'+str(pnr) and 'ran'+str(pnr) not in dic.keys():  
        
@@ -146,7 +148,7 @@ while t==True:
         share_ran.append(dic['ran'+str(pnr)])
         #print('sharea1:', sharea1)
         #print('sharea2:', sharea2)
-        t=False
+        t_bo=False
             
    
           
@@ -164,6 +166,8 @@ sock.TCPclient(party_addr[3][0], party_addr[3][1], ['output'+str(pnr) , int(str(
 #sock.TCPclient(party_addr[3][0], party_addr[3][1], ['out_th'+str(pnr) , int(str(sum_th))])
 print('transmission')
 
+
+tA_comms.start()
 for i in range(n): # n+1 to include car
     while True:
         try:
@@ -180,19 +184,20 @@ print('transmission2')
 share=[]  
 
 
-t=True    
-while t==True: 
-    if 'out_th'+str(pnr) and 'a1'+str(pnr) and 'a2'+str(pnr) and 'hh'+str(pnr) and 'tt'+str(pnr) and 'ran'+str(pnr) not in dicc.keys():   
-        while not q.empty():
-            temp2= q.get()
-            #print('temp', temp)
-            #print('temp_index0', temp[0])
-            dicc[temp2[1][0]]=temp2[1][1] 
-            print(dicc)
-            
-    else:
-        share.append(dicc['out_th'+str(pnr)])
-        t=False    
+t_bo=True  
+for i in range(n):  
+    while t_bo==True: 
+        if 'out_th'+str(i) not in dicc.keys():   
+            while not q.empty():
+                temp2= q.get()
+                #print('temp', temp)
+                #print('temp_index0', temp[0])
+                dicc[temp2[1][0]]=temp2[1][1] 
+                print(dicc)
+                
+        else:
+            share.append(dicc['out_th'+str(i)])
+            t_bo=False    
         
 print('recieve 2')      
 res_th=ss.rec(F, share)        
