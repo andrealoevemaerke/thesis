@@ -189,6 +189,7 @@ for i in range(n):
     print('i is:', i)  
     t_bo= True
     while t_bo==True: 
+        print('dic_keys:',dic.keys)
         if 'out_th'+str(i) and 'a2'+str(i) and 'hh'+str(i) and 'tt'+str(i) and 'ran'+str(i) not in dicc.keys():   
             while not q.empty():
                 temp2= q.get()
