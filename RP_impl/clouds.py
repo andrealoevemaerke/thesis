@@ -130,7 +130,7 @@ share_ran=[]
 t=True    
 while t==True: 
     
-    if 'a1'+str(pnr) and 'a2'+str(pnr) and 'hh'+str(pnr) and 'tt'+str(pnr) and 'ran'+str(pnr) not in dica1.keys():  
+    if 'a1'+str(pnr) and 'a2'+str(pnr) and 'hh'+str(pnr) and 'tt'+str(pnr) and 'ran'+str(pnr) not in dic.keys():  
        
         while not q.empty():
             temp= q.get()
