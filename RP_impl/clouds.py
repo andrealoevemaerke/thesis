@@ -189,8 +189,8 @@ for i in range(n):
     print('i is:', i)  
     t_bo= True
     while t_bo==True: 
-        
-        if 'out_th'+str(0) and 'out_th'+str(1) and 'out_th'+str(2) and 'a2'+str(0) and 'a2'+str(1) and 'a2'+str(2) and 'hh'+str(0) and 'hh'+str(1) and 'hh'+str(2) and 'tt'+str(0) and 'tt'+str(1) and 'tt'+str(2) and 'ran'+str(0) and 'ran'+str(1) and 'ran'+str(2) not in dicc.keys():   
+        #and 'out_th'+str(1) and 'out_th'+str(2) and 'a2'+str(1) and 'a2'+str(2) and 'hh'+str(1) and 'hh'+str(2) and 'tt'+str(1) and 'tt'+str(2) and 'ran'+str(1) and 'ran'+str(2) 
+        if 'out_th'+str(i)  and 'a2'+str(i) and 'hh'+str(i) and 'tt'+str(i)  and 'ran'+str(i) not in dicc.keys():   
             while not q.empty():
                 temp2= q.get()
                 print('temp2:', temp2)
