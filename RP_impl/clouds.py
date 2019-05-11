@@ -167,13 +167,24 @@ print('recieved shares from car')
 sum_result= sharea1+ sharea2
 
 # Niek protocol
+L=np.array(([1,0],[11,11]))
+U=np.array(([1,8],[0,1]))
+
+
 A_matrix=np.array([[A00, A01], [A10, A11]])
 b_vector=np.array([[b0],[b1]])
 I_2=np.array([[I00, I01], [I10, I11]])
 
+L=np.array(([1,0],[11,11]))
+U=np.array(([1,8],[0,1]))
 
+e00=np.array(U@A_matrix@L)
+e01=np.array(U@b_vector)
+e10=np.array(I_2)
+e11=np.array(np.zeros((nn,l)))
 
-#print('AA matrix:', A_matrix@A_matrix)
+C_shares=np.array(([e00[0,0], e00[0,1], e01[0,0]],[e00[1,0], e00[1,1], e01[1,0]], [e10[0,0], e10[0,1], 0],[ e10[1,0], e10[1,1], 0]))
+print('C matrix:', C_shares)
   
 #print(sum_result)
 # send result to car
