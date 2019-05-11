@@ -185,6 +185,7 @@ share=[]
 
 t_bo=True  
 for i in range(n):  
+    t_bo= True
     while t_bo==True: 
         if 'out_th'+str(i) and 'a2'+str(i) and 'hh'+str(i) and 'tt'+str(i) and 'ran'+str(i) not in dicc.keys():   
             while not q.empty():
