@@ -311,7 +311,7 @@ class party(Thread):
         f = []
         r_temp = []
         r = []
-        
+        print('before for loop')
         for k in range(0, mu):
                   
             broad_ckk= self.mult_shares(share_ran,C_shares[k,k])
