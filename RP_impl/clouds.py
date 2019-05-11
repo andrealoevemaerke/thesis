@@ -147,17 +147,17 @@ while t_bo==True:
             dic[temp[1][0]]=temp[1][1] 
             #print('dica1', dica1)
     else:
-        sharea1.append(dic['a1'+str(pnr)])
-        sharea2.append(dic['a2'+str(pnr)])
-        shareh.append(dic['hh'+str(pnr)])
-        sharet.append(dic['tt'+str(pnr)])
-        share_ran.append(dic['ran'+str(pnr)])
-        A00_s.append(dic['A00'+str(pnr)])
-        A01_s.append(dic['A01'+str(pnr)])
-        A10_s.append(['A10'+str(pnr)])
-        A11_s.append(['A11'+str(pnr)])
-        b0_s.append(['b0'+str(pnr)])
-        b1_s.append(['b1'+str(pnr)])
+        sharea1=(dic['a1'+str(pnr)])
+        sharea2=(dic['a2'+str(pnr)])
+        shareh=(dic['hh'+str(pnr)])
+        sharet=(dic['tt'+str(pnr)])
+        share_ran=(dic['ran'+str(pnr)])
+        A00_s=(dic['A00'+str(pnr)])
+        A01_s=(dic['A01'+str(pnr)])
+        A10_s=(['A10'+str(pnr)])
+        A11_s=(['A11'+str(pnr)])
+        b0_s=(['b0'+str(pnr)])
+        b1_s=(['b1'+str(pnr)])
         
         #print('sharea1:', sharea1)
         #print('sharea2:', sharea2)
@@ -172,12 +172,12 @@ print('recieved shares from car')
 sum_result= sharea1[0]+ sharea2[0]
 #sum_th= sharet[0]+ shareh[0]
 
-b0=int(b0_s[0])
-b1=int(b1_s[0])
-A00=int(A00_s[0])
-A01=int(A01_s[0])
-A10=int(A10_s[0])
-A11=int(A11_s[0])
+b0=int(b0_s)
+b1=int(b1_s)
+A00=int(A00_s)
+A01=int(A01_s)
+A10=int(A10_s)
+A11=int(A11_s)
 
 # Niek protocol
 print('a element: ', A00)
