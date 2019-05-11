@@ -198,7 +198,7 @@ for i in range(n+2):
                 
         else:
             share.append(dicc['out_th'+str(i)])
-            t_bo=False    
+            #t_bo=False    
         
 print('recieve 2')      
 res_th=ss.rec(F, share)        
