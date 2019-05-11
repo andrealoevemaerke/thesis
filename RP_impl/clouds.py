@@ -154,9 +154,13 @@ print('recieved shares from car')
            
 
 sum_result= sharea1[0]+ sharea2[0]
-print(sum_result)
+sum_th= sharet[0]+ shareh[0]
+
+  
+#print(sum_result)
 # send result to car
 sock.TCPclient(party_addr[3][0], party_addr[3][1], ['output'+str(pnr) , int(str(sum_result))])
+sock.TCPclient(party_addr[3][0], party_addr[3][1], ['out_th'+str(pnr) , int(str(sum_th))])
 print('transmission')
 
                                                            
