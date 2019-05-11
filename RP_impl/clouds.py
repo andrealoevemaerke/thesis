@@ -329,18 +329,18 @@ class party(Thread):
              print('error message')
              
           # protocol line 6:
-          #C_shares[mu+k,k] = h_share
+          C_shares[mu+k,k] = shareh
 
-          #f.append(h_share)
+          f.append(shareh)
    
-          #t_share = self.mult_shares(t_share,h_share).n     # mult shares med Beavers
+          sharet = self.mult_shares(sharet,shareh)    # mult shares med Beavers
 
           
           # protocol line 9
-          #c_kk = (C_shares[k,k]+1-r[k])    # when c_kk !=0 then r will be 1 
+          c_kk = (C_shares[k,k]+1-r[k])    # when c_kk !=0 then r will be 1 
                                            # and 1-r will cancel out
     
-          #h_share = self.mult_shares(h_share,c_kk).n 
+          shareh = self.mult_shares(shareh,c_kk)
 
         
         
