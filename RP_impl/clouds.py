@@ -123,23 +123,13 @@ dictt={}
 dicran={}
 dicc={}
 
-sharea1=[]  
-sharea2=[] 
-shareh=[]
-sharet=[]
-share_ran=[]
-A00_s= []
-A01_s=[]
-A10_s=[]
-A11_s=[]
-b0_s=[]
-b1_s=[]
+
     
 
 t_bo=True    
 while t_bo==True: 
     
-    if 'a1'+str(pnr) and 'a2'+str(pnr) and 'hh'+str(pnr) and 'tt'+str(pnr) and 'ran'+str(pnr)  and 'b0'+str(pnr) and 'b1'+str(pnr) and 'A00'+str(pnr) and 'A01'+str(pnr) and 'A10'+str(pnr) and 'A11'+str(pnr) not in dic.keys():  
+    if 'a1'+str(pnr) and 'a2'+str(pnr) and 'hh'+str(pnr) and 'tt'+str(pnr) and 'ran'+str(pnr)  and 'b0'+str(pnr) and 'b1'+str(pnr) and 'A00'+str(pnr) and 'A01'+str(pnr) and 'A10'+str(pnr) and 'A11'+str(pnr) and  'I00'+str(pnr) and 'I01'+str(pnr) and 'I10'+str(pnr) and 'I11'+str(pnr) not in dic.keys():  
        
         while not q.empty():
             temp= q.get()
@@ -152,13 +142,17 @@ while t_bo==True:
         shareh=(dic['hh'+str(pnr)])
         sharet=(dic['tt'+str(pnr)])
         share_ran=(dic['ran'+str(pnr)])
-        A00_s=(dic['A00'+str(pnr)])
-        A01_s=(dic['A01'+str(pnr)])
-        A10_s=(dic['A10'+str(pnr)])
-        A11_s=(dic['A11'+str(pnr)])
-        b0_s=(dic['b0'+str(pnr)])
-        b1_s=(dic['b1'+str(pnr)])
-        b1_s=(dic['b1'+str(pnr)])
+        A00=(dic['A00'+str(pnr)])
+        A01=(dic['A01'+str(pnr)])
+        A10=(dic['A10'+str(pnr)])
+        A11=(dic['A11'+str(pnr)])
+        b0=(dic['b0'+str(pnr)])
+        b1=(dic['b1'+str(pnr)])
+        I00=(dic['I00'+str(pnr)])
+        I01=(dic['I01'+str(pnr)])
+        I10=(dic['I10'+str(pnr)])
+        I11=(dic['I11'+str(pnr)])
+      
         
         #print('sharea1:', sharea1)
         #print('sharea2:', sharea2)
@@ -168,31 +162,16 @@ while t_bo==True:
           
 print('recieved shares from car')
 # shares has been recieved by clouds 
-print('type:', type(b1_s))           
+        
 
 sum_result= sharea1+ sharea2
-#sum_th= sharet[0]+ shareh[0]
-
-#b0=int(str(b0_s))
-#b1=int(str(b1_s))
-#A00=int(str(A00_s))
-#A01=int(str(A01_s))
-#A10=int(str(A10_s))
-#A11=int(str(A11_s))
 
 # Niek protocol
-print('a element: ', A00_s)
-#for i in range(n):
-  #print('a element:' A00_s(i),)
-A_matrix=np.array([[A00_s, A01_s], [A10_s, A11_s]])
-print('A matrix: ',A_matrix)
-print('AA matrix:' , A_matrix@A_matrix )
-print('b0', b0_s)
-print('b1', b1_s)
-print('A00', A00_s)
-print('A01', A01_s)
-print('A10', A10_s)
-print('A11', A11_s)
+A_matrix=np.array([[A00, A01], [A10, A11]])
+b_vector=np.array([[b0],[b1]])
+I_2=np.array([[I00, I01], [I10, I11]])
+
+
 
 #print('AA matrix:', A_matrix@A_matrix)
   
