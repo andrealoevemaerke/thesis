@@ -320,14 +320,14 @@ class party(Thread):
           # protocol line 5 
           r_temp.append(self.reconstruct_secret('c_kk'+str(self.comr))) 
           #print('r is:', r_temp)
-        
+          print('1print')
           if r_temp[k] == 0:
              r.append(0)
           elif r_temp[k] != 0:
              r.append(1)
           else: 
              print('error message')
-             
+          print('2print')   
           # protocol line 6:
           C_shares[mu+k,k] = shareh
 
@@ -341,7 +341,7 @@ class party(Thread):
                                            # and 1-r will cancel out
     
           shareh = self.mult_shares(shareh,c_kk)
-
+          print('3PRINT')
           for i in range(0, mu+k):
               for j in range(k+1, nn+l):
                   if i!= k and (i<= mu or j <= nn-1):
@@ -351,7 +351,7 @@ class party(Thread):
                       temp_C1=self.mult_shares(temp[0,0],dummy[0,0]).n
                       temp_C2=self.mult_shares(temp[0,1],dummy[1,0]).n
                       C_shares[i,j]=temp_C1 +temp_C2 #manuel computation 1x2 2x1 = 1x1
-                            
+                      print('if loop')          
           print('updated C:', C_shares[0,0])
         
 
