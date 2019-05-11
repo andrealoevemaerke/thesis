@@ -172,12 +172,12 @@ print('recieved shares from car')
 sum_result= sharea1[0]+ sharea2[0]
 #sum_th= sharet[0]+ shareh[0]
 
-b0=b0_s[0]
-b1=b1_s[0]
-A00=A00_s[0]
-A01=A01_s[0]
-A10=A10_s[0]
-A11=A11_s[0]
+b0=int(b0_s[0])
+b1=int(b1_s[0])
+A00=int(A00_s[0])
+A01=int(A01_s[0])
+A10=int(A10_s[0])
+A11=int(A11_s[0])
 
 # Niek protocol
 print('a element: ', A00)
