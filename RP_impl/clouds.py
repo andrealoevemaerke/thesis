@@ -287,11 +287,12 @@ class party(Thread):
         mu=min(nn,m)
 
 
-        L=np.array(([1,0],[11,11]))
+        L=np.array(([1,0],[11,1]))
         U=np.array(([1,8],[0,1]))
 
 
         A_matrix=np.array([[A00, A01], [A10, A11]])
+        print('A_matrix shares',A_matrix)
         b_vector=np.array([[b0],[b1]])
         I_2=np.array([[I00, I01], [I10, I11]])
 
@@ -299,6 +300,7 @@ class party(Thread):
         U=np.array(([1,8],[0,1]))
 
         e00=np.array(U@A_matrix@L)
+        print('e00 result shares', e00)
         e01=np.array(U@b_vector)
         e10=np.array(I_2)
         e11=np.array(np.zeros((nn,l)))
