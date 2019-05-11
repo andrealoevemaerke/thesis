@@ -306,6 +306,7 @@ class party(Thread):
         e11=np.array(np.zeros((nn,l)))
 
         C_shares=np.array(([e00[0,0], e00[0,1], e01[0,0]],[e00[1,0], e00[1,1], e01[1,0]], [e10[0,0], e10[0,1], 0],[ e10[1,0], e10[1,1], 0]))
+        C_shares.astype(int)
         #print('C matrix:', C_shares)
           
         f = []
@@ -329,6 +330,7 @@ class party(Thread):
              print('error message')
           print('2print')   
           # protocol line 6:
+          print('h type', type(shareh))
           C_shares[mu+k,k] = shareh
 
           f.append(shareh)
