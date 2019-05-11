@@ -119,6 +119,7 @@ dica2={}
 dic_th={}
 dictt={}
 dicran={}
+dicc={}
 
 sharea1=[]  
 sharea2=[] 
@@ -163,6 +164,15 @@ sock.TCPclient(party_addr[3][0], party_addr[3][1], ['output'+str(pnr) , int(str(
 #sock.TCPclient(party_addr[3][0], party_addr[3][1], ['out_th'+str(pnr) , int(str(sum_th))])
 print('transmission')
 
+for i in range(n): # n+1 to include car
+    while True:
+        try:
+          sock.TCPclient(party_addr[i][0], party_addr[i][1], ['flag', 1])
+          break
+        except:
+          time.sleep(1)
+          continue
+print('connection2 ok')
 for i in range(n):
     sock.TCPclient(party_addr[i][0], party_addr[i][1], ['out_th'+str(pnr) , int(str(sum_th))])
 
@@ -172,15 +182,15 @@ share=[]
 for i in range(n):
     t=True    
     while t==True: 
-        if 'out_th'+str(i) not in dic_th.keys():   
+        if 'out_th'+str(i) and 'a1'+str(pnr) and 'a2'+str(pnr) and 'hh'+str(pnr) and 'tt'+str(pnr) and 'ran'+str(pnr) not in dicc.keys():   
             while not q.empty():
-                temp= q.get()
+                temp2= q.get()
                 #print('temp', temp)
                 #print('temp_index0', temp[0])
-                dic[temp[1][0]]=temp[1][1] 
+                dicc[temp2[1][0]]=temp2[1][1] 
                 
         else:
-            share.append(dic_th['out_th'+str(i)])
+            share.append(dicc['out_th'+str(i)])
             t=False    
 print('recieve 2')      
 res_th=ss.rec(F, share)        
