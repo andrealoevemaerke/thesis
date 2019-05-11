@@ -167,7 +167,6 @@ sock.TCPclient(party_addr[3][0], party_addr[3][1], ['output'+str(pnr) , int(str(
 print('transmission')
 
 
-tA_comms.start()
 for i in range(n): # n+1 to include car
     while True:
         try:
