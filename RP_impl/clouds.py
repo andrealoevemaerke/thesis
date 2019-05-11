@@ -66,7 +66,7 @@ class commsThread (Thread):
       print("Exiting " + self.name)
       
       
-m = 7979490791
+m = 792606555396977# 7979490791
 F = field.GF(m)            
 n = 3
 t = 1
