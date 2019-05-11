@@ -313,10 +313,10 @@ class party(Thread):
         for k in range(0, mu):
                 
           broad_ckk= self.mult_shares(share_ran,C_shares[k,k])
-          #self.broadcast('c_kk' + str(self.comr), broad_ckk)
+          self.broadcast('c_kk' + str(self.comr), broad_ckk)
           
           # protocol line 5 
-          #r_temp.append(self.reconstruct_secret('c_kk'+str(self.comr))) 
+          r_temp.append(self.reconstruct_secret('c_kk'+str(self.comr))) 
        
         
         
