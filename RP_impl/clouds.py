@@ -317,7 +317,7 @@ class party(Thread):
           
           # protocol line 5 
           r_temp.append(self.reconstruct_secret('c_kk'+str(self.comr))) 
-       
+          print('r is:', r_temp)
         
         
         
