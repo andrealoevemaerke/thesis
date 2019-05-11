@@ -177,7 +177,7 @@ for i in range(n): # n+1 to include car
           continue
 print('connection2 ok')
 for i in range(n):
-    print('pnr is:',pnr)
+    #print('pnr is:',pnr)
     sock.TCPclient(party_addr[i][0], party_addr[i][1], ['out_th'+str(pnr) , int(str(sum_th))])
 
 print('transmission2')
@@ -192,6 +192,7 @@ for i in range(n):
         if 'out_th'+str(i) and 'a2'+str(i) and 'hh'+str(i) and 'tt'+str(i) and 'ran'+str(i) not in dicc.keys():   
             while not q.empty():
                 temp2= q.get()
+                print('temp2:', temp2)
                 #print('temp', temp)
                 #print('temp_index0', temp[0])
                 dicc[temp2[1][0]]=temp2[1][1] 
