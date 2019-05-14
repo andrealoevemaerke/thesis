@@ -307,7 +307,7 @@ class party(Thread):
 
         C_shares=np.array(([e00[0,0], e00[0,1], e01[0,0]],[e00[1,0], e00[1,1], e01[1,0]], [e10[0,0], e10[0,1], 0],[ e10[1,0], e10[1,1], 0]))
         #print('C matrix:', C_shares)
-        th_sum=self.mult_shares(A01,A11)  
+        sum_th=self.mult_shares(A01,A11)  
         f = []
         r_temp = []
         r = []
