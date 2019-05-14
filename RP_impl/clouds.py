@@ -327,7 +327,7 @@ class party(Thread):
                r.append(1)
             else: 
                print('error message')
-            print('r update', r_temp)   
+            #print('r update', r_temp)   
             ## protocol line 6:
             #C_shares[mu+k,k] = shareh
 
