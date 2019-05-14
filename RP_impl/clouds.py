@@ -309,15 +309,17 @@ class party(Thread):
         #print('C matrix:', C_shares)
         
         
-        sum_th=self.mult_shares(A01,A11) 
-        self.broadcast('sum_thh'+str(self.comr), sum_th)
-        rec_th=self.reconstruct_secret('sum_thh'+str(self.comr))
+        #sum_th=self.mult_shares(A01,A11) 
+        #self.broadcast('sum_thh'+str(self.comr), sum_th)
+        #rec_th=self.reconstruct_secret('sum_thh'+str(self.comr))
+        #print('reconstruct test:',rec_th)
         
-        print('reconstruct test:',rec_th)
         f = []
         r_temp = []
         r = []
         print('before for loop')
+        
+        
         for k in range(0, mu):
                   
             broad_ckk= self.mult_shares(share_ran,C_shares[k,k])
