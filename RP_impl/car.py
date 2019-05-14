@@ -76,7 +76,7 @@ class commsThread (Thread):
       print("Exiting " + self.name)
 
 
-m = 7979490791
+m = 792606555396977 #7979490791
 F = field.GF(m)            
 n = 3
 t = 1
@@ -136,6 +136,11 @@ AB=np.hstack((AA,bb))
 
 rankAB=np.array(matrix_rank(AB))
 rankA= np.array(matrix_rank(AA))
+
+if rankA == rankAB:
+    print('system is solvable')
+else:
+    print('Preconditioning fails, system not solvable')
 L=np.array(([1,0],[11,11]))
 U=np.array(([1,8],[0,1]))
 ran=7
@@ -173,30 +178,56 @@ a2_share= ss.share(F, y, t, n)
 
 
 
-b_share=np.zeros((2,1))
-A_share=np.zeros((2,2))
-iden_share= np.zeros((2,2))
+#b_share=np.zeros((2,1))
+#A_share=np.zeros((2,2))
+#iden_share= np.zeros((2,2))
 
-for p in range(0, m):
-        b=bb[p]
-        b=int(b)
-    
-        #b_share[p]=ss.share(F, b, t, n)
-        #returns 3 shares that must be stored somehow without loosing array index SATURDAY
-        print(ss.share(F, b, t, n))
-        
-#        for q in range(0, nn):
-#            A=AA[p,q]
-#            A=int(A)
-#            iden_ny=iden_22[p,q]
-#            iden_ny=int(iden_ny)
-#    
-#            A_share[p][q]=ss.share(F,A,t,n)
-#            iden_share[p][q]=ss.share(F,iden_ny,t,n)
-#
+
+b=bb[0]
+b=int(b)
+b0_share=ss.share(F, b, t, n)
+
+b=bb[1]
+b=int(b)
+b1_share=ss.share(F, b, t, n)
+
+A= AA[0,0]
+A= int(A)
+A00_share=ss.share(F, A, t, n)
+
+A= AA[0,1]
+A= int(A)
+A01_share=ss.share(F, A, t, n)
+
+A= AA[1,0]
+A= int(A)
+A10_share=ss.share(F, A, t, n)
+
+A= AA[1,1]
+A= int(A)
+A11_share=ss.share(F, A, t, n)
+
+
+II= iden_22[0,0]
+II= int(II)
+I00_share=ss.share(F, II, t, n)
+
+II= iden_22[0,1]
+II= int(II)
+I01_share=ss.share(F, II, t, n)
+
+II= iden_22[1,0]
+II= int(II)
+I10_share=ss.share(F, II, t, n)
+
+II= iden_22[1,1]
+II= int(II)
+I11_share=ss.share(F, II, t, n)
+
 h_share= ss.share(F, hh, t, n)
 t_share= ss.share(F, tt, t, n)
-ran_share=ss.share(F, ran, t, n)            
+ran_share=ss.share(F, ran, t, n)
+
 
 print('constructed shares in car')
 # send shares to clouds :
@@ -206,6 +237,16 @@ for i in range(n):
     sock.TCPclient(party_addr[i][0], party_addr[i][1], ['hh'+str(i) , int(str(h_share[i]))])
     sock.TCPclient(party_addr[i][0], party_addr[i][1], ['tt'+str(i) , int(str(t_share[i]))])
     sock.TCPclient(party_addr[i][0], party_addr[i][1], ['ran'+str(i) , int(str(ran_share[i]))])
+    sock.TCPclient(party_addr[i][0], party_addr[i][1], ['b0'+str(i) , int(str(b0_share[i]))])
+    sock.TCPclient(party_addr[i][0], party_addr[i][1], ['b1'+str(i) , int(str(b1_share[i]))])
+    sock.TCPclient(party_addr[i][0], party_addr[i][1], ['A00'+str(i) , int(str(A00_share[i]))])
+    sock.TCPclient(party_addr[i][0], party_addr[i][1], ['A01'+str(i) , int(str(A01_share[i]))])
+    sock.TCPclient(party_addr[i][0], party_addr[i][1], ['A10'+str(i) , int(str(A10_share[i]))])
+    sock.TCPclient(party_addr[i][0], party_addr[i][1], ['A11'+str(i) , int(str(A11_share[i]))])
+    sock.TCPclient(party_addr[i][0], party_addr[i][1], ['I00'+str(i) , int(str(I00_share[i]))])
+    sock.TCPclient(party_addr[i][0], party_addr[i][1], ['I01'+str(i) , int(str(I01_share[i]))])
+    sock.TCPclient(party_addr[i][0], party_addr[i][1], ['I10'+str(i) , int(str(I10_share[i]))])
+    sock.TCPclient(party_addr[i][0], party_addr[i][1], ['I11'+str(i) , int(str(I11_share[i]))])
 # dublere linje for alle shares eller skal der tjekkes for forbindelse hver gang?  
 print('car has send shares')
 
