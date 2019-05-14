@@ -259,7 +259,8 @@ print('car has send shares')
 
 # recieve shares from cloud of result
 share_res=[]
-th_res=[] 
+th_res=[]
+share_th=[]
 dic_res={}
 boo=True 
 
@@ -267,18 +268,20 @@ boo=True
 for i in range(n):
     boo=True    
     while boo==True: 
-        if 'output'+str(i) not in dic_res.keys():   
+        if 'output'+str(i)  not in dic_res.keys():   
             while not q.empty():
                 temp= q.get()
                 #print('temp', temp)
                 #print('temp_index0', temp[0])
                 #print('temp_index1', temp[1])
-                dic_res[temp[1][0]]=temp[1][1] 
+                dic_res[temp[1][0]]=temp[1][1]
+                #dic_res[temp[1][0]]=temp[1][1]
 
         #elif 'output'+str(i) and 'out_th'+str(i) in dic_res.keys():
             
         else:
             share_res.append(dic_res['output'+str(i)])
+            #share_th.append(dic_res['out_th'+str(i)])
             #th_res.append(dic_res['out_th'+str(i)])
             boo=False
 
@@ -288,6 +291,8 @@ for i in range(n):
 print('recieve')      
 result=ss.rec(F, share_res)        
 print('Result is:', result)
+#result_th=ss.rec(F,share_th)
+#print('Product th is:', result_th)
 #
 #res_tthh=ss.rec(F, th_res)
 #print('th sum is:',res_tthh)
