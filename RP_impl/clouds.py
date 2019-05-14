@@ -327,7 +327,7 @@ class party(Thread):
                r.append(1)
             else: 
                print('error message')
-            #print('2print')   
+            print('r update', r_temp)   
             ## protocol line 6:
             #C_shares[mu+k,k] = shareh
 
@@ -353,14 +353,14 @@ class party(Thread):
                         #C_shares[i,j]=temp_C1 +temp_C2 #manuel computation 1x2 2x1 = 1x1
                               
             #print('updated C:', C_shares[0,0])
-        self.th=th
+      
 
         
 p = party(F,int(x),n,t,pnr, q, q2, q3, party_addr, server_addr)
 deal = dealer(F,n,t,50)
 p.start()
 
-sum_th=p.th
+
 
 
 
@@ -380,7 +380,7 @@ sum_th=p.th
 
 # send result to car
 sock.TCPclient(party_addr[3][0], party_addr[3][1], ['output'+str(pnr) , int(str(sum_result))])
-sock.TCPclient(party_addr[3][0], party_addr[3][1], ['out_th'+str(pnr) , int(str(sum_th))])
+#sock.TCPclient(party_addr[3][0], party_addr[3][1], ['out_th'+str(pnr) , int(str(sum_th))])
 print('transmission')
 
 
