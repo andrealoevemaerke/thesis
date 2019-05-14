@@ -312,21 +312,21 @@ class party(Thread):
         r_temp = []
         r = []
         print('before for loop')
-        #for k in range(0, mu):
+        for k in range(0, mu):
                   
-            #broad_ckk= self.mult_shares(share_ran,C_shares[k,k])
-            #self.broadcast('c_kk' + str(self.comr), broad_ckk)
+            broad_ckk= self.mult_shares(share_ran,C_shares[k,k])
+            self.broadcast('c_kk' + str(self.comr), broad_ckk)
             
-            ## protocol line 5 
-            #r_temp.append(self.reconstruct_secret('c_kk'+str(self.comr))) 
-            #print('r is:', r_temp)
-            #print('1print')
-            #if r_temp[k] == 0:
-               #r.append(0)
-            #elif r_temp[k] != 0:
-               #r.append(1)
-            #else: 
-               #print('error message')
+            # protocol line 5 
+            r_temp.append(self.reconstruct_secret('c_kk'+str(self.comr))) 
+            print('r is:', r_temp)
+            print('1print')
+            if r_temp[k] == 0:
+               r.append(0)
+            elif r_temp[k] != 0:
+               r.append(1)
+            else: 
+               print('error message')
             #print('2print')   
             ## protocol line 6:
             #C_shares[mu+k,k] = shareh
