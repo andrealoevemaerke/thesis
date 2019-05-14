@@ -328,13 +328,13 @@ class party(Thread):
             else: 
                print('error message')
             
-            print('we are moving')   
-            ## protocol line 6:
-            #C_shares[mu+k,k] = shareh
+             
+            # protocol line 6:
+            C_shares[mu+k,k] = shareh
 
-            #f.append(shareh)
+            f.append(shareh)
      
-            #sharet = self.mult_shares(sharet,shareh)    # mult shares med Beavers
+            sharet = self.mult_shares(sharet,shareh)    # mult shares med Beavers
 
             
             ## protocol line 9
