@@ -307,7 +307,13 @@ class party(Thread):
 
         C_shares=np.array(([e00[0,0], e00[0,1], e01[0,0]],[e00[1,0], e00[1,1], e01[1,0]], [e10[0,0], e10[0,1], 0],[ e10[1,0], e10[1,1], 0]))
         #print('C matrix:', C_shares)
-        sum_th=self.mult_shares(A01,A11)  
+        
+        
+        sum_th=self.mult_shares(A01,A11) 
+        self.broadcast('sum_thh'+str(self.comr))
+        rec_th=self.reconstruct_secret('sum_thh'+str(self.comr))
+        
+        print('reconstruct test:',rec_th)
         f = []
         r_temp = []
         r = []
@@ -387,42 +393,42 @@ sock.TCPclient(party_addr[3][0], party_addr[3][1], ['output'+str(pnr) , int(str(
 print('transmission')
 
 
-for i in range(n): # n+1 to include car
-    while True:
-        try:
-          sock.TCPclient(party_addr[i][0], party_addr[i][1], ['flag', 1])
-          break
-        except:
-          time.sleep(1)
-          continue
-print('connection2 ok')
-for i in range(n):
-    #print('pnr is:',pnr)
-    sock.TCPclient(party_addr[i][0], party_addr[i][1], ['out_th'+str(pnr) , int(str(sum_th))])
+#for i in range(n): # n+1 to include car
+    #while True:
+        #try:
+          #sock.TCPclient(party_addr[i][0], party_addr[i][1], ['flag', 1])
+          #break
+        #except:
+          #time.sleep(1)
+          #continue
+#print('connection2 ok')
+#for i in range(n):
+    ##print('pnr is:',pnr)
+    #sock.TCPclient(party_addr[i][0], party_addr[i][1], ['out_th'+str(pnr) , int(str(sum_th))])
 
-print('transmission2')
-share=[]  
+#print('transmission2')
+#share=[]  
 
 
-t_bo=True  
+#t_bo=True  
 
    
-for i in range(n):
-    while t_bo==True: 
-        #and 'out_th'+str(1) and 'out_th'+str(2) and 'a2'+str(1) and 'a2'+str(2) and 'hh'+str(1) and 'hh'+str(2) and 'tt'+str(1) and 'tt'+str(2) and 'ran'+str(1) and 'ran'+str(2) 
-        if 'out_th'+str(i)  and 'a2'+str(i) and 'hh'+str(i) and 'tt'+str(i)  and 'ran'+str(i) not in dicc.keys():   
-            while not q.empty():
-                temp2= q.get()
-                print('temp2:', temp2)
-                #print('temp', temp)
-                #print('temp_index0', temp[0])
-                dicc[temp2[1][0]]=temp2[1][1] 
-                #print(dicc)
+#for i in range(n):
+    #while t_bo==True: 
+        ##and 'out_th'+str(1) and 'out_th'+str(2) and 'a2'+str(1) and 'a2'+str(2) and 'hh'+str(1) and 'hh'+str(2) and 'tt'+str(1) and 'tt'+str(2) and 'ran'+str(1) and 'ran'+str(2) 
+        #if 'out_th'+str(i)  and 'a2'+str(i) and 'hh'+str(i) and 'tt'+str(i)  and 'ran'+str(i) not in dicc.keys():   
+            #while not q.empty():
+                #temp2= q.get()
+                #print('temp2:', temp2)
+                ##print('temp', temp)
+                ##print('temp_index0', temp[0])
+                #dicc[temp2[1][0]]=temp2[1][1] 
+                ##print(dicc)
                 
-        else:
-            share.append(dicc['out_th'+str(i)])
-            t_bo=False 
+        #else:
+            #share.append(dicc['out_th'+str(i)])
+            #t_bo=False 
 
-print('recieve 2')      
-res_th=ss.rec(F, share)        
-print('th product:', res_th)                                                       
+#print('recieve 2')      
+#res_th=ss.rec(F, share)        
+#print('th product:', res_th)                                                       
