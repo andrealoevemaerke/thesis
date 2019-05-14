@@ -307,34 +307,45 @@ class party(Thread):
 
         C_shares=np.array(([e00[0,0], e00[0,1], e01[0,0]],[e00[1,0], e00[1,1], e01[1,0]], [e10[0,0], e10[0,1], 0],[ e10[1,0], e10[1,1], 0]))
         #print('C matrix:', C_shares)
-          
+        
+        
+        #sum_th=self.mult_shares(A01,A11) 
+        #self.broadcast('sum_thh'+str(self.comr), sum_th)
+        #rec_th=self.reconstruct_secret('sum_thh'+str(self.comr))
+        #print('reconstruct test:',rec_th)
+        
         f = []
         r_temp = []
         r = []
         print('before for loop')
-        #for k in range(0, mu):
+        
+        
+        for k in range(0, mu):
                   
-            #broad_ckk= self.mult_shares(share_ran,C_shares[k,k])
-            #self.broadcast('c_kk' + str(self.comr), broad_ckk)
+            broad_ckk= self.mult_shares(share_ran,C_shares[k,k])
+            self.broadcast('c_kk' + str(self.comr), broad_ckk)
             
-            ## protocol line 5 
-            #r_temp.append(self.reconstruct_secret('c_kk'+str(self.comr))) 
-            #print('r is:', r_temp)
-            #print('1print')
-            #if r_temp[k] == 0:
-               #r.append(0)
-            #elif r_temp[k] != 0:
-               #r.append(1)
-            #else: 
-               #print('error message')
-            #print('2print')   
-            ## protocol line 6:
+            # protocol line 5 
+            r_temp.append(self.reconstruct_secret('c_kk'+str(self.comr))) 
+            print('r is:', r_temp)
+            print('1print')
+            if r_temp[k] == 0:
+               r.append(0)
+            elif r_temp[k] != 0:
+               r.append(1)
+            else: 
+               print('error message')
+            
+             
+            # protocol line 6:
             #C_shares[mu+k,k] = shareh
 
             #f.append(shareh)
      
-            #sharet = self.mult_shares(sharet,shareh)    # mult shares med Beavers
-
+            #dummy1= self.mult_shares(sharet,shareh)    # mult shares med Beavers
+            #sharet = dummy1
+            
+            #print('share t', sharet)
             
             ## protocol line 9
             #c_kk = (C_shares[k,k]+1-r[k])    # when c_kk !=0 then r will be 1 
@@ -353,12 +364,14 @@ class party(Thread):
                         #C_shares[i,j]=temp_C1 +temp_C2 #manuel computation 1x2 2x1 = 1x1
                               
             #print('updated C:', C_shares[0,0])
-          
+      
 
         
 p = party(F,int(x),n,t,pnr, q, q2, q3, party_addr, server_addr)
 deal = dealer(F,n,t,50)
 p.start()
+
+
 
 
 
@@ -416,7 +429,7 @@ print('transmission')
                 
         #else:
             #share.append(dicc['out_th'+str(i)])
-            ##t_bo=False 
+            #t_bo=False 
 
 #print('recieve 2')      
 #res_th=ss.rec(F, share)        
