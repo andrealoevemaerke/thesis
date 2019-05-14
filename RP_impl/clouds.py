@@ -307,7 +307,7 @@ class party(Thread):
 
         C_shares=np.array(([e00[0,0], e00[0,1], e01[0,0]],[e00[1,0], e00[1,1], e01[1,0]], [e10[0,0], e10[0,1], 0],[ e10[1,0], e10[1,1], 0]))
         #print('C matrix:', C_shares)
-          
+        th_sum=self.mult_shares(A01,A11)  
         f = []
         r_temp = []
         r = []
@@ -353,7 +353,7 @@ class party(Thread):
                         #C_shares[i,j]=temp_C1 +temp_C2 #manuel computation 1x2 2x1 = 1x1
                               
             #print('updated C:', C_shares[0,0])
-          
+          return th_sum
 
         
 p = party(F,int(x),n,t,pnr, q, q2, q3, party_addr, server_addr)
@@ -378,7 +378,7 @@ p.start()
 
 # send result to car
 sock.TCPclient(party_addr[3][0], party_addr[3][1], ['output'+str(pnr) , int(str(sum_result))])
-#sock.TCPclient(party_addr[3][0], party_addr[3][1], ['out_th'+str(pnr) , int(str(sum_th))])
+sock.TCPclient(party_addr[3][0], party_addr[3][1], ['out_th'+str(pnr) , int(str(sum_th))])
 print('transmission')
 
 
