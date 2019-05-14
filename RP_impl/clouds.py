@@ -312,47 +312,47 @@ class party(Thread):
         r_temp = []
         r = []
         print('before for loop')
-        for k in range(0, mu):
+        #for k in range(0, mu):
                   
-            broad_ckk= self.mult_shares(share_ran,C_shares[k,k])
-            self.broadcast('c_kk' + str(self.comr), broad_ckk)
+            #broad_ckk= self.mult_shares(share_ran,C_shares[k,k])
+            #self.broadcast('c_kk' + str(self.comr), broad_ckk)
             
-            # protocol line 5 
-            r_temp.append(self.reconstruct_secret('c_kk'+str(self.comr))) 
-            print('r is:', r_temp)
-            print('1print')
-            if r_temp[k] == 0:
-               r.append(0)
-            elif r_temp[k] != 0:
-               r.append(1)
-            else: 
-               print('error message')
-            print('2print')   
-            # protocol line 6:
-            C_shares[mu+k,k] = shareh
+            ## protocol line 5 
+            #r_temp.append(self.reconstruct_secret('c_kk'+str(self.comr))) 
+            #print('r is:', r_temp)
+            #print('1print')
+            #if r_temp[k] == 0:
+               #r.append(0)
+            #elif r_temp[k] != 0:
+               #r.append(1)
+            #else: 
+               #print('error message')
+            #print('2print')   
+            ## protocol line 6:
+            #C_shares[mu+k,k] = shareh
 
-            f.append(shareh)
+            #f.append(shareh)
      
-            sharet = self.mult_shares(sharet,shareh)    # mult shares med Beavers
+            #sharet = self.mult_shares(sharet,shareh)    # mult shares med Beavers
 
             
-            # protocol line 9
-            c_kk = (C_shares[k,k]+1-r[k])    # when c_kk !=0 then r will be 1 
-                                             # and 1-r will cancel out
+            ## protocol line 9
+            #c_kk = (C_shares[k,k]+1-r[k])    # when c_kk !=0 then r will be 1 
+                                             ## and 1-r will cancel out
       
-            shareh = self.mult_shares(shareh,c_kk)
+            #shareh = self.mult_shares(shareh,c_kk)
     
-            for i in range(0, mu+k):
-                for j in range(k+1, nn+l):
-                    if i!= k and (i<= mu or j <= nn-1):
-                        # protocol line 13:
-                        dummy=np.matrix( np.vstack((C_shares[i,j],-(C_shares[i,k]))))
-                        temp= np.matrix(np.hstack(((C_shares[k,k]+1-r[k]), C_shares[k,j])))
-                        temp_C1=self.mult_shares(temp[0,0],dummy[0,0])
-                        temp_C2=self.mult_shares(temp[0,1],dummy[1,0])
-                        C_shares[i,j]=temp_C1 +temp_C2 #manuel computation 1x2 2x1 = 1x1
+            #for i in range(0, mu+k):
+                #for j in range(k+1, nn+l):
+                    #if i!= k and (i<= mu or j <= nn-1):
+                        ## protocol line 13:
+                        #dummy=np.matrix( np.vstack((C_shares[i,j],-(C_shares[i,k]))))
+                        #temp= np.matrix(np.hstack(((C_shares[k,k]+1-r[k]), C_shares[k,j])))
+                        #temp_C1=self.mult_shares(temp[0,0],dummy[0,0])
+                        #temp_C2=self.mult_shares(temp[0,1],dummy[1,0])
+                        #C_shares[i,j]=temp_C1 +temp_C2 #manuel computation 1x2 2x1 = 1x1
                               
-            print('updated C:', C_shares[0,0])
+            #print('updated C:', C_shares[0,0])
           
 
         
