@@ -310,8 +310,8 @@ class party(Thread):
         
         
         sum_th=self.mult_shares(A01,A11) 
-        self.broadcast('sum_thh'+str(self.comr))
-        rec_th=self.reconstruct_secret('sum_thh'+str(self.comr))
+        self.broadcast('sum_thh'+str(self.pnr))
+        rec_th=self.reconstruct_secret('sum_thh'+str(self.pnr))
         
         print('reconstruct test:',rec_th)
         f = []
