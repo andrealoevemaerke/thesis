@@ -353,7 +353,7 @@ class party(Thread):
                         #C_shares[i,j]=temp_C1 +temp_C2 #manuel computation 1x2 2x1 = 1x1
                               
             #print('updated C:', C_shares[0,0])
-          return th_sum
+        return th_sum
 
         
 p = party(F,int(x),n,t,pnr, q, q2, q3, party_addr, server_addr)
