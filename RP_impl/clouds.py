@@ -247,7 +247,7 @@ class party(Thread):
     
     def mult_shares(self, a, b):
         r = self.triplets[self.c]
-        #self.c += 1
+        self.c += 1
         
         print("Ping 1.1")
         
@@ -260,7 +260,7 @@ class party(Thread):
         
         d_pub = self.reconstruct_secret('d' + str(self.comr))
         print("Ping 1.4")
-        #self.comr +=1
+        self.comr +=1
         
         e_local = b - r[1]
         print("Ping 1.5")
@@ -370,9 +370,9 @@ class party(Thread):
         
 
 
-            C_shares[mu+k,k] = shareh
+            #C_shares[mu+k,k] = shareh
             
-            print('C update:', C_shares[mu+k,k])
+           # print('C update:', C_shares[mu+k,k])
             #f.append(shareh)
      
             #dummy1= self.mult_shares(sharet,shareh)    # mult shares med Beavers
