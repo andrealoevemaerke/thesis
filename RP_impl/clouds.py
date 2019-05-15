@@ -363,7 +363,7 @@ class party(Thread):
             print('share h:',shareh)
             print('share t:', sharet)
 
-            #print('C:', C_shares[mu+k,k])
+            print('C:', C_shares[mu+k,k])
 
 
             #C_shares[mu+k,k] = shareh
