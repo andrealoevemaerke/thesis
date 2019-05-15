@@ -247,7 +247,7 @@ class party(Thread):
     
     def mult_shares(self, a, b):
         r = self.triplets[self.c]
-        self.c += 1
+        #self.c += 1
         
         print("Ping 1.1")
         
@@ -268,7 +268,7 @@ class party(Thread):
         print("Ping 1.6")
         e_pub = self.reconstruct_secret('e' + str(self.comr))
         print("Ping 1.7")
-        self.comr+=1
+        #self.comr+=1
         
         return d_pub * e_pub + d_pub*r[1] + e_pub*r[0] + r[2]
     
