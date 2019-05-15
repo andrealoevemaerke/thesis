@@ -283,6 +283,7 @@ class party(Thread):
     
     def run(self):
         print('starting party ', self.i)
+        print('comr.s',self.comr)
         
         self.get_triplets()
         print("Ping 1")
