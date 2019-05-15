@@ -371,7 +371,7 @@ class party(Thread):
             
             f.append(shareh)
      
-            sharet= self.mult_shares(sharet,shareh)    # mult shares med Beavers
+            #sharet= self.mult_shares(sharet,shareh)    # mult shares med Beavers
             
             
             #print('share t update', sharet)
