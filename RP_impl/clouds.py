@@ -344,8 +344,8 @@ class party(Thread):
             # protocol line 6:
             print('share h:',shareh)
             print('share t:', sharet)
-            
-            C_shares[mu+k,k] = shareh
+            print('C:', C_shares[mu+k,k])
+            #C_shares[mu+k,k] = shareh
 
             #f.append(shareh)
      
