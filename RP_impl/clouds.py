@@ -355,7 +355,7 @@ class party(Thread):
             #dummy1= self.mult_shares(sharet,shareh)    # mult shares med Beavers
             #sharet = dummy1
             
-            print('share t update', sharet)
+            #print('share t update', sharet)
             
             ## protocol line 9
             #c_kk = (C_shares[k,k]+1-r[k])    # when c_kk !=0 then r will be 1 
