@@ -377,12 +377,12 @@ class party(Thread):
             rec_up=self.reconstruct_secret('C_up'+str(self.comr))
             print('update rec C:',rec_up)
             
-            #f.append(shareh)
+            f.append(shareh)
      
-            #dummy1= self.mult_shares(sharet,shareh)    # mult shares med Beavers
-            #sharet = dummy1
+            sharet= self.mult_shares(sharet,shareh)    # mult shares med Beavers
             
-            #print('share t update', sharet)
+            
+            print('share t update', sharet)
             
             ## protocol line 9
             #c_kk = (C_shares[k,k]+1-r[k])    # when c_kk !=0 then r will be 1 
