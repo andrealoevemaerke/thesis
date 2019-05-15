@@ -189,14 +189,14 @@ class party(Thread):
         self.recv = {}
         self.F = F
         self.x = x
-        self.A00=a00
-        self.A01=a01 
-        self.A10=a10
-        self.A11=a11
-        self.b0=B0
-        self.b1=B1
-        self.shareh=h_s
-        self.sharet=t_s
+        self.A00=A00
+        self.A01=A01 
+        self.A10=A10
+        self.A11=A11
+        self.b0=b0
+        self.b1=b1
+        self.shareh=shareh
+        self.sharet=sharet
         self.n = n
         self.t = t
         self.i = i
@@ -300,9 +300,9 @@ class party(Thread):
         U=np.array(([1,8],[0,1]))
 
 
-        A_matrix=np.array([[a00, a01], [a10, a11]])
+        A_matrix=np.array([[A00, A01], [A10, A11]])
         #print('A_matrix shares',A_matrix)
-        b_vector=np.array([[B0],[B1]])
+        b_vector=np.array([[b0],[b1]])
         I_2=np.array([[I00, I01], [I10, I11]])
 
         L=np.array(([1,0],[11,11]))
@@ -318,8 +318,8 @@ class party(Thread):
         #print('C matrix:', C_shares)
         
         print("Ping 2")
-        print(a01, a11)
-        sum_th=self.mult_shares(a01,a11)
+        print(A01, A11)
+        sum_th=self.mult_shares(A01,A11)
         
         
         print("Ping 3") 
@@ -352,8 +352,8 @@ class party(Thread):
             
              
             # protocol line 6:
-            print('share h:',h_s)
-            print('share t:', t_s)
+            print('share h:',shareh)
+            print('share t:', sharet)
 
             # ok reconstruct correct
             self.broadcast('C_mu'+str(self.comr), C_shares[mu+k,k])
@@ -362,16 +362,16 @@ class party(Thread):
         
 
 
-            C_shares[mu+k,k] = h_s
+            C_shares[mu+k,k] = shareh
             
             print('C update:', C_shares[mu+k,k])
             self.broadcast('C_up'+str(self.comr), C_shares[mu+k,k])
             rec_up=self.reconstruct_secret('C_up'+str(self.comr))
             print('update rec C:',rec_up)
             
-            f.append(h_s)
+            f.append(shareh)
      
-            t_s= self.mult_shares(t_s,h_s)    # mult shares med Beavers
+            #sharet= self.mult_shares(sharet,shareh)    # mult shares med Beavers
             
             
             #print('share t update', sharet)
