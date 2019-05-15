@@ -37,9 +37,13 @@ def basispoly(F,n):
 # reconstruct secret.
 def rec(F,x):
     res = F(0)
+    print('ping 1.1.1')
     n = len(x)
+    print('ping 1.1.2')
     y = basispoly(F,n)
+    print('ping 1.1.3')
     for i in range(len(x)):
+        print('ping 1.1.4 :', i)
         res += x[i] * y[i]
     return res
 
