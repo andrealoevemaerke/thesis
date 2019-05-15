@@ -94,7 +94,7 @@ t1_comms = commsThread(1, "Communication Thread", server_info,q)
 #ploting = plotter(q3)
 #ploting.start()
 #p = party(F,int(x),n,t,pnr, q, q2, q3, party_addr, server_addr)
-
+#
 # Start new Threads
 #t2_commsSimulink.start()
 t1_comms.start()
@@ -218,16 +218,20 @@ class party(Thread):
         for i in range(self.n):
             while name + str(i) not in self.recv:
                 self.readQueue()    
+                print('recv:',self.recv)
             res.append(self.F(self.recv[name+str(i)]))
+            
             del self.recv[name + str(i)]
         return res
             
     def reconstruct_secret(self, name):
+    
         return ss.rec(self.F, self.get_shares(name))
     
     def get_share(self, name):
         while name not in self.recv:
             self.readQueue()
+        
         a = self.F(self.recv[name])
         del self.recv[name]
         return a
@@ -309,10 +313,10 @@ class party(Thread):
         #print('C matrix:', C_shares)
         
         
-        #sum_th=self.mult_shares(A01,A11) 
-        #self.broadcast('sum_thh'+str(self.comr), sum_th)
-        #rec_th=self.reconstruct_secret('sum_thh'+str(self.comr))
-        #print('reconstruct test:',rec_th)
+        sum_th=self.mult_shares(A01,A11) 
+        self.broadcast('sum_thh'+str(self.comr), sum_th)
+        rec_th=self.reconstruct_secret('sum_thh'+str(self.comr))
+        print('reconstruct test:',rec_th)
         
         f = []
         r_temp = []
