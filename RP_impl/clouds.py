@@ -363,16 +363,20 @@ class party(Thread):
             print('share h:',shareh)
             print('share t:', sharet)
 
-            
+            # ok reconstruct correct
             self.broadcast('C_mu'+str(self.comr), C_shares[mu+k,k])
             rec_C=self.reconstruct_secret('C_mu'+str(self.comr))
             print('reconstruct C:',rec_C)
         
 
 
-            #C_shares[mu+k,k] = shareh
+            C_shares[mu+k,k] = shareh
             
-           # print('C update:', C_shares[mu+k,k])
+            print('C update:', C_shares[mu+k,k])
+            self.broadcast('C_up'+str(self.comr), C_shares[mu+k,k])
+            rec_up=self.reconstruct_secret('C_up'+str(self.comr))
+            print('update rec C:',rec_up)
+            
             #f.append(shareh)
      
             #dummy1= self.mult_shares(sharet,shareh)    # mult shares med Beavers
