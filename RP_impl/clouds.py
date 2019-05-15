@@ -260,7 +260,7 @@ class party(Thread):
         
         d_pub = self.reconstruct_secret('d' + str(self.comr))
         print("Ping 1.4")
-        self.comr +=1
+        #self.comr +=1
         
         e_local = b - r[1]
         print("Ping 1.5")
