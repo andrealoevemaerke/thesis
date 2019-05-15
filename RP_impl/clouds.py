@@ -415,7 +415,7 @@ p.start()
 
 
 
-
+p.join()
 
 # send result to car
 sock.TCPclient(party_addr[3][0], party_addr[3][1], ['output'+str(pnr) , int(str(sum_result))])
