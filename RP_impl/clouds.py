@@ -182,13 +182,21 @@ class dealer():
     
 
 class party(Thread):
-    def __init__(self, F, x, n, t, i, q, q2,q3, paddr, saddr):
+    def __init__(self, F, x, A00, A01, A10, A11, b0, b1, shareh, sharet, n, t, i, q, q2,q3, paddr, saddr):
         Thread.__init__(self)
         self.c = 0
         self.comr = 0
         self.recv = {}
         self.F = F
         self.x = x
+        self.A00=a00
+        self.A01=a01 
+        self.A10=a10
+        self.A11=a11
+        self.b0=B0
+        self.b1=B1
+        self.shareh=h_s
+        self.sharet=t_s
         self.n = n
         self.t = t
         self.i = i
@@ -272,22 +280,6 @@ class party(Thread):
         
         return d_pub * e_pub + d_pub*r[1] + e_pub*r[0] + r[2]
     
-    def legendreComp(self,a,b):
-        r = self.triplets[self.c]
-        self.c+=1
-        t = self.tt
-        g = a - b
-        k = self.mult_shares(t, self.mult_shares(r[0], r[0]))
-        j_loc = self.mult_shares(g, k)
-        self.broadcast('j'+ str(self.comr), j_loc)
-        j_pub = self.reconstruct_secret('j'+str(self.comr))
-        self.comr+=1
-        
-        ex = (self.F.p-1)/2
-        sym = pow(int(str(j_pub)),int(ex), self.F.p)
-        f = sym * t
-        c = self.mult_shares((f+1), self.F(2).inverse())
-        return c
     
     def run(self):
         print('starting party ', self.i)
@@ -308,9 +300,9 @@ class party(Thread):
         U=np.array(([1,8],[0,1]))
 
 
-        A_matrix=np.array([[A00, A01], [A10, A11]])
+        A_matrix=np.array([[a00, a01], [a10, a11]])
         #print('A_matrix shares',A_matrix)
-        b_vector=np.array([[b0],[b1]])
+        b_vector=np.array([[B0],[B1]])
         I_2=np.array([[I00, I01], [I10, I11]])
 
         L=np.array(([1,0],[11,11]))
@@ -326,8 +318,8 @@ class party(Thread):
         #print('C matrix:', C_shares)
         
         print("Ping 2")
-        print(A01, A11)
-        sum_th=self.mult_shares(A01,A11)
+        print(a01, a11)
+        sum_th=self.mult_shares(a01,a11)
         
         
         print("Ping 3") 
@@ -360,8 +352,8 @@ class party(Thread):
             
              
             # protocol line 6:
-            print('share h:',shareh)
-            print('share t:', sharet)
+            print('share h:',h_s)
+            print('share t:', t_s)
 
             # ok reconstruct correct
             self.broadcast('C_mu'+str(self.comr), C_shares[mu+k,k])
@@ -370,19 +362,19 @@ class party(Thread):
         
 
 
-            C_shares[mu+k,k] = shareh
+            C_shares[mu+k,k] = h_s
             
             print('C update:', C_shares[mu+k,k])
             self.broadcast('C_up'+str(self.comr), C_shares[mu+k,k])
             rec_up=self.reconstruct_secret('C_up'+str(self.comr))
             print('update rec C:',rec_up)
             
-            f.append(shareh)
+            f.append(h_s)
      
-            sharet= self.mult_shares(sharet,shareh)    # mult shares med Beavers
+            t_s= self.mult_shares(t_s,h_s)    # mult shares med Beavers
             
             
-            print('share t update', sharet)
+            #print('share t update', sharet)
             
             ## protocol line 9
             #c_kk = (C_shares[k,k]+1-r[k])    # when c_kk !=0 then r will be 1 
@@ -404,7 +396,7 @@ class party(Thread):
       
 
         
-p = party(F,int(x),n,t,pnr, q, q2, q3, party_addr, server_addr)
+p = party(F,int(x),A00, A01, A10, A11, b0, b1, shareh, sharet,n,t,pnr, q, q2, q3, party_addr, server_addr)
 deal = dealer(F,n,t,50)
 p.start()
 
