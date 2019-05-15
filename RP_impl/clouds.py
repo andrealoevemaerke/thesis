@@ -303,7 +303,7 @@ class party(Thread):
         l = 1   # number of b rows
         mu=min(nn,m)
 
-
+#
         L=np.array(([1,0],[11,1]))
         U=np.array(([1,8],[0,1]))
 
