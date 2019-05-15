@@ -277,13 +277,14 @@ class party(Thread):
         e_pub = self.reconstruct_secret('e' + str(self.comr))
         print("Ping 1.7")
         self.comr+=1
-        
+        ko=d_pub * e_pub + d_pub*r[1] + e_pub*r[0] + r[2]
+        print('ping x', ko)
         return d_pub * e_pub + d_pub*r[1] + e_pub*r[0] + r[2]
     
     
     def run(self):
         print('starting party ', self.i)
-        print('comr.s',self.comr)
+        
         
         self.get_triplets()
         print("Ping 1")
