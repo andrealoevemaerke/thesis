@@ -218,7 +218,7 @@ class party(Thread):
         for i in range(self.n):
             while name + str(i) not in self.recv:
                 self.readQueue()    
-                print('recv:',self.recv)
+                #print('recv:',self.recv)
             res.append(self.F(self.recv[name+str(i)]))
             
             del self.recv[name + str(i)]
