@@ -363,7 +363,11 @@ class party(Thread):
             print('share h:',shareh)
             print('share t:', sharet)
 
-            print('C:', C_shares[mu+k,k])
+            
+            self.broadcast('C_mu'+str(self.comr), C_shares[mu+k,k])
+            rec_C=self.reconstruct_secret('C_mu'+str(self.comr))
+            print('reconstruct C:',rec_C)
+        
 
 
             C_shares[mu+k,k] = shareh
