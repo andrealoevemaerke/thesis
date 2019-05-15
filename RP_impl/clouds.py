@@ -249,14 +249,25 @@ class party(Thread):
         r = self.triplets[self.c]
         self.c += 1
         
+        print("Ping 1.1")
+        
         d_local = a - r[0]
+        
+        print("Ping 1.2")
+        
         self.broadcast('d' + str(self.comr), d_local)
+        print("Ping 1.3")
+        
         d_pub = self.reconstruct_secret('d' + str(self.comr))
+        print("Ping 1.4")
         self.comr +=1
         
         e_local = b - r[1]
+        print("Ping 1.5")
         self.broadcast('e' + str(self.comr), e_local)
+        print("Ping 1.6")
         e_pub = self.reconstruct_secret('e' + str(self.comr))
+        print("Ping 1.7")
         self.comr+=1
         
         return d_pub * e_pub + d_pub*r[1] + e_pub*r[0] + r[2]
@@ -315,7 +326,10 @@ class party(Thread):
         #print('C matrix:', C_shares)
         
         print("Ping 2")
+        print(A01, A11)
         sum_th=self.mult_shares(A01,A11)
+        
+        
         print("Ping 3") 
         self.broadcast('sum_thh'+str(self.comr), sum_th)
         print("Ping 4")
