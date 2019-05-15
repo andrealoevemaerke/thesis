@@ -366,8 +366,9 @@ class party(Thread):
             print('C:', C_shares[mu+k,k])
 
 
-            #C_shares[mu+k,k] = shareh
-
+            C_shares[mu+k,k] = shareh
+            
+            print('C update:', C_shares[mu+k,k])
             #f.append(shareh)
      
             #dummy1= self.mult_shares(sharet,shareh)    # mult shares med Beavers
