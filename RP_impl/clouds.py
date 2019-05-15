@@ -280,7 +280,9 @@ class party(Thread):
     
     def run(self):
         print('starting party ', self.i)
+        
         self.get_triplets()
+        print("Ping 1")
         #self.tt = self.get_share('b')
         
         # Niek protocol
@@ -312,9 +314,11 @@ class party(Thread):
         C_shares=np.array(([e00[0,0], e00[0,1], e01[0,0]],[e00[1,0], e00[1,1], e01[1,0]], [e10[0,0], e10[0,1], 0],[ e10[1,0], e10[1,1], 0]))
         #print('C matrix:', C_shares)
         
-        
-        sum_th=self.mult_shares(A01,A11) 
+        print("Ping 2")
+        sum_th=self.mult_shares(A01,A11)
+        print("Ping 3") 
         self.broadcast('sum_thh'+str(self.comr), sum_th)
+        print("Ping 4")
         rec_th=self.reconstruct_secret('sum_thh'+str(self.comr))
         print('reconstruct test:',rec_th)
         
