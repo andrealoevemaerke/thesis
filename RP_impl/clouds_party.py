@@ -133,29 +133,26 @@ class party(Thread):
         t_bo=True    
         while t_bo==True: 
     
-            if 'a1'+str(pnr) and 'a2'+str(pnr) and 'hh'+str(pnr) and 'tt'+str(pnr) and 'ran'+str(pnr)  and 'b0'+str(pnr) and 'b1'+str(pnr) and 'A00'+str(pnr) and 'A01'+str(pnr) and 'A10'+str(pnr) and 'A11'+str(pnr) and  'I00'+str(pnr) and 'I01'+str(pnr) and 'I10'+str(pnr) and 'I11'+str(pnr) not in dic.keys():  
-       
+            if 'a1'+str(i) and 'a2'+str(i) and 'hh'+str(i) and 'tt'+str(i) and 'ran'+str(i)  and 'b0'+str(i) and 'b1'+str(i) and 'A00'+str(i) and 'A01'+str(i) and 'A10'+str(i) and 'A11'+str(i) not in dic.keys():  
+       #'I00'+str(pnr) and 'I01'+str(pnr) and 'I10'+str(pnr) and 'I11'+str(pnr)
                 while not q.empty():
                     temp= q.get()
             
                     dic[temp[1][0]]=temp[1][1] 
                     #print('dica1', dica1)
             else:
-                sharea1=(dic['a1'+str(pnr)])
-                sharea2=(dic['a2'+str(pnr)])
-                shareh=(dic['hh'+str(pnr)])
-                sharet=(dic['tt'+str(pnr)])
-                share_ran=(dic['ran'+str(pnr)])
-                A00=(dic['A00'+str(pnr)])
-                A01=(dic['A01'+str(pnr)])
-                A10=(dic['A10'+str(pnr)])
-                A11=(dic['A11'+str(pnr)])
-                b0=(dic['b0'+str(pnr)])
-                b1=(dic['b1'+str(pnr)])
-                I00=(dic['I00'+str(pnr)])
-                I01=(dic['I01'+str(pnr)])
-                I10=(dic['I10'+str(pnr)])
-                I11=(dic['I11'+str(pnr)])
+                sharea1=(dic['a1'+str(i)])
+                sharea2=(dic['a2'+str(i)])
+                shareh=(dic['hh'+str(i)])
+                sharet=(dic['tt'+str(i)])
+                share_ran=(dic['ran'+str(i)])
+                A00=(dic['A00'+str(i)])
+                A01=(dic['A01'+str(i)])
+                A10=(dic['A10'+str(i)])
+                A11=(dic['A11'+str(i)])
+                b0=(dic['b0'+str(i)])
+                b1=(dic['b1'+str(i)])
+           
       
         
                
