@@ -126,16 +126,23 @@ class party(Thread):
         U=np.array(([1,8],[0,1]))
         
         print('Cloud ping 1')
-        input_sharesa00=self.get_share('A00')         # reconstruct OK
-        input_sharesa01=self.get_share('A01')
-        input_sharesa10=self.get_share('A10')
-        input_sharesa11=self.get_share('A11')
-        input_sharesb0=self.get_share('b0')
-        input_sharesb1=self.get_share('b1')
-
-        h_share=self.get_share('hh')
-        t_share=self.get_share('tt')
-        ra_share=self.get_share('ran')   # shares of random variable 
+        input_sharesa00=self.get_share('A00').n  
+        print('share ping 1')       # reconstruct OK
+        input_sharesa01=self.get_share('A01').n
+        print('share ping 2')
+        input_sharesa10=self.get_share('A10').n
+        print('share ping 3')
+        input_sharesa11=self.get_share('A11').n
+        print('share ping 4')
+        input_sharesb0=self.get_share('b0').n
+        print('share ping 5')
+        input_sharesb1=self.get_share('b1').n
+        print('share ping 6')
+        h_share=self.get_share('hh').n
+        print('share ping 7')
+        t_share=self.get_share('tt').n
+        print('share ping 8')
+        ra_share=self.get_share('ran').n   # shares of random variable 
         print('Cloud ping 2')
 
         self.broadcast('AAA'+str(self.comr), input_sharesa00)
