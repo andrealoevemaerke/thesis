@@ -133,7 +133,7 @@ class party(Thread):
         t_bo=True    
         while t_bo==True: 
     
-            if 'a1'+str(i) and 'a2'+str(i) and 'hh'+str(i) and 'tt'+str(i) and 'ran'+str(i)  and 'b0'+str(i) and 'b1'+str(i) and 'A00'+str(i) and 'A01'+str(i) and 'A10'+str(i) and 'A11'+str(i) not in dic.keys():  
+            if 'a1'+str(self.i) and 'a2'+str(self.i) and 'hh'+str(self.i) and 'tt'+str(self.i) and 'ran'+str(self.i)  and 'b0'+str(self.i) and 'b1'+str(self.i) and 'A00'+str(self.i) and 'A01'+str(self.i) and 'A10'+str(self.i) and 'A11'+str(self.i) not in dic.keys():  
        #'I00'+str(pnr) and 'I01'+str(pnr) and 'I10'+str(pnr) and 'I11'+str(pnr)
                 while not q.empty():
                     temp= q.get()
@@ -141,17 +141,16 @@ class party(Thread):
                     dic[temp[1][0]]=temp[1][1] 
                     #print('dica1', dica1)
             else:
-                sharea1=(dic['a1'+str(i)])
-                sharea2=(dic['a2'+str(i)])
-                shareh=(dic['hh'+str(i)])
-                sharet=(dic['tt'+str(i)])
-                share_ran=(dic['ran'+str(i)])
-                A00=(dic['A00'+str(i)])
-                A01=(dic['A01'+str(i)])
-                A10=(dic['A10'+str(i)])
-                A11=(dic['A11'+str(i)])
-                b0=(dic['b0'+str(i)])
-                b1=(dic['b1'+str(i)])
+           
+                shareh=(dic['hh'+str(self.i)])
+                sharet=(dic['tt'+str(self.i)])
+                share_ran=(dic['ran'+str(self.i)])
+                A00=(dic['A00'+str(self.i)])
+                A01=(dic['A01'+str(self.i)])
+                A10=(dic['A10'+str(self.i)])
+                A11=(dic['A11'+str(self.i)])
+                b0=(dic['b0'+str(self.i)])
+                b1=(dic['b1'+str(self.i)])
            
       
         
