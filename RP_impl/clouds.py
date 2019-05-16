@@ -98,6 +98,7 @@ t1_comms = commsThread(1, "Communication Thread", server_info,q)
 # Start new Threads
 #t2_commsSimulink.start()
 t1_comms.start()
+t1_comms.join()
 
 for i in range(n): 
     while True:
