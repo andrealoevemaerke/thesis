@@ -98,7 +98,7 @@ t1_comms = commsThread(1, "Communication Thread", server_info,q)
 # Start new Threads
 #t2_commsSimulink.start()
 t1_comms.start()
-t1_comms.join()
+
 
 for i in range(n): 
     while True:
@@ -398,7 +398,7 @@ class party(Thread):
             #print('updated C:', C_shares[0,0])
       
 
-        
+print('SERVER:',server_addr)
 p = party(F,int(x),A00, A01, A10, A11, b0, b1, shareh, sharet,n,t,pnr, q, q2, q3, party_addr, server_addr)
 deal = dealer(F,n,t,50)
 p.start()
