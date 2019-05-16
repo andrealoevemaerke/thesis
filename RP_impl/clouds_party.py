@@ -128,30 +128,69 @@ class party(Thread):
         U=np.array(([1,8],[0,1]))
         
         print('Cloud ping 1')
-        input_sharesa00=self.get_share('A00').n  
-        print('share ping 1')       # reconstruct OK
-        input_sharesa01=self.get_share('A01').n
-        print('share ping 2')
-        input_sharesa10=self.get_share('A10').n
-        print('share ping 3')
-        input_sharesa11=self.get_share('A11').n
-        print('share ping 4')
-        input_sharesb0=self.get_share('b0').n
-        print('share ping 5')
-        input_sharesb1=self.get_share('b1').n
-        print('share ping 6')
-        h_share=self.get_share('hh').n
-        print('share ping 7')
-        t_share=self.get_share('tt').n
-        print('share ping 8')
-        ra_share=self.get_share('ran').n   # shares of random variable 
-        print('Cloud ping 2')
-
-        self.broadcast('AAA'+str(self.comr), input_sharesa00)
-        print("Cloud ping 2")
-        result=self.reconstruct_secret('AAA'+str(self.comr))
         
-        print('Reconstruction of A00:', result)
+        
+        t_bo=True    
+        while t_bo==True: 
+    
+            if 'a1'+str(pnr) and 'a2'+str(pnr) and 'hh'+str(pnr) and 'tt'+str(pnr) and 'ran'+str(pnr)  and 'b0'+str(pnr) and 'b1'+str(pnr) and 'A00'+str(pnr) and 'A01'+str(pnr) and 'A10'+str(pnr) and 'A11'+str(pnr) and  'I00'+str(pnr) and 'I01'+str(pnr) and 'I10'+str(pnr) and 'I11'+str(pnr) not in dic.keys():  
+       
+                while not q.empty():
+                temp= q.get()
+            
+                dic[temp[1][0]]=temp[1][1] 
+                #print('dica1', dica1)
+            else:
+                sharea1=(dic['a1'+str(pnr)])
+                sharea2=(dic['a2'+str(pnr)])
+                shareh=(dic['hh'+str(pnr)])
+                sharet=(dic['tt'+str(pnr)])
+                share_ran=(dic['ran'+str(pnr)])
+                A00=(dic['A00'+str(pnr)])
+                A01=(dic['A01'+str(pnr)])
+                A10=(dic['A10'+str(pnr)])
+                A11=(dic['A11'+str(pnr)])
+                b0=(dic['b0'+str(pnr)])
+                b1=(dic['b1'+str(pnr)])
+                I00=(dic['I00'+str(pnr)])
+                I01=(dic['I01'+str(pnr)])
+                I10=(dic['I10'+str(pnr)])
+                I11=(dic['I11'+str(pnr)])
+      
+        
+               
+                #print('sharea2:', sharea2)
+                t_bo=False
+        
+        
+        
+        
+        
+        
+        #input_sharesa00=self.get_share('A00').n  
+        #print('share ping 1')       # reconstruct OK
+        #input_sharesa01=self.get_share('A01').n
+        #print('share ping 2')
+        #input_sharesa10=self.get_share('A10').n
+        #print('share ping 3')
+        #input_sharesa11=self.get_share('A11').n
+        #print('share ping 4')
+        #input_sharesb0=self.get_share('b0').n
+        #print('share ping 5')
+        #input_sharesb1=self.get_share('b1').n
+        #print('share ping 6')
+        #h_share=self.get_share('hh').n
+        #print('share ping 7')
+        #t_share=self.get_share('tt').n
+        #print('share ping 8')
+        #ra_share=self.get_share('ran').n   # shares of random variable 
+        #print('Cloud ping 2')
+
+        #self.broadcast('AAA'+str(self.comr), input_sharesa00)
+            print("Cloud ping 2")
+            result=self.reconstruct_secret('AAA'+str(self.comr))
+        
+            print('Reconstruction of A00:', result)
         
         
         
