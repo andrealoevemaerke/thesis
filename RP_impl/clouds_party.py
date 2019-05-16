@@ -136,10 +136,10 @@ class party(Thread):
             if 'a1'+str(pnr) and 'a2'+str(pnr) and 'hh'+str(pnr) and 'tt'+str(pnr) and 'ran'+str(pnr)  and 'b0'+str(pnr) and 'b1'+str(pnr) and 'A00'+str(pnr) and 'A01'+str(pnr) and 'A10'+str(pnr) and 'A11'+str(pnr) and  'I00'+str(pnr) and 'I01'+str(pnr) and 'I10'+str(pnr) and 'I11'+str(pnr) not in dic.keys():  
        
                 while not q.empty():
-                temp= q.get()
+                    temp= q.get()
             
-                dic[temp[1][0]]=temp[1][1] 
-                #print('dica1', dica1)
+                    dic[temp[1][0]]=temp[1][1] 
+                    #print('dica1', dica1)
             else:
                 sharea1=(dic['a1'+str(pnr)])
                 sharea2=(dic['a2'+str(pnr)])
