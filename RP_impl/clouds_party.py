@@ -129,7 +129,7 @@ class party(Thread):
         
         print('Cloud ping 1')
         
-        
+        dic={}
         t_bo=True    
         while t_bo==True: 
     
