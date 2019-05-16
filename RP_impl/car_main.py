@@ -172,14 +172,26 @@ p = party(F,int(x), n,t, pnr, q, q2, q3, party_addr, server_addr)
 print('car main ping 1')
 t1_comms.start()
 print('car main ping 2')
-for i in party_addr:
+
+#for i in party_addr:
+#    while True:
+#        try:
+#            sock.TCPclient(i[0], i[1], ['flag', 1])
+#            break
+#        except:
+#            time.sleep(1)
+#            continue
+#
+for i in range(n):
     while True:
         try:
-            sock.TCPclient(i[0], i[1], ['flag', 1])
+            sock.TCPclient(party_addr[i][0], party_addr[i][1], ['flag', 1])
             break
         except:
             time.sleep(1)
             continue
+        
+        
 print('car main ping 3')    
 deal = dealer(F,n,t,50)
 p.start()
