@@ -167,8 +167,9 @@ t1_comms = commsThread(1, "Communication Thread", server_info,q)
 #ploting = plotter(q3)
 #ploting.start()
 print('cloud main ping 1')
+print(server_addr)
 
-p = party(F,int(x), t,pnr, q, q2, q3, party_addr, server_addr)
+p = party(F,int(x), t, pnr, q, q2, q3, party_addr, server_addr)
 
 # Start new Threads
 t1_comms.start()
