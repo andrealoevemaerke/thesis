@@ -14,7 +14,6 @@ import proc
 import TcpSocket5 as sock
 import time
 import queue as que
-from pump import party
 import matplotlib.pyplot as plt
 import os
 
