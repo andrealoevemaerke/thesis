@@ -20,7 +20,7 @@ import os
 
 
 class party(Thread):
-    def __init__(self, F, x, n, t, i, q, q2,q3, paddr, saddr):
+    def __init__(self, F, x, n, t, i, q, q2,q3, party_addr, server_addr):
         Thread.__init__(self)
         self.c = 0
         self.comr = 0
@@ -33,8 +33,8 @@ class party(Thread):
         self.q = q
         self.q2 = q2
         self.q3 = q3
-        self.party_addr = paddr
-        self.server_addr = saddr
+        self.party_addr = party_addr
+        self.server_addr = server_addr
         
     def distribute_shares(self, sec):
         shares = ss.share(self.F, sec, self.t, self.n)
