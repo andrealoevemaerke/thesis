@@ -190,8 +190,7 @@ for i in range(n):
 print('cloud main ping 3')       
 deal = dealer(F,n,t,50)
 p.start()
-print('cloud main ping 4')
 p.join()
-print('cloud main ping 5')
+print('cloud main ping 4')
 
 
