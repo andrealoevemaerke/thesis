@@ -53,7 +53,9 @@ class party(Thread):
     
     def get_shares(self, name):
         res = []
+        print('def ping 1')
         for i in range(self.n):
+            print('def ping 1', i)
             while name + str(i) not in self.recv:
                 self.readQueue()    
             res.append(self.F(self.recv[name+str(i)]))
