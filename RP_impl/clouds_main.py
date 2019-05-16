@@ -172,10 +172,10 @@ print(server_addr)
 
 
 # Start new Threads
-t1_comms.start()
+
 p = party(F,int(x),n, t, pnr, q, q2, q3, party_addr, server_addr)
 
-
+t1_comms.start()
 print('cloud main ping 2')
 for i in party_addr:
     while True:
