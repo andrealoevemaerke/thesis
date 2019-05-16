@@ -178,6 +178,7 @@ p = party(F,int(x),n, t, pnr, q, q2, q3, party_addr, server_addr)
 t1_comms.start()
 print('cloud main ping 2')
 for i in party_addr:
+    print('i=',i)
     while True:
         try:
             sock.TCPclient(i[0], i[1], ['flag', 1])
