@@ -173,8 +173,7 @@ class party(Thread):
         print('U type',type(U[0,0]))
         print('AA type',type(AA[0,0]))
         print('L type',type(L[0,0]))
-        e11= U@AA@L
-        print('e11 ok ') # OK
+        e11= np.array(U@AA@L)
         e12=np.array(U@bb)         
         e21= np.array(I_n)
         e22= np.array(np.zeros((nn,l)))
@@ -183,5 +182,11 @@ class party(Thread):
         
         
         
-        
+        C_shares=np.array(([e11[0,0], e11[0,1], e12[0,0]],[e11[1,0], e11[1,1], e12[1,0]], [e21[0,0], e21[0,1], 0],[ e21[1,0], e21[1,1], 0]))
+        C_shares=C_shares.astype(int)
+        print('C matrix construction ok')
+        f = []
+        r_temp = []
+        r = []
+
         
