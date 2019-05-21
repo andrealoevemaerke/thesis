@@ -70,7 +70,7 @@ class commsThread (Thread):
             self.q.put(Rx_packet)
       print("Exiting " + self.name)
 
-# use ggplot style for more sophisticated visuals
+
 plt.style.use('ggplot')
 
 class plotter(Thread):
