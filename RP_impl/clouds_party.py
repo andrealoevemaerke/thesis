@@ -234,3 +234,8 @@ class party(Thread):
                         C_shares[i,j]=temp_C1 +temp_C2 #manuel computation 1x2 2x1 = 1x1
 
             print('for loop ok')
+          
+            self.broadcast('test' + str(self.comr), C_shares[0,0])
+            res_test=self.reconstruct_secret('test'+str(self.comr))
+            print('C update reconstruct', test) # ok 
+           
