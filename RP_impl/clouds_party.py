@@ -129,7 +129,7 @@ class party(Thread):
         
         print('Cloud ping 1')
 
-        input_sharesa00=self.get_share('A00')  
+        input_sharesa00=self.get_share('A00'+str(self.i))  
         print('share ping 1')       # reconstruct OK
         #input_sharesa01=self.get_share('A01')
         #print('share ping 2')
