@@ -170,9 +170,9 @@ class party(Thread):
         
         print('matrix form ok')
         
-        print('U type',type(U[0,0]))
-        print('AA type',type(AA[0,0]))
-        print('L type',type(L[0,0]))
+        #print('U type',type(U[0,0]))
+        #print('AA type',type(AA[0,0]))
+        #print('L type',type(L[0,0]))
         e11= np.array(U@AA@L)
         e12=np.array(U@bb)         
         e21= np.array(I_n)
@@ -188,5 +188,12 @@ class party(Thread):
         f = []
         r_temp = []
         r = []
-
+        
+        for k in range(mu):
+                
+            broad_ckk= self.mult_shares(ra_share,C_shares[k,k])
+            self.broadcast('c_kk' + str(self.comr), broad_ckk)
+            f.append(self.reconstruct_secret('c_kk'+str(self.comr)))
+            self.comr=+1
+            print('C_kk reconstruct', f)
         
