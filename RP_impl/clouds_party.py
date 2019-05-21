@@ -269,7 +269,7 @@ class party(Thread):
                 print('if entered:', i)
                
             sw_inv_share=self.get_share('input'+str(self.i)).n # ok, reconstruction is true to original
-            self.broadcast('test_1' + str(self.comr), sw_in_share)
+            self.broadcast('test_1' + str(self.comr), sw_inv_share)
             test_11= self.reconstruct_secret('test_1'+str(self.comr)).n
             
             print('recon 11 test', test_11)
