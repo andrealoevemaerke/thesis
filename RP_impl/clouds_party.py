@@ -216,3 +216,21 @@ class party(Thread):
             t_share = self.mult_shares(t_share,h_share).n     # mult shares med Beavers
             print('shares ok')
 
+
+            c_kk = (C_shares[k,k]+1-r[k])    # when c_kk !=0 then r will be 1 
+                                                 # and 1-r will cancel out
+          
+            h_share = self.mult_shares(h_share,c_kk).n 
+    
+              
+            for i in range(0, mu+k):
+                for j in range(k+1, nn+l):
+                    if i!= k and (i<= mu or j <= nn-1):
+                        # protocol line 13:
+                        dummy=np.matrix( np.vstack((C_shares[i,j],-(C_shares[i,k]))))
+                        temp= np.matrix(np.hstack(((C_shares[k,k]+1-r[k]), C_shares[k,j])))
+                        temp_C1=self.mult_shares(temp[0,0],dummy[0,0]).n
+                        temp_C2=self.mult_shares(temp[0,1],dummy[1,0]).n
+                        C_shares[i,j]=temp_C1 +temp_C2 #manuel computation 1x2 2x1 = 1x1
+
+            print('for loop ok')
