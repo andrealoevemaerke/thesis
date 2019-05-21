@@ -263,3 +263,13 @@ class party(Thread):
             
             s_w_inv= w_inv*10E10
   
+            if self.i ==0:
+                self.distribute_shares(s_w_inv,'inv_y')
+               
+            sw_inv_share=self.get_share('inv_y'+str(self.i)).n # ok, reconstruction is true to original
+            self.broadcast('test_1' + str(self.comr), test_in)
+            test_11= self.reconstruct_secret('test_1'+str(self.comr)).n
+            
+            print('recon 11 test', test_11)
+            g=self.mult_shares(sw_inv_share, ra_share).n
+
