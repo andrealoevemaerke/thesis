@@ -186,7 +186,7 @@ class party(Thread):
         #print('e11 reconstruct', res_C) # ok 
         
         C_shares=np.array(([e11[0,0], e11[0,1], e12[0,0]],[e11[1,0], e11[1,1], e12[1,0]], [e21[0,0], e21[0,1], 0],[ e21[1,0], e21[1,1], 0]))
-        C_shares=C_shares.astype(int)
+        #C_shares=C_shares.astype(int)
 
    
         self.broadcast('e11'+str(self.comr), C_shares[0,0])
