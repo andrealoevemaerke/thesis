@@ -152,17 +152,7 @@ ran=7
 #U= np.array(np.triu(U) )               # remove lower triangular entires
     
 #ran= random.randint(1,51)
-#iden= 0
 
-#
-#l11=L[0][0]
-#l12=L[0][1]
-#l21=L[1][0]
-#l22=L[1][1]
-#u11=U[0][0]
-#u12=U[0][1]
-#u21=U[1][0]
-#u22=U[1][1]
 hh= 1
 tt= 1
 iden_22=np.identity(nn)
@@ -174,13 +164,6 @@ iden_22=np.identity(nn)
 # shares of a, b, h, t, r must be created
 a1_share=ss.share(F, x, t, n)
 a2_share= ss.share(F, y, t, n)
-
-
-
-
-#b_share=np.zeros((2,1))
-#A_share=np.zeros((2,2))
-#iden_share= np.zeros((2,2))
 
 
 b=bb[0]
