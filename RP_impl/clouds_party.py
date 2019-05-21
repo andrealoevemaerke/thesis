@@ -146,7 +146,14 @@ class party(Thread):
         t_share=self.get_share('tt'+str(self.i))
         print('share ping 8')
         ra_share=self.get_share('ran'+str(self.i))  # shares of random variable 
-        print('Cloud ping 2')
+        print('Cloud ping 9')
+        input_sharesa00=self.get_share('I00'+str(self.i))  
+        print('share ping 10')       # reconstruct OK
+        input_sharesa01=self.get_share('I01'+str(self.i))
+        print('share ping 11')
+        input_sharesa10=self.get_share('I10'+str(self.i))
+        print('share ping 12')
+        input_sharesa11=self.get_share('I11'+str(self.i))
 
         self.broadcast('AAA'+str(self.comr), input_sharesa00)
         print("Cloud ping 2")
