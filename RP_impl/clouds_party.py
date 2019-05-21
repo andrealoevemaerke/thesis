@@ -208,3 +208,11 @@ class party(Thread):
                 print('error message')
 
             print('if ok ! ')
+            
+            C_shares[mu+k,k] = h_share
+    
+            f.append(h_share)
+         
+            t_share = self.mult_shares(t_share,h_share).n     # mult shares med Beavers
+            print('shares ok')
+
