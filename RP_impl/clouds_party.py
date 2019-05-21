@@ -170,6 +170,9 @@ class party(Thread):
         
         print('matrix form ok')
         
+        print('U type',type(U))
+        print('AA type',type(AA))
+        print('L type',type(L))
         e11= U@AA@L
         print('e11 ok ') # OK
         e12=np.array(U@bb)         
