@@ -164,10 +164,7 @@ class party(Thread):
             sock.TCPclient(party_addr[i][0], party_addr[i][1], ['A01'+str(i) , int(str(s_A01[i]))])
             sock.TCPclient(party_addr[i][0], party_addr[i][1], ['A10'+str(i) , int(str(s_A10[i]))])
             sock.TCPclient(party_addr[i][0], party_addr[i][1], ['A11'+str(i) , int(str(s_A11[i]))])
-           # sock.TCPclient(party_addr[i][0], party_addr[i][1], ['I00'+str(i) , int(str(I00_share[i]))])
-           # sock.TCPclient(party_addr[i][0], party_addr[i][1], ['I01'+str(i) , int(str(I01_share[i]))])
-           # sock.TCPclient(party_addr[i][0], party_addr[i][1], ['I10'+str(i) , int(str(I10_share[i]))])
-           # sock.TCPclient(party_addr[i][0], party_addr[i][1], ['I11'+str(i) , int(str(I11_share[i]))])
+          
      
         print('car party ping 3')
 
