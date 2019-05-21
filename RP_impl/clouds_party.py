@@ -262,6 +262,7 @@ class party(Thread):
             
             
             s_w_inv= w_inv*10E10
+            s_w_inv=int(s_w_inv)
   
             if self.i ==0:
                 self.distribute_shares(s_w_inv)
