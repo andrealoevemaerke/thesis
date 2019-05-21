@@ -186,14 +186,6 @@ class party(Thread):
         #print('e11 reconstruct', res_C) # ok 
         
         C_shares=np.array(([e11[0,0], e11[0,1], e12[0,0]],[e11[1,0], e11[1,1], e12[1,0]], [e21[0,0], e21[0,1], 0],[ e21[1,0], e21[1,1], 0]))
-        #C_shares=C_shares.astype(int)
-
-   
-        self.broadcast('e11'+str(self.comr), C_shares[0,0])
-   
-        res_C=self.reconstruct_secret('e11'+str(self.comr))
-        print('C00 reconstruct', res_C)
- 
        
         f = []
         r_temp = []
@@ -203,7 +195,16 @@ class party(Thread):
                 
             broad_ckk= self.mult_shares(ra_share,C_shares[k,k]).n
             self.broadcast('c_kk' + str(self.comr), broad_ckk)
-            f.append(self.reconstruct_secret('c_kk'+str(self.comr)))
+            
+            r_temp.append(self.reconstruct_secret('c_kk'+str(self.comr)))
             self.comr=+1
-            print('C_kk reconstruct', f)
-        
+            
+           
+            if r_temp[k] == 0:
+                r.append(0)
+            elif r_temp[k] != 0:
+                r.append(1)
+            else: 
+                print('error message')
+
+            print('if ok ! ')
