@@ -68,14 +68,6 @@ class party(Thread):
         a = self.F(self.recv[name])
         del self.recv[name]
         return a
-    def get_triplets(self):
-        while 'triplets' not in self.recv:
-            self.readQueue()
-        b = self.recv['triplets']
-        res = []
-        for i in b:
-            res.append([self.F(j) for j in i])
-        self.triplets = res
     
     def mult_shares(self, a, b):
         r = self.triplets[self.c]
@@ -112,7 +104,6 @@ class party(Thread):
     
     def run(self):
         print('starting party ', self.i)
-        self.get_triplets()
         
         m = 2   # number of A rows
         nn = 2  # number of A coloums
