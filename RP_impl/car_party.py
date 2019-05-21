@@ -16,6 +16,7 @@ import time
 import queue as que
 import matplotlib.pyplot as plt
 import os
+from numpy.linalg import matrix_rank
 
 
 class party(Thread):
@@ -104,22 +105,14 @@ class party(Thread):
     
     def run(self):
         print('starting party ', self.i)
-        
+        n=3
         m = 2   # number of A rows
         nn = 2  # number of A coloums
         l = 1   # number of b rows
         mu=min(nn,m)
         
         
-        AB=np.hstack((AA,bb))
-    
-        rankAB=np.array(matrix_rank(AB))
-        rankA= np.array(matrix_rank(AA))
         
-        if rankA == rankAB:
-            print('system is solvable')
-        else:
-            print('Preconditioning fails, system not solvable')
        
         L=np.array(([1,0],[11,11]))
         U=np.array(([1,8],[0,1]))
@@ -130,32 +123,55 @@ class party(Thread):
         A11=9
         b0=6
         b1=15
+        I00= 1
+        I01= 0
+        I10= 0
+        I11= 1
         shareh=1
         sharet=1
         ran=7
         
+        AA=np.array([[A00, A01],[A10, A11]])
+        bb= np.array([[b0],[b1]])
+        AB=np.hstack((AA,bb))
+    
+        rankAB=np.array(matrix_rank(AB))
+        rankA= np.array(matrix_rank(AA))
+        
+        if rankA == rankAB:
+            print('system is solvable')
+        else:
+            print('Preconditioning fails, system not solvable')
+        
         s_A00= ss.share(self.F, A00, self.t, self.n)
-        s_A01= ss.share(self.F, A00, self.t, self.n)
-        s_A10= ss.share(self.F, A00, self.t, self.n)
-        s_A11= ss.share(self.F, A00, self.t, self.n)
-        s_b0= ss.share(self.F, A00, self.t, self.n)
-        s_b1= ss.share(self.F, A00, self.t, self.n)
-        s_h= ss.share(self.F, A00, self.t, self.n)
-        s_t= ss.share(self.F, A00, self.t, self.n)
-        s_r= ss.share(self.F, A00, self.t, self.n)
+        s_A01= ss.share(self.F, A01, self.t, self.n)
+        s_A10= ss.share(self.F, A10, self.t, self.n)
+        s_A11= ss.share(self.F, A11, self.t, self.n)
+        s_b0= ss.share(self.F, b0, self.t, self.n)
+        s_b1= ss.share(self.F, b1, self.t, self.n)
+        s_h= ss.share(self.F, shareh, self.t, self.n)
+        s_t= ss.share(self.F, sharet, self.t, self.n)
+        s_r= ss.share(self.F, ran, self.t, self.n)
+        s_I00=ss.share(self.F, I00, self.t, self.n)
+        s_I01=ss.share(self.F, I01, self.t, self.n)
+        s_I10=ss.share(self.F, I10, self.t, self.n)
+        s_I11= ss.share(self.F, I11, self.t, self.n)
         
         print('car party ping 2')
         for i in range(n):
-            sock.TCPclient(party_addr[i][0], party_addr[i][1], ['hh'+str(i) , int(str(s_h[i]))])
-            sock.TCPclient(party_addr[i][0], party_addr[i][1], ['tt'+str(i) , int(str(s_t[i]))])
-            sock.TCPclient(party_addr[i][0], party_addr[i][1], ['ran'+str(i) , int(str(s_r[i]))])
-            sock.TCPclient(party_addr[i][0], party_addr[i][1], ['b0'+str(i) , int(str(s_b0[i]))])
-            sock.TCPclient(party_addr[i][0], party_addr[i][1], ['b1'+str(i) , int(str(s_b1[i]))])
-            sock.TCPclient(party_addr[i][0], party_addr[i][1], ['A00'+str(i) , int(str(s_A00[i]))])
-            sock.TCPclient(party_addr[i][0], party_addr[i][1], ['A01'+str(i) , int(str(s_A01[i]))])
-            sock.TCPclient(party_addr[i][0], party_addr[i][1], ['A10'+str(i) , int(str(s_A10[i]))])
-            sock.TCPclient(party_addr[i][0], party_addr[i][1], ['A11'+str(i) , int(str(s_A11[i]))])
-          
+            sock.TCPclient(self.party_addr[i][0], self.party_addr[i][1], ['hh'+str(i) , int(str(s_h[i]))])
+            sock.TCPclient(self.party_addr[i][0], self.party_addr[i][1], ['tt'+str(i) , int(str(s_t[i]))])
+            sock.TCPclient(self.party_addr[i][0], self.party_addr[i][1], ['ran'+str(i) , int(str(s_r[i]))])
+            sock.TCPclient(self.party_addr[i][0], self.party_addr[i][1], ['b0'+str(i) , int(str(s_b0[i]))])
+            sock.TCPclient(self.party_addr[i][0], self.party_addr[i][1], ['b1'+str(i) , int(str(s_b1[i]))])
+            sock.TCPclient(self.party_addr[i][0], self.party_addr[i][1], ['A00'+str(i) , int(str(s_A00[i]))])
+            sock.TCPclient(self.party_addr[i][0], self.party_addr[i][1], ['A01'+str(i) , int(str(s_A01[i]))])
+            sock.TCPclient(self.party_addr[i][0], self.party_addr[i][1], ['A10'+str(i) , int(str(s_A10[i]))])
+            sock.TCPclient(self.party_addr[i][0], self.party_addr[i][1], ['A11'+str(i) , int(str(s_A11[i]))])
+            sock.TCPclient(self.party_addr[i][0], self.party_addr[i][1], ['I00'+str(i) , int(str(s_I00[i]))])
+            sock.TCPclient(self.party_addr[i][0], self.party_addr[i][1], ['I01'+str(i) , int(str(s_I01[i]))])
+            sock.TCPclient(self.party_addr[i][0], self.party_addr[i][1], ['I10'+str(i) , int(str(s_I10[i]))])
+            sock.TCPclient(self.party_addr[i][0], self.party_addr[i][1], ['I11'+str(i) , int(str(s_I11[i]))])
      
         print('car party ping 3')
 
