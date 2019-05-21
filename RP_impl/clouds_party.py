@@ -239,3 +239,27 @@ class party(Thread):
             res_test=self.reconstruct_secret('test'+str(self.comr))
             print('C update reconstruct', res_test) # ok 
            
+            g = []               
+            ss = []
+    
+            # protocol line 16:
+            X = np.asarray(C_shares[(0,1), -1]) # array (ligger ned)
+            
+            # protocol line 17 not implemented
+            
+            # protocol line 18:
+            inv_temp=self.mult_shares(t_share,h_share).n
+        
+        
+            # inverting securely, [BIB89]
+            test_in=self.mult_shares(ra_share,inv_temp).n
+            
+            self.broadcast('yinv' + str(self.comr), test_in)
+            ww= self.reconstruct_secret('yinv'+str(self.comr)).n
+            
+            print('inverse reconstruct:', ww)
+            w_inv=1/ww
+            
+            
+            s_w_inv= w_inv*10E10
+  
