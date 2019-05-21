@@ -129,31 +129,31 @@ class party(Thread):
         
         print('Cloud ping 1')
 
-        input_sharesa00=self.get_share('A00'+str(self.i))  
+        input_sharesa00=self.get_share('A00'+str(self.i)).n  
         print('share ping 1')       # reconstruct OK
-        input_sharesa01=self.get_share('A01'+str(self.i))
+        input_sharesa01=self.get_share('A01'+str(self.i)).n
         print('share ping 2')
-        input_sharesa10=self.get_share('A10'+str(self.i))
+        input_sharesa10=self.get_share('A10'+str(self.i)).n
         print('share ping 3')
-        input_sharesa11=self.get_share('A11'+str(self.i))
+        input_sharesa11=self.get_share('A11'+str(self.i)).n
         print('share ping 4')
-        input_sharesb0=self.get_share('b0'+str(self.i))
+        input_sharesb0=self.get_share('b0'+str(self.i)).n
         print('share ping 5')
-        input_sharesb1=self.get_share('b1'+str(self.i))
+        input_sharesb1=self.get_share('b1'+str(self.i)).n
         print('share ping 6')
-        h_share=self.get_share('hh'+str(self.i))
+        h_share=self.get_share('hh'+str(self.i)).n
         print('share ping 7')
-        t_share=self.get_share('tt'+str(self.i))
+        t_share=self.get_share('tt'+str(self.i)).n
         print('share ping 8')
-        ra_share=self.get_share('ran'+str(self.i))  # shares of random variable 
+        ra_share=self.get_share('ran'+str(self.i)).n  # shares of random variable 
         print('Cloud ping 9')
-        input_sharesI00=self.get_share('I00'+str(self.i))  
+        input_sharesI00=self.get_share('I00'+str(self.i)).n  
         print('share ping 10')       # reconstruct OK
-        input_sharesI01=self.get_share('I01'+str(self.i))
+        input_sharesI01=self.get_share('I01'+str(self.i)).n
         print('share ping 11')
-        input_sharesI10=self.get_share('I10'+str(self.i))
+        input_sharesI10=self.get_share('I10'+str(self.i)).n
         print('share ping 12')
-        input_sharesI11=self.get_share('I11'+str(self.i))
+        input_sharesI11=self.get_share('I11'+str(self.i)).n
 
         self.broadcast('AAA'+str(self.comr), input_sharesa00)
         print("Cloud ping 2")
