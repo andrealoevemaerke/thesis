@@ -17,7 +17,6 @@ import time
 import queue as que
 import matplotlib.pyplot as plt
 import os
-from scipy import linalg
 
 
 class party(Thread):
