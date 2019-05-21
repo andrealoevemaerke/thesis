@@ -126,18 +126,6 @@ class plotter(Thread):
         line.set_ydata(ydata)
         self.fig.canvas.draw()
         return ydata
-
-class dealer():
-    def __init__(self,F, n, t, numTrip):
-        self.n = n
-        b = ss.share(F,np.random.choice([-1,1]), t, n)
-        self.distribute_shares('b', b)
-        triplets = [proc.triplet(F,n,t) for i in range(numTrip)]
-        for i in range(n):
-            l = []
-            for j in range(numTrip):
-                l.append(triplets[j][i])
-            sock.TCPclient(party_addr[i][0], party_addr[i][1], ['triplets' , l])
         
     def distribute_shares(self, name, s):
         for i in range(self.n):
@@ -178,7 +166,7 @@ p = party(F,int(x),n, t, pnr, q, q2, q3, party_addr, server_addr)
 t1_comms.start()
 print('cloud main ping 2')
 
-for i in range(n):
+for i in range(n+1):
     while True:
         try:
           sock.TCPclient(party_addr[i][0], party_addr[i][1], ['flag', 1])
@@ -188,7 +176,6 @@ for i in range(n):
           continue
  
 print('cloud main ping 3')       
-deal = dealer(F,n,t,50)
 p.start()
 #p.join()
 print('cloud main ping 4')
