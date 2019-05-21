@@ -191,7 +191,7 @@ class party(Thread):
         
         for k in range(mu):
                 
-            broad_ckk= self.mult_shares(ra_share,C_shares[k,k])
+            broad_ckk= self.mult_shares(ra_share,C_shares[k,k]).n
             self.broadcast('c_kk' + str(self.comr), broad_ckk)
             f.append(self.reconstruct_secret('c_kk'+str(self.comr)))
             self.comr=+1
