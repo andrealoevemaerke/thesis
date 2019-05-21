@@ -162,7 +162,13 @@ class party(Thread):
         print('Reconstruction of A00:', result)
         
         
+        # Gaussian Elimination without pivoting
         
+        AA=np.array([[input_sharesa00, input_sharesa01],[input_sharesa10, input_sharesa11]]) 
+        bb= np.array([[input_sharesb0],[input_sharesb1]])
+        I_n=np.array([[input_sharesI00, input_sharesI01],[input_sharesI10, input_sharesI11]])
+        
+        print('matrix form ok')
         
         
         
