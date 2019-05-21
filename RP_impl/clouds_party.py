@@ -55,7 +55,7 @@ class party(Thread):
         res = []
         print('def ping 1')
         for i in range(self.n):
-            print('def ping 1', i)
+            print('def ping 2', i)
             while name + str(i) not in self.recv:
                 self.readQueue()    
             res.append(self.F(self.recv[name+str(i)]))
@@ -265,13 +265,13 @@ class party(Thread):
             s_w_inv=int(s_w_inv)
   
             if self.i ==0:
-                self.distribute_shares(s_w_inv)
+                self.distribute_shares(s_w_inv,'ko' )
                 print('if entered:', i)
                
-            sw_inv_share=self.get_share('input'+str(self.i)).n # ok, reconstruction is true to original
+            sw_inv_share=self.get_share('ko'+str(self.comr)).n # ok, reconstruction is true to original
             self.broadcast('test_1' + str(self.comr), sw_inv_share)
             test_11= self.reconstruct_secret('test_1'+str(self.comr)).n
             
             print('recon 11 test', test_11)
-            g=self.mult_shares(sw_inv_share, ra_share).n
+            #g=self.mult_shares(sw_inv_share, ra_share).n
 
