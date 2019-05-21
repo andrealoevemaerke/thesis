@@ -237,5 +237,5 @@ class party(Thread):
           
             self.broadcast('test' + str(self.comr), C_shares[0,0])
             res_test=self.reconstruct_secret('test'+str(self.comr))
-            print('C update reconstruct', test) # ok 
+            print('C update reconstruct', res_test) # ok 
            
