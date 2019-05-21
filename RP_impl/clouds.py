@@ -110,18 +110,7 @@ for i in range(n):
           continue
 print('connection ok')
 
-# all parties connected 
-    
-
-# shares from car has been recieved 
-
-# other way to recieve shares: 
-
 dic={}
-dica2={}
-dic_th={}
-dictt={}
-dicran={}
 dicc={}
 
 
@@ -153,10 +142,7 @@ while t_bo==True:
         I01=(dic['I01'+str(pnr)])
         I10=(dic['I10'+str(pnr)])
         I11=(dic['I11'+str(pnr)])
-      
-        
-        #print('sharea1:', sharea1)
-        #print('sharea2:', sharea2)
+
         t_bo=False
             
    
