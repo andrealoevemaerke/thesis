@@ -128,37 +128,7 @@ class party(Thread):
         U=np.array(([1,8],[0,1]))
         
         print('Cloud ping 1')
-        
-        dic={}
-        t_bo=True    
-        while t_bo==True: 
-    
-            if 'a1'+str(self.i) and 'a2'+str(self.i) and 'hh'+str(self.i) and 'tt'+str(self.i) and 'ran'+str(self.i)  and 'b0'+str(self.i) and 'b1'+str(self.i) and 'A00'+str(self.i) and 'A01'+str(self.i) and 'A10'+str(self.i) and 'A11'+str(self.i) not in dic.keys():  
-       #'I00'+str(pnr) and 'I01'+str(pnr) and 'I10'+str(pnr) and 'I11'+str(pnr)
-                while not q.empty():
-                    temp= q.get()
-            
-                    dic[temp[1][0]]=temp[1][1] 
-                    #print('dica1', dica1)
-            else:
-           
-                shareh=(dic['hh'+str(self.i)])
-                sharet=(dic['tt'+str(self.i)])
-                share_ran=(dic['ran'+str(self.i)])
-                A00=(dic['A00'+str(self.i)])
-                A01=(dic['A01'+str(self.i)])
-                A10=(dic['A10'+str(self.i)])
-                A11=(dic['A11'+str(self.i)])
-                b0=(dic['b0'+str(self.i)])
-                b1=(dic['b1'+str(self.i)])
 
-                t_bo=False
-        
-        
-        
-        
-        
-        
         input_sharesa00=self.get_share('A00')  
         print('share ping 1')       # reconstruct OK
         #input_sharesa01=self.get_share('A01')
