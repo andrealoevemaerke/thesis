@@ -151,11 +151,7 @@ class party(Thread):
                 A11=(dic['A11'+str(self.i)])
                 b0=(dic['b0'+str(self.i)])
                 b1=(dic['b1'+str(self.i)])
-           
-      
-        
-               
-                #print('sharea2:', sharea2)
+
                 t_bo=False
         
         
@@ -163,30 +159,30 @@ class party(Thread):
         
         
         
-        #input_sharesa00=self.get_share('A00').n  
-        #print('share ping 1')       # reconstruct OK
-        #input_sharesa01=self.get_share('A01').n
+        input_sharesa00=self.get_share('A00')  
+        print('share ping 1')       # reconstruct OK
+        #input_sharesa01=self.get_share('A01')
         #print('share ping 2')
-        #input_sharesa10=self.get_share('A10').n
+        #input_sharesa10=self.get_share('A10')
         #print('share ping 3')
-        #input_sharesa11=self.get_share('A11').n
+        #input_sharesa11=self.get_share('A11')
         #print('share ping 4')
-        #input_sharesb0=self.get_share('b0').n
+        #input_sharesb0=self.get_share('b0')
         #print('share ping 5')
-        #input_sharesb1=self.get_share('b1').n
+        #input_sharesb1=self.get_share('b1')
         #print('share ping 6')
-        #h_share=self.get_share('hh').n
+        #h_share=self.get_share('hh')
         #print('share ping 7')
-        #t_share=self.get_share('tt').n
+        #t_share=self.get_share('tt')
         #print('share ping 8')
-        #ra_share=self.get_share('ran').n   # shares of random variable 
+        #ra_share=self.get_share('ran')1  # shares of random variable 
         #print('Cloud ping 2')
 
-        #self.broadcast('AAA'+str(self.comr), input_sharesa00)
-            print("Cloud ping 2")
-            result=self.reconstruct_secret('AAA'+str(self.comr))
+        self.broadcast('AAA'+str(self.comr), input_sharesa00)
+        print("Cloud ping 2")
+        result=self.reconstruct_secret('AAA'+str(self.comr))
         
-            print('Reconstruction of A00:', result)
+        print('Reconstruction of A00:', result)
         
         
         
