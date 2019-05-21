@@ -170,6 +170,12 @@ class party(Thread):
         
         print('matrix form ok')
         
+        e11= np.array(U@AA@L) # OK
+        e12=np.array(U@bb)         
+        e21= np.array(I_n)
+        e22= np.array(np.zeros((nn,l)))
+        
+        print('C elements construction ok')
         
         
         
