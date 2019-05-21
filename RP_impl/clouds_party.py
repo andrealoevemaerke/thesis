@@ -17,6 +17,7 @@ import time
 import queue as que
 import matplotlib.pyplot as plt
 import os
+from scipy import linalg
 
 
 class party(Thread):
@@ -170,7 +171,8 @@ class party(Thread):
         
         print('matrix form ok')
         
-        e11= np.array(U@AA@L) # OK
+        e11= U@AA@L
+        print('e11 ok ') # OK
         e12=np.array(U@bb)         
         e21= np.array(I_n)
         e22= np.array(np.zeros((nn,l)))
