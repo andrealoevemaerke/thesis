@@ -257,17 +257,18 @@ class party(Thread):
             self.broadcast('yinv' + str(self.comr), test_in)
             ww= self.reconstruct_secret('yinv'+str(self.comr)).n
             
-            print('inverse reconstruct:', ww)
+            print('inverse reconstruct:', ww)  # OK 
             w_inv=1/ww
             
             
             s_w_inv= w_inv*10E10
   
             if self.i ==0:
-                self.distribute_shares(s_w_inv,'inv_y')
+                self.distribute_shares(s_w_inv)
+                print('if entered:', i)
                
-            sw_inv_share=self.get_share('inv_y'+str(self.i)).n # ok, reconstruction is true to original
-            self.broadcast('test_1' + str(self.comr), test_in)
+            sw_inv_share=self.get_share('input'+str(self.i)).n # ok, reconstruction is true to original
+            self.broadcast('test_1' + str(self.comr), sw_in_share)
             test_11= self.reconstruct_secret('test_1'+str(self.comr)).n
             
             print('recon 11 test', test_11)
