@@ -180,16 +180,17 @@ class party(Thread):
         
         print('C elements construction ok')
         
-        
+        self.broadcast('e11'+str(self.comr), e11[0,0])
+        print("Cloud ping 2")
+        res_C=self.reconstruct_secret('e11'+str(self.comr))
+        print('e11 reconstruct', res_C)
         
         C_shares=np.array(([e11[0,0], e11[0,1], e12[0,0]],[e11[1,0], e11[1,1], e12[1,0]], [e21[0,0], e21[0,1], 0],[ e21[1,0], e21[1,1], 0]))
         C_shares=C_shares.astype(int)
         print('C matrix construction ok')
         
-        self.broadcast('C'+str(self.comr), C_shares[0,0])
         print("Cloud ping 2")
-        res_C=self.reconstruct_secret('C'+str(self.comr))
-        print('c 00 element reconstruct', res_C)
+       
         f = []
         r_temp = []
         r = []
