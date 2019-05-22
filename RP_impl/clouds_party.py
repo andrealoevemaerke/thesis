@@ -269,7 +269,7 @@ class party(Thread):
                 print('if entered:', i)
             
             print('dist ok')   
-            sw_inv_share=self.get_share('input') # ok, reconstruction is true to original
+            sw_inv_share=self.get_shares('input') # ok, reconstruction is true to original
             print('get shre ok' )
             self.broadcast('test_1' + str(self.comr), sw_inv_share)
             print('broadcast ok')
