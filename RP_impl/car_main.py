@@ -143,7 +143,7 @@ class dealer():
             sock.TCPclient(party_addr[i][0], party_addr[i][1], [name , int(str(s[i]))])
     
 
-m = 7979490791
+m =  27449#7979490791
 F = field.GF(m)            
 n = 3
 t = 1

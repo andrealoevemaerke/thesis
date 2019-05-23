@@ -291,7 +291,7 @@ class party(Thread):
         
         gtL=gt_temp * L
         
-        fx=np.zeros(2, dtype=long)  #np.matrix(np.zeros((2,1)))
+        fx=np.zeros(2, dtype=int)  #np.matrix(np.zeros((2,1)))
      
         for k in range(mu):
             fx[k] = self.mult_shares(f[k], X[k]).n
