@@ -293,7 +293,7 @@ class party(Thread):
             
             fx=np.zeros(2, dtype=int)  #np.matrix(np.zeros((2,1)))
             print('mu=',mu)
-            print('fx is ', fx)
+            print('fx is ', f)
             print('X is', X)
            
             #for k in range(mu):
