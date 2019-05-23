@@ -67,6 +67,7 @@ class party(Thread):
         return ss.rec(self.F, self.get_shares(name))
     
     def get_share(self, name):
+        print('self i and name', self.i, name)
         print('ping share 1')
         while name not in self.recv:
             self.readQueue()
