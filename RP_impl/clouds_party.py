@@ -291,11 +291,9 @@ class party(Thread):
        
       
         
-        gtL=gt_temp * L
+        gtL=gt_temp * L #ook
         
-        self.broadcast('ok' + str(self.comr), gtL[0,0])
-        #print('broadcast ok')
-        ook= self.reconstruct_secret('ok'+str(self.comr))
+        
         
         print('check reconstruction', ook)
         #print('OK 2')
@@ -309,7 +307,9 @@ class party(Thread):
             fx[k] = self.mult_shares(f[k], X[k]).n
 
         #print('YAY')
-        
+        self.broadcast('ok' + str(self.comr), fx[0])
+        #print('broadcast ok')
+        ook= self.reconstruct_secret('ok'+str(self.comr))
         
         fx=fx.astype(int)
         #print('type def ok')
