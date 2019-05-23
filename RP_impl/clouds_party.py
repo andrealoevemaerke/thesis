@@ -39,7 +39,7 @@ class party(Thread):
     def distribute_shares(self, sec):
         shares = ss.share(self.F, sec, self.t, self.n)
         for i in range(self.n):
-            print('input dist ID', i)
+            #print('input dist ID', i)
             sock.TCPclient(self.party_addr[i][0], self.party_addr[i][1], ['input' + str(self.i) , int(str(shares[i]))])
         
     def broadcast(self, name, s):
@@ -55,9 +55,9 @@ class party(Thread):
     def get_shares(self, name):
         
         res = []
-        print('def ping 1')
+        #print('def ping 1')
         for i in range(self.n):
-            print('def ping 2', i)
+         #   print('def ping 2', i)
             while name + str(i) not in self.recv:
                 self.readQueue()    
             res.append(self.F(self.recv[name+str(i)]))
@@ -70,7 +70,7 @@ class party(Thread):
         return ss.rec(self.F, self.get_shares(name))
     
     def get_share(self, name):
-        print('ping share 1')
+       # print('ping share 1')
         while name not in self.recv:
             self.readQueue()
         a = self.F(self.recv[name])
@@ -133,36 +133,36 @@ class party(Thread):
         L=np.array(([1,0],[11,1]))
         U=np.array(([1,8],[0,1]))
         
-        print('Cloud ping 1')
+        #print('Cloud ping 1')
 
         input_sharesa00=self.get_share('A00'+str(self.i)).n  
-        print('share ping 1')       # reconstruct OK
+        #print('share ping 1')       # reconstruct OK
         input_sharesa01=self.get_share('A01'+str(self.i)).n
-        print('share ping 2')
+        #print('share ping 2')
         input_sharesa10=self.get_share('A10'+str(self.i)).n
-        print('share ping 3')
+        #print('share ping 3')
         input_sharesa11=self.get_share('A11'+str(self.i)).n
-        print('share ping 4')
+        #print('share ping 4')
         input_sharesb0=self.get_share('b0'+str(self.i)).n
-        print('share ping 5')
+        #print('share ping 5')
         input_sharesb1=self.get_share('b1'+str(self.i)).n
-        print('share ping 6')
+        #print('share p1ing 6')
         h_share=self.get_share('hh'+str(self.i)).n
-        print('share ping 7')
+        #print('share ping 7')
         t_share=self.get_share('tt'+str(self.i)).n
-        print('share ping 8')
+        #print('share ping 8')
         ra_share=self.get_share('ran'+str(self.i)).n  # shares of random variable 
-        print('Cloud ping 9')
+        #print('Cloud ping 9')
         input_sharesI00=self.get_share('I00'+str(self.i)).n  
-        print('share ping 10')       # reconstruct OK
+        #print('share ping 10')       # reconstruct OK
         input_sharesI01=self.get_share('I01'+str(self.i)).n
-        print('share ping 11')
+        #print('share ping 11')
         input_sharesI10=self.get_share('I10'+str(self.i)).n
-        print('share ping 12')
+        #print('share ping 12')
         input_sharesI11=self.get_share('I11'+str(self.i)).n
 
         self.broadcast('AAA'+str(self.comr), input_sharesa00)
-        print("Cloud ping 2")
+        #print("Cloud ping 2")
         result=self.reconstruct_secret('AAA'+str(self.comr))
         
         print('Reconstruction of A00:', result)
@@ -174,7 +174,7 @@ class party(Thread):
         bb= np.array([[input_sharesb0],[input_sharesb1]])
         I_n=np.array([[input_sharesI00, input_sharesI01],[input_sharesI10, input_sharesI11]])
         
-        print('matrix form ok')
+        #print('matrix form ok')
         
         #print('U type',type(U[0,0]))
         #print('AA type',type(AA[0,0]))
@@ -184,10 +184,10 @@ class party(Thread):
         e21= np.array(I_n)
         e22= np.array(np.zeros((nn,l)))
         
-        print('C elements construction ok')
+        #print('C elements construction ok')
         
         self.broadcast('e11'+str(self.comr), e11[0,0])
-        print("Cloud ping 2")
+        #print("Cloud ping 2")
        # res_C=self.reconstruct_secret('e11'+str(self.comr))
         #print('e11 reconstruct', res_C) # ok 
         
@@ -213,14 +213,14 @@ class party(Thread):
             else: 
                 print('error message')
 
-            print('if ok ! ')
+         #   print('if ok ! ')
             
             C_shares[mu+k,k] = h_share
     
             f.append(h_share)
          
             t_share = self.mult_shares(t_share,h_share).n     # mult shares med Beavers
-            print('shares ok')
+          #  print('shares ok')
 
 
             c_kk = (C_shares[k,k]+1-r[k])    # when c_kk !=0 then r will be 1 
@@ -239,7 +239,7 @@ class party(Thread):
                         temp_C2=self.mult_shares(temp[0,1],dummy[1,0]).n
                         C_shares[i,j]=temp_C1 +temp_C2 #manuel computation 1x2 2x1 = 1x1
 
-        print('for loop ok')
+        #print('for loop ok')
       
         self.broadcast('test' + str(self.comr), C_shares[0,0])
         res_test=self.reconstruct_secret('test'+str(self.comr))
@@ -272,25 +272,25 @@ class party(Thread):
 
         if self.i ==0:
             self.distribute_shares(s_w_inv)
-            print('if entered:', i)
+        #    print('if entered:', i)
        
         sw_inv_share=self.get_share('input0')  # error it gets stock
-        print('get shre ok' )
+        #print('get shre ok' )
         self.broadcast('test_1' + str(self.comr), sw_inv_share)
-        print('broadcast ok')
+        #print('broadcast ok')
         test_11= self.reconstruct_secret('test_1'+str(self.comr))
         
         
         print('recon 11 test', test_11)
         g=self.mult_shares(sw_inv_share, ra_share).n
         f_diag=np.diag(f)
-        print('OK')
+        #print('OK')
         
         gt_temp=self.mult_shares(g,t_share).n  # OKK # previously made with g
       
         
         gtL=gt_temp * L
-        print('OK 2')
+        #print('OK 2')
         
         fx=np.zeros(2)  #np.matrix(np.zeros((2,1)))
         #ko1 = self.mult_shares(f[0], X[0]).n
@@ -300,26 +300,26 @@ class party(Thread):
         for k in range(mu):
             fx[k] = self.mult_shares(f[k], X[k]).n
 
-        print('YAY')
+        #print('YAY')
         
         
         fx=fx.astype(int)
-        print('type def ok')
+        #print('type def ok')
         [ra,ca]=gtL.shape    # dimension OK
         [rb]=fx.shape
         cb=1
         
-        print('before mul loops')
+        #print('before mul loops')
         for ii in range(0,ra):
             for jj in range(0,cb):
                 for kk in range(0,ca):
                     X[ii]=X[ii]+self.mult_shares(gtL[ii,kk],fx[kk]).n
              ## OKK
          
-        print('x mul ok ') 
+        #print('x mul ok ') 
         X=np.reshape(X, (2, 1))
         
-        print('x reshape ok')
+        #print('x reshape ok')
         
         #print('X share is: ', X[0,0])
         
@@ -327,7 +327,7 @@ class party(Thread):
     
         x_res= self.reconstruct_secret('xxx'+str(self.comr))
         
-        print('okokokok')
+        #print('okokokok')
         
         res1=int(str(x_res))
         print('X one is: ', res1)
