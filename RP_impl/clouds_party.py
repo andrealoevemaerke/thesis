@@ -273,9 +273,7 @@ class party(Thread):
             if self.i ==0:
                 self.distribute_shares(s_w_inv)
                 print('if entered:', i)
-            
-            print('dist ok')  
-            print('self i is: ', self.i) 
+           
             sw_inv_share=self.get_share('input0')  # error it gets stock
             print('get shre ok' )
             self.broadcast('test_1' + str(self.comr), sw_inv_share)
@@ -284,5 +282,6 @@ class party(Thread):
             
             
             print('recon 11 test', test_11)
-            #g=self.mult_shares(sw_inv_share, ra_share).n
-
+            g=self.mult_shares(sw_inv_share, ra_share).n
+            f_diag=np.diag(f)
+            print('OK')
