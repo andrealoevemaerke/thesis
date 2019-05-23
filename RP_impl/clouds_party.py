@@ -274,9 +274,9 @@ class party(Thread):
             print('dist ok')   
             sw_inv_share=self.get_share('input' + str(self.i))  # error it gets stock
             print('get shre ok' )
-            self.broadcast('test_1' + str(self.comr), sw_inv_share)
+            self.broadcast('test_1' + str(self.i), sw_inv_share)
             print('broadcast ok')
-            test_11= self.reconstruct_secret('test_1'+str(self.comr)).n
+            test_11= self.reconstruct_secret('test_1'+str(self.i)).n
             
             print('recon 11 test', test_11)
             #g=self.mult_shares(sw_inv_share, ra_share).n
