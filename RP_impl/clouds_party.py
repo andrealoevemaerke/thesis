@@ -331,3 +331,13 @@ class party(Thread):
         
         res1=int(str(x_res))
         print('X one is: ', res1)
+        
+        dummy3 =10E13
+        
+        
+        if res1 > dummy3:
+            res1 = res1 -792606555396977 
+            
+        finalX1=res1/10E10
+        
+        print('Final resulat? =:', finalX1)
