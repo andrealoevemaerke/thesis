@@ -293,7 +293,7 @@ class party(Thread):
         
         gtL=gt_temp * L
         
-        self.broadcast('ok' + str(self.comr), gtL)
+        self.broadcast('ok' + str(self.comr), gtL[0,0])
         #print('broadcast ok')
         ook= self.reconstruct_secret('ok'+str(self.comr))
         
