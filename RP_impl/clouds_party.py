@@ -306,11 +306,13 @@ class party(Thread):
         for k in range(mu):
             fx[k] = self.mult_shares(f[k], X[k]).n
 
-        #print('YAY')
-        self.broadcast('ok' + str(self.comr), fx[0])
+        print('fx:', fx)
+        
+        
+        #self.broadcast('ok' + str(self.comr), fx[0])
         #print('broadcast ok')
-        ook= self.reconstruct_secret('ok'+str(self.comr))
-        print('check reconstruction', ook)
+        #ook= self.reconstruct_secret('ok'+str(self.comr))
+        #print('check reconstruction', ook)
         
         fx=fx.astype(int)
         #print('type def ok')
