@@ -297,4 +297,21 @@ class party(Thread):
             fx[k] = self.mult_shares(f[k], X[k]).n
 
         print('YAY')
-
+        
+        fx=fx.astype(int)
+        
+        [ra,ca]=gtL.shape    # dimension OK
+        [rb]=fx.shape
+        cb=1
+        
+        print('before mul loops')
+        for ii in range(0,ra):
+            for jj in range(0,cb):
+                for kk in range(0,ca):
+                    X[ii]=X[ii]+self.mult_shares(gtL[ii,kk],fx[kk]).n
+             # OKK
+         
+        print('x mul ok ') 
+        X=np.reshape(X, (2, 1))
+        
+        print('x reshape ok')
