@@ -296,7 +296,7 @@ class party(Thread):
             print('fx is ', f)
             print('X is', X)
            
-            ko=self.mult_shares(68000001461, 3281184370).n
+            ko=self.mult_shares(f[0], X[0]).n
             print('ok:', ko)
             #for k in range(mu):
             #    fx[k] = self.mult_shares(f[k], X[k]).n
