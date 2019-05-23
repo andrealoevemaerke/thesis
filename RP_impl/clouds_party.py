@@ -303,7 +303,8 @@ class party(Thread):
         print('YAY')
         
         
-        
+        fx=fx.astype(int)
+        ptint('type def ok')
         [ra,ca]=gtL.shape    # dimension OK
         [rb]=fx.shape
         cb=1
