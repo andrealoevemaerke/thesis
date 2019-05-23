@@ -328,3 +328,5 @@ class party(Thread):
         x_res= self.reconstruct_secret('xxx'+str(self.comr))
         
         print('okokokok')
+        
+        print('one x= ', x_res[0])
