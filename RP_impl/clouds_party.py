@@ -40,7 +40,7 @@ class party(Thread):
         shares = ss.share(self.F, sec, self.t, self.n)
         for i in range(self.n):
             print('input dist ID', i)
-            sock.TCPclient(self.party_addr[i][0], self.party_addr[i][1], ['input' + str(self.i) , int(str(shares[i]))])
+            sock.TCPclient(self.party_addr[i][0], self.party_addr[i][1], ['input' + str(i) , int(str(shares[i]))])
         
     def broadcast(self, name, s):
         for i in range(self.n):
@@ -275,7 +275,7 @@ class party(Thread):
             
             print('dist ok')  
             print('self i is: ', self.i) 
-            sw_inv_share=self.get_share('input0')  # error it gets stock
+            sw_inv_share=self.get_shares('input'+ str(self.i))  # error it gets stock
             print('get shre ok' )
             self.broadcast('test_1' + str(self.i), sw_inv_share)
             print('broadcast ok')
