@@ -329,5 +329,5 @@ class party(Thread):
         
         print('okokokok')
         
-        res1=int(str(x_res[0]))
+        res1=int(str(x_res))
         print('X one is: ', res1)
