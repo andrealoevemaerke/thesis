@@ -315,3 +315,9 @@ class party(Thread):
         X=np.reshape(X, (2, 1))
         
         print('x reshape ok')
+        
+        self.broadcast('xxx' + str(self.comr), sw_inv_share)
+    
+        x_res= self.reconstruct_secret('xxx'+str(self.comr))
+        
+        print('result of x is:',x_res/10E10)
