@@ -53,7 +53,7 @@ class party(Thread):
             self.q3.put([b[0][-1], b[1]])
     
     def get_shares(self, name):
-        print('name get share', name)
+        
         res = []
         print('def ping 1')
         for i in range(self.n):
@@ -66,6 +66,7 @@ class party(Thread):
         
             
     def reconstruct_secret(self, name):
+        
         return ss.rec(self.F, self.get_shares(name))
     
     def get_share(self, name):
@@ -277,9 +278,10 @@ class party(Thread):
             print('self i is: ', self.i) 
             sw_inv_share=self.get_share('input0')  # error it gets stock
             print('get shre ok' )
-            self.broadcast('test_1' + str(self.i), sw_inv_share)
+            self.broadcast('test_1' + str(self.comr), sw_inv_share)
             print('broadcast ok')
-            test_11= self.reconstruct_secret('test_1'+str(self.i))
+            test_11= self.reconstruct_secret('test_1'+str(self.comr))
+            
             
             print('recon 11 test', test_11)
             #g=self.mult_shares(sw_inv_share, ra_share).n
