@@ -281,12 +281,18 @@ class party(Thread):
         test_11= self.reconstruct_secret('test_1'+str(self.comr))
         
         
-        print('recon 11 test', test_11)
+        print('recon 11 test', test_11)  # OOK
         g=self.mult_shares(sw_inv_share, ra_share).n
         f_diag=np.diag(f)
         #print('OK')
         
-        gt_temp=self.mult_shares(g,t_share).n  # OKK # previously made with g
+        gt_temp=self.mult_shares(g,t_share).n
+        
+        self.broadcast('ok' + str(self.comr), gt_temp)
+        #print('broadcast ok')
+        ook= self.reconstruct_secret('ok'+str(self.comr))
+        
+        print('check reconstruction', ook)
       
         
         gtL=gt_temp * L
