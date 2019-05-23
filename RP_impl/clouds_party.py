@@ -290,6 +290,7 @@ class party(Thread):
       
         
         gtL=gt_temp * L
+        print('OK 2')
         
         #fx=np.zeros(2, dtype=int)  #np.matrix(np.zeros((2,1)))
      
