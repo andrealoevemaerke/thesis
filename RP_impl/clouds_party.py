@@ -286,16 +286,18 @@ class party(Thread):
         f_diag=np.diag(f)
         #print('OK')
         
-        gt_temp=self.mult_shares(g,t_share).n
+        gt_temp=self.mult_shares(g,t_share).n # ook
         
-        self.broadcast('ok' + str(self.comr), gt_temp)
+       
+      
+        
+        gtL=gt_temp * L
+        
+        self.broadcast('ok' + str(self.comr), gtL)
         #print('broadcast ok')
         ook= self.reconstruct_secret('ok'+str(self.comr))
         
         print('check reconstruction', ook)
-      
-        
-        gtL=gt_temp * L
         #print('OK 2')
         
         fx=np.zeros(2)  #np.matrix(np.zeros((2,1)))
