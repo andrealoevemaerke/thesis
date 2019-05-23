@@ -309,13 +309,13 @@ class party(Thread):
         cb=1
         
         print('before mul loops')
-        #for ii in range(0,ra):
-            #for jj in range(0,cb):
-                #for kk in range(0,ca):
-                    #X[ii]=X[ii]+self.mult_shares(gtL[ii,kk],fx[kk]).n
+        for ii in range(0,ra):
+            for jj in range(0,cb):
+                for kk in range(0,ca):
+                    X[ii]=X[ii]+self.mult_shares(gtL[ii,kk],fx[kk]).n
              ## OKK
          
-        #print('x mul ok ') 
+        print('x mul ok ') 
         #X=np.reshape(X, (2, 1))
         
         #print('x reshape ok')
