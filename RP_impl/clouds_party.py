@@ -291,33 +291,33 @@ class party(Thread):
         
         gtL=gt_temp * L
         
-        fx=np.zeros(2, dtype=int)  #np.matrix(np.zeros((2,1)))
+        #fx=np.zeros(2, dtype=int)  #np.matrix(np.zeros((2,1)))
      
-        for k in range(mu):
-            fx[k] = self.mult_shares(f[k], X[k]).n
+        #for k in range(mu):
+            #fx[k] = self.mult_shares(f[k], X[k]).n
 
-        print('YAY')
+        #print('YAY')
         
-        fx=fx.astype(int)
+        #fx=fx.astype(int)
         
-        [ra,ca]=gtL.shape    # dimension OK
-        [rb]=fx.shape
-        cb=1
+        #[ra,ca]=gtL.shape    # dimension OK
+        #[rb]=fx.shape
+        #cb=1
         
-        print('before mul loops')
-        for ii in range(0,ra):
-            for jj in range(0,cb):
-                for kk in range(0,ca):
-                    X[ii]=X[ii]+self.mult_shares(gtL[ii,kk],fx[kk]).n
-             # OKK
+        #print('before mul loops')
+        #for ii in range(0,ra):
+            #for jj in range(0,cb):
+                #for kk in range(0,ca):
+                    #X[ii]=X[ii]+self.mult_shares(gtL[ii,kk],fx[kk]).n
+             ## OKK
          
-        print('x mul ok ') 
-        X=np.reshape(X, (2, 1))
+        #print('x mul ok ') 
+        #X=np.reshape(X, (2, 1))
         
-        print('x reshape ok')
+        #print('x reshape ok')
         
-        self.broadcast('xxx' + str(self.comr), X[0])
+        #self.broadcast('xxx' + str(self.comr), X[02])
     
-        x_res= self.reconstruct_secret('xxx'+str(self.comr))
+        #x_res= self.reconstruct_secret('xxx'+str(self.comr))
         
-        print('result of x is:',x_res/10E10)
+        #print('result of x is:',x_res/10E10)
