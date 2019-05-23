@@ -239,67 +239,67 @@ class party(Thread):
                         temp_C2=self.mult_shares(temp[0,1],dummy[1,0]).n
                         C_shares[i,j]=temp_C1 +temp_C2 #manuel computation 1x2 2x1 = 1x1
 
-            print('for loop ok')
-          
-            self.broadcast('test' + str(self.comr), C_shares[0,0])
-            res_test=self.reconstruct_secret('test'+str(self.comr))
-            print('C update reconstruct', res_test) # ok 
-           
-            g = []               
-            ss = []
-    
-            # protocol line 16:
-            X = np.asarray(C_shares[(0,1), -1]) # array (ligger ned)
-            
-            # protocol line 17 not implemented
-            
-            # protocol line 18:
-            inv_temp=self.mult_shares(t_share,h_share).n
-        
-        
-            # inverting securely, [BIB89]
-            test_in=self.mult_shares(ra_share,inv_temp).n
-            
-            self.broadcast('yinv' + str(self.comr), test_in)
-            ww= self.reconstruct_secret('yinv'+str(self.comr)).n
-            
-            print('inverse reconstruct:', ww)  # OK 
-            w_inv=1/ww
-            
-            
-            s_w_inv= w_inv*10E10
-            s_w_inv=int(s_w_inv)
-  
-            if self.i ==0:
-                self.distribute_shares(s_w_inv)
-                print('if entered:', i)
-           
-            sw_inv_share=self.get_share('input0')  # error it gets stock
-            print('get shre ok' )
-            self.broadcast('test_1' + str(self.comr), sw_inv_share)
-            print('broadcast ok')
-            test_11= self.reconstruct_secret('test_1'+str(self.comr))
-            
-            
-            print('recon 11 test', test_11)
-            g=self.mult_shares(sw_inv_share, ra_share).n
-            f_diag=np.diag(f)
-            print('OK')
-            
-            gt_temp=self.mult_shares(g,t_share).n  # OKK # previously made with g
-          
-            
-            gtL=gt_temp * L
-            
-            fx=np.zeros(2, dtype=int)  #np.matrix(np.zeros((2,1)))
-            print('mu=',mu)
-            print('fx is ', f)
-            print('X is', X)
-           
-            ko=self.mult_shares(f[1], X[1]).n
-            print('ok:', ko)
-            #for k in range(mu):
-            #    fx[k] = self.mult_shares(f[k], X[k]).n
+        print('for loop ok')
+      
+        self.broadcast('test' + str(self.comr), C_shares[0,0])
+        res_test=self.reconstruct_secret('test'+str(self.comr))
+        print('C update reconstruct', res_test) # ok 
+       
+        g = []               
+        ss = []
 
-            #print('YAY')
+        # protocol line 16:
+        X = np.asarray(C_shares[(0,1), -1]) # array (ligger ned)
+        
+        # protocol line 17 not implemented
+        
+        # protocol line 18:
+        inv_temp=self.mult_shares(t_share,h_share).n
+    
+    
+        # inverting securely, [BIB89]
+        test_in=self.mult_shares(ra_share,inv_temp).n
+        
+        self.broadcast('yinv' + str(self.comr), test_in)
+        ww= self.reconstruct_secret('yinv'+str(self.comr)).n
+        
+        print('inverse reconstruct:', ww)  # OK 
+        w_inv=1/ww
+        
+        
+        s_w_inv= w_inv*10E10
+        s_w_inv=int(s_w_inv)
+
+        if self.i ==0:
+            self.distribute_shares(s_w_inv)
+            print('if entered:', i)
+       
+        sw_inv_share=self.get_share('input0')  # error it gets stock
+        print('get shre ok' )
+        self.broadcast('test_1' + str(self.comr), sw_inv_share)
+        print('broadcast ok')
+        test_11= self.reconstruct_secret('test_1'+str(self.comr))
+        
+        
+        print('recon 11 test', test_11)
+        g=self.mult_shares(sw_inv_share, ra_share).n
+        f_diag=np.diag(f)
+        print('OK')
+        
+        gt_temp=self.mult_shares(g,t_share).n  # OKK # previously made with g
+      
+        
+        gtL=gt_temp * L
+        
+        fx=np.zeros(2, dtype=int)  #np.matrix(np.zeros((2,1)))
+        print('mu=',mu)
+        print('fx is ', f)
+        print('X is', X)
+       
+        ko=self.mult_shares(f[1], X[1]).n
+        print('ok:', ko)
+        #for k in range(mu):
+        #    fx[k] = self.mult_shares(f[k], X[k]).n
+
+        #print('YAY')
 
