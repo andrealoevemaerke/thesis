@@ -56,10 +56,10 @@ class party(Thread):
         print('def ping 1')
         for i in range(self.n):
             print('def ping 2', i)
-            while name + str(i) not in self.recv:
+            while name + str(self.i) not in self.recv:
                 self.readQueue()    
-            res.append(self.F(self.recv[name+str(i)]))
-            del self.recv[name + str(i)]
+            res.append(self.F(self.recv[name+str(self.i)]))
+            del self.recv[name + str(self.i)]
         return res
         
             
