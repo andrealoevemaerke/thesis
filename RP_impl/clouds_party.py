@@ -292,14 +292,9 @@ class party(Thread):
         gtL=gt_temp * L
         
         fx=np.zeros(2, dtype=int)  #np.matrix(np.zeros((2,1)))
-        print('mu=',mu)
-        print('fx is ', f)
-        print('X is', X)
-       
-        ko=self.mult_shares(f[1], X[1]).n
-        print('ok:', ko)
-        #for k in range(mu):
-        #    fx[k] = self.mult_shares(f[k], X[k]).n
+     
+        for k in range(mu):
+            fx[k] = self.mult_shares(f[k], X[k]).n
 
-        #print('YAY')
+        print('YAY')
 
