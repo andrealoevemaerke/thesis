@@ -275,7 +275,7 @@ class party(Thread):
             
             print('dist ok')  
             print('self i is: ', self.i) 
-            sw_inv_share=self.get_shares('input'+ str(self.i))  # error it gets stock
+            sw_inv_share=self.get_share('input0')  # error it gets stock
             print('get shre ok' )
             self.broadcast('test_1' + str(self.i), sw_inv_share)
             print('broadcast ok')
