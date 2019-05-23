@@ -309,12 +309,15 @@ class party(Thread):
         print('fx:', fx[0])
         
         
+      
+        
+        fx=fx.astype(int)
+        
         self.broadcast('ok' + str(self.comr), fx[0])
         #print('broadcast ok')
         ook= self.reconstruct_secret('ok'+str(self.comr))
         print('check reconstruction', ook)
         
-        fx=fx.astype(int)
         #print('type def ok')
         [ra,ca]=gtL.shape    # dimension OK
         [rb]=fx.shape
