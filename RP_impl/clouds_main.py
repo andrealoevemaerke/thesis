@@ -154,7 +154,7 @@ server_info = party_addr[pnr]#(TCP_IP, TCP_PORT)
 t1_comms = commsThread(1, "Communication Thread", server_info,q)
 #ploting = plotter(q3)
 #ploting.start()
-print('cloud main ping 1')
+#print('cloud main ping 1')
 print(server_addr)
 
 
@@ -164,7 +164,7 @@ print(server_addr)
 p = party(F,int(x),n, t, pnr, q, q2, q3, party_addr, server_addr)
 
 t1_comms.start()
-print('cloud main ping 2')
+#print('cloud main ping 2')
 
 for i in range(n+1):
     while True:
@@ -175,9 +175,9 @@ for i in range(n+1):
           time.sleep(1)
           continue
  
-print('cloud main ping 3')       
+#rint('cloud main ping 3')       
 p.start()
 #p.join()
-print('cloud main ping 4')
+#print('cloud main ping 4')
 
 
