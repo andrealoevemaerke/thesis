@@ -285,3 +285,17 @@ class party(Thread):
             g=self.mult_shares(sw_inv_share, ra_share).n
             f_diag=np.diag(f)
             print('OK')
+            
+            gt_temp=self.mult_shares(g,t_share).n  # OKK # previously made with g
+          
+            
+            gtL=gt_temp * L
+            
+            fx=np.zeros(2, dtype=int)  #np.matrix(np.zeros((2,1)))
+        
+           
+            for k in range(mu):
+                fx[k] = self.mult_shares(f[k], X[k]).n
+
+            print('YAY')
+
