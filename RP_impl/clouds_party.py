@@ -317,9 +317,9 @@ class party(Thread):
              ## OKK
          
         print('x mul ok ') 
-        #X=np.reshape(X, (2, 1))
+        X=np.reshape(X, (2, 1))
         
-        #print('x reshape ok')
+        print('x reshape ok')
         
         #self.broadcast('xxx' + str(self.comr), X[02])
     
