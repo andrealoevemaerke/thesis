@@ -295,7 +295,7 @@ class party(Thread):
         
         
         
-        print('check reconstruction', ook)
+    
         #print('OK 2')
         
         fx=np.zeros(2)  #np.matrix(np.zeros((2,1)))
@@ -310,6 +310,7 @@ class party(Thread):
         self.broadcast('ok' + str(self.comr), fx[0])
         #print('broadcast ok')
         ook= self.reconstruct_secret('ok'+str(self.comr))
+        print('check reconstruction', ook)
         
         fx=fx.astype(int)
         #print('type def ok')
