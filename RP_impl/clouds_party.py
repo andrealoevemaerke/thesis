@@ -39,7 +39,7 @@ class party(Thread):
     def distribute_shares(self, sec):
         shares = ss.share(self.F, sec, self.t, self.n)
         for i in range(self.n):
-            print('input dist ID', self.i)
+            print('input dist ID', i)
             sock.TCPclient(self.party_addr[i][0], self.party_addr[i][1], ['input' + str(i) , int(str(shares[i]))])
         
     def broadcast(self, name, s):
@@ -279,7 +279,7 @@ class party(Thread):
             print('get shre ok' )
             self.broadcast('test_1' + str(self.i), sw_inv_share)
             print('broadcast ok')
-            test_11= self.reconstruct_secret('test_1'+str(self.i)).n
+            test_11= self.reconstruct_secret('test_1'+str(self.i))
             
             print('recon 11 test', test_11)
             #g=self.mult_shares(sw_inv_share, ra_share).n
