@@ -272,11 +272,11 @@ class party(Thread):
                 print('if entered:', i)
             
             print('dist ok')   
-            sw_inv_share=self.get_share('input' + str(i))  # error it gets stock
+            sw_inv_share=self.get_share('input' + str(self.i))  # error it gets stock
             print('get shre ok' )
-            self.broadcast('test_1' + str(i), sw_inv_share)
+            self.broadcast('test_1' + str(self.i), sw_inv_share)
             print('broadcast ok')
-            test_11= self.reconstruct_secret('test_1'+str(i)).n
+            test_11= self.reconstruct_secret('test_1'+str(self.i)).n
             
             print('recon 11 test', test_11)
             #g=self.mult_shares(sw_inv_share, ra_share).n
