@@ -321,8 +321,10 @@ class party(Thread):
         
         print('x reshape ok')
         
-        self.broadcast('xxx' + str(self.comr), X[[0]])
-    
-        x_res= self.reconstruct_secret('xxx'+str(self.comr))
+        print('X share is: ', X)
         
-        print('okokokok')
+        #self.broadcast('xxx' + str(self.comr), X[[0]])
+    
+        #x_res= self.reconstruct_secret('xxx'+str(self.comr))
+        
+        #print('okokokok')
