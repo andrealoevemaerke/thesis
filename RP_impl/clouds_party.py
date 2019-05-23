@@ -40,7 +40,7 @@ class party(Thread):
         shares = ss.share(self.F, sec, self.t, self.n)
         for i in range(self.n):
             print('input dist ID', i)
-            sock.TCPclient(self.party_addr[i][0], self.party_addr[i][1], ['input' + str(i) , int(str(shares[i]))])
+            sock.TCPclient(self.party_addr[i][0], self.party_addr[i][1], ['input' + str(self.i) , int(str(shares[i]))])
         
     def broadcast(self, name, s):
         for i in range(self.n):
@@ -68,7 +68,6 @@ class party(Thread):
         return ss.rec(self.F, self.get_shares(name))
     
     def get_share(self, name):
-        print('self i and name', self.i, name)
         print('ping share 1')
         while name not in self.recv:
             self.readQueue()
