@@ -293,22 +293,22 @@ class party(Thread):
         print('OK 2')
         
         fx=np.zeros(2)  #np.matrix(np.zeros((2,1)))
-        ko1 = self.mult_shares(f[0], X[0]).n
-        print('KO 1=', ko1)
-        ko2 = self.mult_shares(f[1], X[1]).n
-        print('KO 2=', ko2)
+        #ko1 = self.mult_shares(f[0], X[0]).n
+        #print('KO 1=', ko1)
+        #ko2 = self.mult_shares(f[1], X[1]).n
+        #print('KO 2=', ko2)
         for k in range(mu):
             fx[k] = self.mult_shares(f[k], X[k]).n
 
         print('YAY')
         
-        #fx=fx.astype(int)
         
-        #[ra,ca]=gtL.shape    # dimension OK
-        #[rb]=fx.shape
-        #cb=1
         
-        #print('before mul loops')
+        [ra,ca]=gtL.shape    # dimension OK
+        [rb]=fx.shape
+        cb=1
+        
+        print('before mul loops')
         #for ii in range(0,ra):
             #for jj in range(0,cb):
                 #for kk in range(0,ca):
