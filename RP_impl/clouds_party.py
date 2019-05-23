@@ -325,4 +325,4 @@ class party(Thread):
     
         x_res= self.reconstruct_secret('xxx'+str(self.comr))
         
-        print('result of x is:',x_res/10E10)
+        print('okokokok')
