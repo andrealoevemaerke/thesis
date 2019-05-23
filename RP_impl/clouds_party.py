@@ -53,6 +53,7 @@ class party(Thread):
             self.q3.put([b[0][-1], b[1]])
     
     def get_shares(self, name):
+        print('name get share', name)
         res = []
         print('def ping 1')
         for i in range(self.n):
