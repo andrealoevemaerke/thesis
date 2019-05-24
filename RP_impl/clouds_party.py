@@ -318,9 +318,9 @@ class party(Thread):
         
         test_str=int(str(fx[0]))
         print('str manual transform', test_str)
-        fx=fx.astype(int)
+        #fx=fx.astype(int)
 
-        print('fx:', fx[0])
+        #print('fx:', fx[0])
         
         self.broadcast('ok' + str(self.comr), fx[0])
         #print('broadcast ok')
