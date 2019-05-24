@@ -17,6 +17,9 @@ import time
 import queue as que
 import matplotlib.pyplot as plt
 import os
+import sys
+
+print('MAx size:',type(sys.maxsize))
 
 
 class party(Thread):
