@@ -309,9 +309,14 @@ class party(Thread):
       
         
         print('fx original:', fx[0])
-      
+
         
         fx=fx.astype(int)   # WRONG - DOESNT DO IT CORRECTLY, RP memory
+
+        test_def=int(fx[0])
+        print('manual transform fx', test_def)
+        fx=fx.astype(int)
+
         print('fx:', fx[0])
         
         self.broadcast('ok' + str(self.comr), fx[0])
