@@ -19,6 +19,8 @@ import os
 from numpy.linalg import matrix_rank
 
 
+
+
 class party(Thread):
     def __init__(self, F, x, n, t, i, q, q2,q3, paddr, saddr):
         Thread.__init__(self)
@@ -129,7 +131,7 @@ class party(Thread):
         I11= 1
         shareh=1
         sharet=1
-        ran=2
+        ran=7
         
         AA=np.array([[A00, A01],[A10, A11]])
         bb= np.array([[b0],[b1]])
