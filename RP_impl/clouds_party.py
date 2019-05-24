@@ -48,7 +48,7 @@ class party(Thread):
         shares = ss.share(self.F, sec, self.t, self.n)
         for i in range(self.n):
             #print('input dist ID', i)
-            sock.TCPclient(self.party_addr[3][0], self.party_addr[3][1], ['car' , int(str(shares[i]))])    
+            sock.TCPclient(self.party_addr[3][0], self.party_addr[3][1], ['car' + str(self.i), int(str(shares[i]))])    
     def broadcast(self, name, s):
         for i in range(self.n):
             sock.TCPclient(self.party_addr[i][0], self.party_addr[i][1], [name + str(self.i) , int(str(s))])
@@ -305,13 +305,13 @@ class party(Thread):
 
         X=np.reshape(X, (2, 1))
         
-        self.distribute_shares_car(X[0,0])
+        #self.distribute_shares_car(X[0,0])
         
         #res1_shares = ss.share(self.F, X[0,0], self.t, self.n)
         #res2_shares = ss.share(self.F, X[1,0], self.t, self.n)
-        #for i in range(self.n):
+        for i in range(self.n):
             ##print('input dist ID', i)
-            #sock.TCPclient(self.party_addr[3][0], self.party_addr[3][1], ['x1' + str(self.i) , int(str(res1_shares[i]))])
+            sock.TCPclient(self.party_addr[3][0], self.party_addr[3][1], ['car' + str(self.i) , int(str(res1_shares[i]))])
             #sock.TCPclient(self.party_addr[3][0], self.party_addr[3][1], ['x2' + str(self.i) , int(str(res2_shares[i]))])
         
         
