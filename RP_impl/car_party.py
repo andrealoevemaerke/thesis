@@ -129,7 +129,7 @@ class party(Thread):
         I11= 1
         shareh=1
         sharet=1
-        ran=7
+        ran=1
         
         AA=np.array([[A00, A01],[A10, A11]])
         bb= np.array([[b0],[b1]])
