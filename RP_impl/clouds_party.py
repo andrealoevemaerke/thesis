@@ -323,12 +323,12 @@ class party(Thread):
         #print('str manual transform', test_str)
         fx=fx.astype(np.int64)
 
-        print('fx 64 int:', fx[0])
+        #print('fx 64 int:', fx[0])
         
-        self.broadcast('ok' + str(self.comr), test_def)
+        #self.broadcast('ok' + str(self.comr), test_def)
         #print('broadcast ok')
-        ook= self.reconstruct_secret('ok'+str(self.comr))
-        print('check reconstruction', ook)
+        #ook= self.reconstruct_secret('ok'+str(self.comr))
+        #print('check reconstruction', ook)
         
         #print('type def ok')
         [ra,ca]=gtL.shape    # dimension OK
@@ -349,14 +349,16 @@ class party(Thread):
         
         #print('X share is: ', X[0,0])
         
-        self.broadcast('xxx' + str(self.comr), X[0,0])
-    
-        x_res= self.reconstruct_secret('xxx'+str(self.comr))
+        self.broadcast('x1' + str(self.comr), X[0,0])
+        self.broadcast('x2' + str(self.comr), X[1,0])
+        x1_res= self.reconstruct_secret('x1'+str(self.comr))
+        x2_res= self.reconstruct_secret('x2'+str(self.comr))
         
         #print('okokokok')
         
-        res1=int(str(x_res))
-        print('X one is: ', res1)
+        res1=int(str(x1_res))
+        res2=int(str(x2_res))
+        #print('X one is: ', res1)
         
         dummy3 =10E13
         
@@ -364,6 +366,10 @@ class party(Thread):
         if res1 > dummy3:
             res1 = res1 -792606555396977 
             
-        finalX1=res1/10E10
+        if res2 > dummy3:
+            res2 = res2 -792606555396977 
         
-        print('Final resulat? =:', finalX1)
+        finalX1=res1/10E10
+        finalX2=res2/10E10
+        
+        print('Final resulat:', finalX1, finalX2)
