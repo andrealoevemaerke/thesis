@@ -193,7 +193,7 @@ for i in range(n):
         
         
 print('car main ping 3')    
-deal = dealer(F,n,t,50)
+deal = dealer(F,n,t,1500) # 50
 p.start()
 print('car main ping 4')
 p.join()
