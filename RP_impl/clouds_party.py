@@ -321,9 +321,9 @@ class party(Thread):
         
        # test_str=int(str(fx[0]))
         #print('str manual transform', test_str)
-        #fx=fx.astype(int)
+        fx=fx.astype(np.int64)
 
-        #print('fx:', fx[0])
+        print('fx 64 int:', fx[0])
         
         self.broadcast('ok' + str(self.comr), test_def)
         #print('broadcast ok')
