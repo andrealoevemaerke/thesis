@@ -311,7 +311,7 @@ class party(Thread):
         print('fx original:', fx[0])
       
         
-        fx=fx.astype(int)
+        fx=fx.astype(int)   # WRONG - DOESNT DO IT CORRECTLY, RP memory
         print('fx:', fx[0])
         
         self.broadcast('ok' + str(self.comr), fx[0])
