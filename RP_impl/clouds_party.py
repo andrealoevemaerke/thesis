@@ -249,7 +249,7 @@ class party(Thread):
         self.broadcast('yinv' + str(self.comr), test_in)
         ww= self.reconstruct_secret('yinv'+str(self.comr)).n
         
-        print('inverse reconstruct:', ww)  # OK 
+        #print('inverse reconstruct:', ww)  # OK 
         w_inv=1/ww
         
         
@@ -265,7 +265,7 @@ class party(Thread):
         test_11= self.reconstruct_secret('test_1'+str(self.comr))
         
         
-        print('recon 11 test', test_11)  # OOK
+       # print('recon 11 test', test_11)  # OOK
         g=self.mult_shares(sw_inv_share, ra_share).n
         f_diag=np.diag(f)
         
@@ -280,7 +280,7 @@ class party(Thread):
             fx[k] = self.mult_shares(f[k], X[k]).n
 
         
-        print('fx original:', fx[0])
+       # print('fx original:', fx[0])
 
   
         fx=fx.astype(np.int64)
