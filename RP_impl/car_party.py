@@ -107,7 +107,7 @@ class party(Thread):
         return c
     
     def run(self):
-        print('starting party ', self.i)
+        #print('starting party ', self.i)
         n=3
         m = 2   # number of A rows
         nn = 2  # number of A coloums
@@ -138,10 +138,10 @@ class party(Thread):
         rankAB=np.array(matrix_rank(AB))
         rankA= np.array(matrix_rank(AA))
         
-        if rankA == rankAB:
-            print('system is solvable')
-        else:
-            print('Preconditioning fails, system not solvable')
+        #if rankA == rankAB:
+         #   print('system is solvable')
+        #else:
+         #   print('Preconditioning fails, system not solvable')
         
         s_A00= ss.share(self.F, A00, self.t, self.n)
         s_A01= ss.share(self.F, A01, self.t, self.n)

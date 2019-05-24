@@ -8,8 +8,6 @@ Created on Sun May 19 12:08:59 2019
 
 
 import numpy as np 
-from scipy import linalg
-from scipy.linalg import toeplitz
 from numpy.linalg import inv
 import random 
 from numpy.linalg import matrix_rank
@@ -36,8 +34,8 @@ U= np.array([[1 ,8],[ 0 ,1]])
 #L = toeplitz([1,random.randint(1,10)])  
 #U = toeplitz([1,random.randint(1,10)])
     
-L= np.array(np.tril(L) )               # remove upper triangular entries
-U= np.array(np.triu(U) )               # remove lower triangular entires
+#L= np.array(np.tril(L) )               # remove upper triangular entries
+#U= np.array(np.triu(U) )               # remove lower triangular entires
     
 
 
@@ -93,3 +91,4 @@ x=gtL@np.eye(2)@fx
 
 x=x/10E10
 time_elapsed = (time.clock() - time_start)
+print('time_elapsed:', time_elapsed)

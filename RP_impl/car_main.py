@@ -19,7 +19,7 @@ from car_party import party
 import matplotlib.pyplot as plt
 import os
 
-
+time_start=time.clock()
 port = 62
 
 party_addr = [
@@ -193,9 +193,10 @@ for i in range(n):
         
         
 #print('car main ping 3')    
-deal = dealer(F,n,t,50) # 50
+deal = dealer(F,n,t,24) # 50
 p.start()
 #print('car main ping 4')
 p.join()
 #print('car main ping 5')
-
+time_elapsed=(time.clock()-time_start)
+print('time elapsed:', time_elapsed)
