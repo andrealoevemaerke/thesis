@@ -315,6 +315,9 @@ class party(Thread):
 
         test_def=int(fx[0])
         print('manual transform fx', test_def)
+        
+        test_str=int(str(fx[0]))
+        print('str manual transform', test_str)
         fx=fx.astype(int)
 
         print('fx:', fx[0])
