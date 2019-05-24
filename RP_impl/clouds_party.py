@@ -314,7 +314,7 @@ class party(Thread):
         print('fx original:', fx[0])
 
         
-        fx=fx.astype(int)   # WRONG - DOESNT DO IT CORRECTLY, RP memory
+        #fx=fx.astype(int)   # WRONG - DOESNT DO IT CORRECTLY, RP memory
 
         test_def=int(fx[0])
         print('manual transform fx', test_def)
