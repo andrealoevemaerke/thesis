@@ -66,6 +66,7 @@ class party(Thread):
         return ss.rec(self.F, self.get_shares(name))
     
     def get_share(self, name):
+        print('name', name)
         while name not in self.recv:
             self.readQueue()
         a = self.F(self.recv[name])
@@ -112,13 +113,10 @@ class party(Thread):
         nn = 2  # number of A coloums
         l = 1   # number of b rows
         mu=min(nn,m)
-        
-        
-        
-       
+    
         L=np.array(([1,0],[11,11]))
         U=np.array(([1,8],[0,1]))
-        print('car party ping 1')
+        #print('car party ping 1')
         A00=2
         A01=3
         A10=4
@@ -159,7 +157,7 @@ class party(Thread):
         s_I10=ss.share(self.F, I10, self.t, self.n)
         s_I11= ss.share(self.F, I11, self.t, self.n)
         
-        print('car party ping 2')
+        #print('car party ping 2')
         for i in range(n):
             sock.TCPclient(self.party_addr[i][0], self.party_addr[i][1], ['hh'+str(i) , int(str(s_h[i]))])
             sock.TCPclient(self.party_addr[i][0], self.party_addr[i][1], ['tt'+str(i) , int(str(s_t[i]))])
@@ -175,7 +173,32 @@ class party(Thread):
             sock.TCPclient(self.party_addr[i][0], self.party_addr[i][1], ['I10'+str(i) , int(str(s_I10[i]))])
             sock.TCPclient(self.party_addr[i][0], self.party_addr[i][1], ['I11'+str(i) , int(str(s_I11[i]))])
      
-        print('car party ping 3')
+    #    print('car party ping 3')
 
-                
+        resx1= self.get_shares('x1')
+        resx2= self.get_shares('x2')
+        #print('shares from clouds:', resx1)
+        x1_res=ss.rec(self.F, resx1)
+        x2_res=ss.rec(self.F, resx2)
+        #x1_res= self.reconstruct_secret(resx1)
+#        x2_res= self.reconstruct_secret(resx2)
+#        
+#        
+        res1=int(str(x1_res))
+        res2=int(str(x2_res))
+#   
+        dummy3 =10E13
+#        
+#        
+        if res1 > dummy3:
+            res1 = res1 -792606555396977 
+#            
+        if res2 > dummy3:
+            res2 = res2 -792606555396977 
+#        
+        finalX1=res1/10E10
+        finalX2=res2/10E10
+#        
+        print('Solution:', finalX1, finalX2)
+
           
