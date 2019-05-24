@@ -17,9 +17,7 @@ import time
 import queue as que
 import matplotlib.pyplot as plt
 import os
-import sys
 
-print('MAx size:',type(sys.maxsize))
 
 
 class party(Thread):
@@ -136,39 +134,26 @@ class party(Thread):
         L=np.array(([1,0],[11,1]))
         U=np.array(([1,8],[0,1]))
         
-        #print('Cloud ping 1')
 
-        input_sharesa00=self.get_share('A00'+str(self.i)).n  
-        #print('share ping 1')       # reconstruct OK
+        input_sharesa00=self.get_share('A00'+str(self.i)).n  # reconstruct OK
         input_sharesa01=self.get_share('A01'+str(self.i)).n
-        #print('share ping 2')
         input_sharesa10=self.get_share('A10'+str(self.i)).n
-        #print('share ping 3')
         input_sharesa11=self.get_share('A11'+str(self.i)).n
-        #print('share ping 4')
         input_sharesb0=self.get_share('b0'+str(self.i)).n
-        #print('share ping 5')
         input_sharesb1=self.get_share('b1'+str(self.i)).n
-        #print('share p1ing 6')
         h_share=self.get_share('hh'+str(self.i)).n
-        #print('share ping 7')
         t_share=self.get_share('tt'+str(self.i)).n
-        #print('share ping 8')
         ra_share=self.get_share('ran'+str(self.i)).n  # shares of random variable 
-        #print('Cloud ping 9')
-        input_sharesI00=self.get_share('I00'+str(self.i)).n  
-        #print('share ping 10')       # reconstruct OK
+        input_sharesI00=self.get_share('I00'+str(self.i)).n  # reconstruct OK
         input_sharesI01=self.get_share('I01'+str(self.i)).n
-        #print('share ping 11')
         input_sharesI10=self.get_share('I10'+str(self.i)).n
-        #print('share ping 12')
         input_sharesI11=self.get_share('I11'+str(self.i)).n
 
         self.broadcast('AAA'+str(self.comr), input_sharesa00)
         #print("Cloud ping 2")
         result=self.reconstruct_secret('AAA'+str(self.comr))
         
-        print('Reconstruction of A00:', result)
+       # print('Reconstruction of A00:', result)
         
         
         # Gaussian Elimination without pivoting
@@ -190,9 +175,7 @@ class party(Thread):
         #print('C elements construction ok')
         
         self.broadcast('e11'+str(self.comr), e11[0,0])
-        #print("Cloud ping 2")
-       # res_C=self.reconstruct_secret('e11'+str(self.comr))
-        #print('e11 reconstruct', res_C) # ok 
+       
         
         C_shares=np.array(([e11[0,0], e11[0,1], e12[0,0]],[e11[1,0], e11[1,1], e12[1,0]], [e21[0,0], e21[0,1], 0],[ e21[1,0], e21[1,1], 0]))
        
@@ -246,7 +229,7 @@ class party(Thread):
       
         self.broadcast('test' + str(self.comr), C_shares[0,0])
         res_test=self.reconstruct_secret('test'+str(self.comr))
-        print('C update reconstruct', res_test) # ok 
+        #print('C update reconstruct', res_test) # ok 
        
         g = []               
         ss = []
@@ -278,59 +261,30 @@ class party(Thread):
         #    print('if entered:', i)
        
         sw_inv_share=self.get_share('input0')  # error it gets stock
-        #print('get shre ok' )
         self.broadcast('test_1' + str(self.comr), sw_inv_share)
-        #print('broadcast ok')
         test_11= self.reconstruct_secret('test_1'+str(self.comr))
         
         
         print('recon 11 test', test_11)  # OOK
         g=self.mult_shares(sw_inv_share, ra_share).n
         f_diag=np.diag(f)
-        #print('OK')
         
         gt_temp=self.mult_shares(g,t_share).n # ook
-        
-       
-      
         
         gtL=gt_temp * L #ook
         
         
-        
-    
-        #print('OK 2')
-        
-        fx=np.zeros(2)  #np.matrix(np.zeros((2,1)))
-        #ko1 = self.mult_shares(f[0], X[0]).n
-        #print('KO 1=', ko1)
-        #ko2 = self.mult_shares(f[1], X[1]).n
-        #print('KO 2=', ko2)
+        fx=np.zeros(2) 
+       
         for k in range(mu):
             fx[k] = self.mult_shares(f[k], X[k]).n
 
-      
         
         print('fx original:', fx[0])
 
-        
-        #fx=fx.astype(int)   # WRONG - DOESNT DO IT CORRECTLY, RP memory
-
-        test_def=int(fx[0])
-        print('manual transform fx', test_def)
-        
-       # test_str=int(str(fx[0]))
-        #print('str manual transform', test_str)
+  
         fx=fx.astype(np.int64)
 
-        #print('fx 64 int:', fx[0])
-        
-        #self.broadcast('ok' + str(self.comr), test_def)
-        #print('broadcast ok')
-        #ook= self.reconstruct_secret('ok'+str(self.comr))
-        #print('check reconstruction', ook)
-        
-        #print('type def ok')
         [ra,ca]=gtL.shape    # dimension OK
         [rb]=fx.shape
         cb=1
@@ -342,24 +296,19 @@ class party(Thread):
                     X[ii]=X[ii]+self.mult_shares(gtL[ii,kk],fx[kk]).n
              ## OKK
          
-        #print('x mul ok ') 
+
         X=np.reshape(X, (2, 1))
-        
-        #print('x reshape ok')
-        
-        #print('X share is: ', X[0,0])
+
         
         self.broadcast('x1' + str(self.comr), X[0,0])
         self.broadcast('x2' + str(self.comr), X[1,0])
         x1_res= self.reconstruct_secret('x1'+str(self.comr))
         x2_res= self.reconstruct_secret('x2'+str(self.comr))
         
-        #print('okokokok')
         
         res1=int(str(x1_res))
         res2=int(str(x2_res))
-        #print('X one is: ', res1)
-        
+   
         dummy3 =10E13
         
         
