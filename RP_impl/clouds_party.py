@@ -300,8 +300,8 @@ class party(Thread):
         X=np.reshape(X, (2, 1))
         
         
-        res1_shares = ss.share(self.F, X[0], self.t, self.n)
-        res2_shares = ss.share(self.F, X[1], self.t, self.n)
+        res1_shares = ss.share(self.F, X[0,0], self.t, self.n)
+        res2_shares = ss.share(self.F, X[1,0], self.t, self.n)
         for i in range(self.n):
             #print('input dist ID', i)
             sock.TCPclient(self.party_addr[3][0], self.party_addr[3][1], ['x1' + str(self.i) , int(str(res1_shares[i]))])
