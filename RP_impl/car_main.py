@@ -169,9 +169,9 @@ t1_comms = commsThread(1, "Communication Thread", server_info,q)
 p = party(F,int(x), n,t, pnr, q, q2, q3, party_addr, server_addr)
 
 # Start new Threads
-print('car main ping 1')
+#print('car main ping 1')
 t1_comms.start()
-print('car main ping 2')
+#print('car main ping 2')
 
 #for i in party_addr:
 #    while True:
@@ -192,10 +192,10 @@ for i in range(n):
             continue
         
         
-print('car main ping 3')    
+#print('car main ping 3')    
 deal = dealer(F,n,t,50) # 50
 p.start()
-print('car main ping 4')
+#print('car main ping 4')
 p.join()
-print('car main ping 5')
+#print('car main ping 5')
 
