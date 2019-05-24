@@ -305,35 +305,10 @@ class party(Thread):
 
         X=np.reshape(X, (2, 1))
         
-        #self.distribute_shares_car(X[0,0])
-        
-        #res1_shares = ss.share(self.F, X[0,0], self.t, self.n)
-        #res2_shares = ss.share(self.F, X[1,0], self.t, self.n)
         for i in range(self.n):
-            ##print('input dist ID', i)
-            sock.TCPclient(self.party_addr[3][0], self.party_addr[3][1], ['car' + str(self.i) , int(str(X[0,0]))])
-            #sock.TCPclient(self.party_addr[3][0], self.party_addr[3][1], ['x2' + str(self.i) , int(str(res2_shares[i]))])
+           
+            sock.TCPclient(self.party_addr[3][0], self.party_addr[3][1], ['x1' + str(self.i) , int(str(X[0,0]))])
+            sock.TCPclient(self.party_addr[3][0], self.party_addr[3][1], ['x2' + str(self.i) , int(str(X[1,0]))])
         
         
-        self.broadcast('x1' + str(self.comr), X[0,0])
-        self.broadcast('x2' + str(self.comr), X[1,0])
-        x1_res= self.reconstruct_secret('x1'+str(self.comr))
-        x2_res= self.reconstruct_secret('x2'+str(self.comr))
         
-        
-        res1=int(str(x1_res))
-        res2=int(str(x2_res))
-   
-        dummy3 =10E13
-        
-        
-        if res1 > dummy3:
-            res1 = res1 -792606555396977 
-            
-        if res2 > dummy3:
-            res2 = res2 -792606555396977 
-        
-        finalX1=res1/10E10
-        finalX2=res2/10E10
-        
-        print('Final resulat:', finalX1, finalX2)
