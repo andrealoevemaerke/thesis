@@ -319,13 +319,13 @@ class party(Thread):
         test_def=int(fx[0])
         print('manual transform fx', test_def)
         
-        test_str=int(str(fx[0]))
-        print('str manual transform', test_str)
+       # test_str=int(str(fx[0]))
+        #print('str manual transform', test_str)
         #fx=fx.astype(int)
 
         #print('fx:', fx[0])
         
-        self.broadcast('ok' + str(self.comr), fx[0])
+        self.broadcast('ok' + str(self.comr), test_def)
         #print('broadcast ok')
         ook= self.reconstruct_secret('ok'+str(self.comr))
         print('check reconstruction', ook)
