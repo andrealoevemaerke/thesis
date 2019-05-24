@@ -127,7 +127,7 @@ class party(Thread):
         return c
     
     def run(self):
-        print('starting party ', self.i)
+        #print('starting party ', self.i)
         self.get_triplets()
 
         
