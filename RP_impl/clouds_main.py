@@ -155,7 +155,7 @@ t1_comms = commsThread(1, "Communication Thread", server_info,q)
 #ploting = plotter(q3)
 #ploting.start()
 #print('cloud main ping 1')
-print(server_addr)
+#print(server_addr)
 
 
 
