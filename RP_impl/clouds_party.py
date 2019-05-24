@@ -310,7 +310,8 @@ class party(Thread):
         
         print('fx original:', fx[0])
       
-        
+        test_def=int(fx[0])
+        print('manual transform fx', test_def)
         fx=fx.astype(int)
         print('fx:', fx[0])
         
