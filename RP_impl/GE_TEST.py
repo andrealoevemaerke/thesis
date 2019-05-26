@@ -29,7 +29,7 @@ import proc
     # random variable for equality tests
     # shares of A, b, I_n matrices securely
     # generates random Toeplitz matrices U and L openly
-    # generate random vector z openly
+
 
 # parties computes Pivo-free Gaussian Elimination 
 # according to Niek's protocol
@@ -42,8 +42,8 @@ import proc
 # F = IntegerModP
 # n= number of parties
 # t= shamir degree
-
-for abe in range (0,5):
+#time_start = time.clock()
+for abe in range (0,10):
     class server:
         securecom = {}
         broadcasts = {}
@@ -237,10 +237,14 @@ for abe in range (0,5):
             self.broadcast('yinv' + str(self.comr), test_in)
             ww= self.reconstruct_secret('yinv'+str(self.comr)).n
             
+            
+            
             w_inv=1/ww
+            #print(ww)
             
             
             s_w_inv= w_inv*10E10
+            s_w_inv=int(s_w_inv)
             
             
             if self.i ==0:
@@ -251,9 +255,7 @@ for abe in range (0,5):
             
             g=self.mult_shares(sw_inv_share, ra_share).n
             
-#            self.broadcast('th_prod' + str(self.comr), inv_temp)
-#            th_product=self.reconstruct_secret('th_prod'+str(self.comr)).n
-#            
+          
         
 #            ans=1/th_product       
 #            ans=int(ans*10E10)
@@ -271,19 +273,25 @@ for abe in range (0,5):
           
             gt_temp=self.mult_shares(g,t_share).n  # OKK # previously made with g
           
-            
+         
             gtL=gt_temp * L
             # OKK
-         
             
+       
             fx=np.zeros(2, dtype=int)  #np.matrix(np.zeros((2,1)))
         
            
             for k in range(0, mu):
                 fx[k] = self.mult_shares(f[k], X[k]).n
-                
-          
+       
+            #print('fx original:', fx[0])
             fx=fx.astype(int)
+                     
+            #print('fx int', fx[0])
+            self.broadcast('ok' + str(self.comr), fx[0])
+            ook=self.reconstruct_secret('ok'+str(self.comr)).n
+         #   print('reconstruction check', ook)
+         
             # OKK! 
           
             [ra,ca]=gtL.shape    # dimension OK
@@ -439,10 +447,11 @@ for abe in range (0,5):
                                     # if smaller, the scaling must be smaller to 
                                     # to be within the field and the precision 
                                     # decreases too much to return correct output
+                                    # 792606555396977
                      
     n = 3
     t = 1
-    serv = server(F, n, t, 1500)
+    serv = server(F, n, t, 1500)  # minimum of 24  # been running with 1500
     
     # Matrix dimensions
     m = 2   # number of A rows
@@ -484,17 +493,15 @@ for abe in range (0,5):
     L= np.array(np.tril(L) )               # remove upper triangular entries
     U= np.array(np.triu(U) )               # remove lower triangular entires
     
-    ran= random.randint(1,501)
     #ran=7
+    ran= random.randint(1,10)
+
     iden= 0
     
-    # Generate random vector (open)   
-    z = np.random.randint(1,100,(1,m))
     
     #L= np.array(([1, 0],[11, 1]))
-    #U= np.array(([1, 8],[0, 1]))
-    #z1=np.array(([[4, 9]]))
-    #z2=np.array(([[4, 9]]))*10E10
+   # U= np.array(([1, 8],[0, 1]))
+ 
     #rank= np.array(matrix_rank(U@H@L))  
       
     ## check i A'=UAL has generic rank profile 
@@ -573,5 +580,6 @@ for abe in range (0,5):
     # final result
     finalX1=res1/10E10
     finalX2 =res2/10E10
+    #time_elapsed = (time.clock() - time_start)
     print(finalX1, finalX2)
     #print('Solution, X= [',finalX1, finalX2, ']')
