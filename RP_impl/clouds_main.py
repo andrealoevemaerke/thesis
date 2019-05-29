@@ -174,7 +174,7 @@ for i in range(n+1):
         except:
           time.sleep(1)
           continue
-print('Cloud server ', self.i)
+print('Cloud server ', pnr)
 print(' ')
 print('Connection established')
 #rint('cloud main ping 3')       

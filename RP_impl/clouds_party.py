@@ -315,6 +315,8 @@ class party(Thread):
          
 
         X=np.reshape(X, (2, 1))
+        print('Result shares:')
+        print(X)
         
         for i in range(self.n):
            
