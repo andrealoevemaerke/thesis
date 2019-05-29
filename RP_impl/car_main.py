@@ -190,7 +190,8 @@ for i in range(n):
         except:
             time.sleep(1)
             continue
-    
+print('Data owner, autonomous vehicle')
+print(' ')
 print('Connection established')        
 #print('car main ping 3')    
 deal = dealer(F,n,t,24) # 50

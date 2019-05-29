@@ -133,8 +133,11 @@ class party(Thread):
         
         AA=np.array([[A00, A01],[A10, A11]])
         bb= np.array([[b0],[b1]])
-        print('Input matrix A:',AA)
-        print('Observation vector b:', bb)
+        print(' ')
+        print('Input matrix A:')
+        print(AA)
+        print('Observation vector b:')
+        print(bb)
         AB=np.hstack((AA,bb))
     
         rankAB=np.array(matrix_rank(AB))
@@ -176,11 +179,14 @@ class party(Thread):
             sock.TCPclient(self.party_addr[i][0], self.party_addr[i][1], ['I11'+str(i) , int(str(s_I11[i]))])
      
     #    print('car party ping 3')
+        print(' ')
         print('Shares have been send to cloud servers')
         
         resx1= self.get_shares('x1')
         resx2= self.get_shares('x2')
         
+        print('...')
+        print('...')
         print('Shares of computed result recieved')
         
         #print('shares from clouds:', resx1)
@@ -204,7 +210,8 @@ class party(Thread):
 #        
         finalX1=res1/10E10
         finalX2=res2/10E10
-#        
-        print('Solution:', finalX1, finalX2)
+        print(' ')
+        print('Solution:')
+        print(np.array([[finalX1],[finalX2]]))
 
           
