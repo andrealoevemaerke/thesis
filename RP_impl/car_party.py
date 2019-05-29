@@ -133,15 +133,17 @@ class party(Thread):
         
         AA=np.array([[A00, A01],[A10, A11]])
         bb= np.array([[b0],[b1]])
+        print('Input matrix A:',AA)
+        print('Observation vector b:', bb)
         AB=np.hstack((AA,bb))
     
         rankAB=np.array(matrix_rank(AB))
         rankA= np.array(matrix_rank(AA))
         
-        #if rankA == rankAB:
-         #   print('system is solvable')
-        #else:
-         #   print('Preconditioning fails, system not solvable')
+        if rankA == rankAB:
+            print('Precondition satisfied: the system is solvable')
+        else:
+            print('Preconditioning fails, system not solvable')
         
         s_A00= ss.share(self.F, A00, self.t, self.n)
         s_A01= ss.share(self.F, A01, self.t, self.n)
@@ -174,9 +176,13 @@ class party(Thread):
             sock.TCPclient(self.party_addr[i][0], self.party_addr[i][1], ['I11'+str(i) , int(str(s_I11[i]))])
      
     #    print('car party ping 3')
-
+        print('Shares have been send to cloud servers')
+        
         resx1= self.get_shares('x1')
         resx2= self.get_shares('x2')
+        
+        print('Shares of computed result recieved')
+        
         #print('shares from clouds:', resx1)
         x1_res=ss.rec(self.F, resx1)
         x2_res=ss.rec(self.F, resx2)

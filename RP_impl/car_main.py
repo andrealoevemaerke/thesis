@@ -190,8 +190,8 @@ for i in range(n):
         except:
             time.sleep(1)
             continue
-        
-        
+    
+print('Connection established')        
 #print('car main ping 3')    
 deal = dealer(F,n,t,24) # 50
 p.start()
@@ -199,4 +199,4 @@ p.start()
 p.join()
 #print('car main ping 5')
 time_elapsed=(time.clock()-time_start)
-print('time elapsed:', time_elapsed)
+#print('time elapsed:', time_elapsed)
