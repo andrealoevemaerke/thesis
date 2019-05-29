@@ -162,6 +162,10 @@ class party(Thread):
         input_sharesI11=self.get_share('I11'+str(self.i)).n
 
         print('Shares from data owner have been recieved')
+        print(' ')
+        print('Computing secure Gaussian elimination')
+        print('...')
+        print('...')
         self.broadcast('AAA'+str(self.comr), input_sharesa00)
         #print("Cloud ping 2")
         result=self.reconstruct_secret('AAA'+str(self.comr))
@@ -197,7 +201,7 @@ class party(Thread):
         r = []
         
         for k in range(mu):
-            print('Broadcast for semi secure equality test')    
+            #print('Broadcast for semi secure equality test')    
             broad_ckk= self.mult_shares(ra_share,C_shares[k,k]).n
             self.broadcast('c_kk' + str(self.comr), broad_ckk)
             
@@ -218,7 +222,7 @@ class party(Thread):
     
             f.append(h_share)
             print(' ')
-            print('Beaver´s Triplet multiplication')
+            #print('Beaver´s Triplet multiplication')
             t_share = self.mult_shares(t_share,h_share).n     # mult shares med Beavers
           #  print('shares ok')
 
@@ -260,7 +264,7 @@ class party(Thread):
         # inverting securely, [BIB89]
         test_in=self.mult_shares(ra_share,inv_temp).n
         
-        print('Broadcast random product to securely invert scalar')
+        #print('Broadcast random product to securely invert scalar')
         self.broadcast('yinv' + str(self.comr), test_in)
         ww= self.reconstruct_secret('yinv'+str(self.comr)).n
         
@@ -282,7 +286,7 @@ class party(Thread):
         
         
        # print('recon 11 test', test_11)  # OOK
-        print('Beaver´s Triplet multiplication')
+        #print('Beaver´s Triplet multiplication')
         g=self.mult_shares(sw_inv_share, ra_share).n
         f_diag=np.diag(f)
         
@@ -315,13 +319,14 @@ class party(Thread):
          
 
         X=np.reshape(X, (2, 1))
-        print('Result shares:')
+        print('Result shares are:')
         print(X)
+        print(' ')
         
         for i in range(self.n):
            
             sock.TCPclient(self.party_addr[3][0], self.party_addr[3][1], ['x1' + str(self.i) , int(str(X[0,0]))])
             sock.TCPclient(self.party_addr[3][0], self.party_addr[3][1], ['x2' + str(self.i) , int(str(X[1,0]))])
         
-        print('Share of result has been send to data owner') 
+        print('Shares of result have been send to data owner') 
         
