@@ -174,7 +174,9 @@ for i in range(n+1):
         except:
           time.sleep(1)
           continue
- 
+print('Cloud server ', self.i)
+print(' ')
+print('Connection established')
 #rint('cloud main ping 3')       
 p.start()
 #p.join()

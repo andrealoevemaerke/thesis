@@ -98,15 +98,21 @@ class party(Thread):
         self.c += 1
         
         d_local = a - r[0]
+        print('BT operation 1')
         self.broadcast('d' + str(self.comr), d_local)
+        print('BT operation 2')
         d_pub = self.reconstruct_secret('d' + str(self.comr))
+        print('BT operation 3')
         self.comr +=1
         
         e_local = b - r[1]
+        print('BT operation 4')
         self.broadcast('e' + str(self.comr), e_local)
+        print('BT operation 5')
         e_pub = self.reconstruct_secret('e' + str(self.comr))
+        print('BT operation 6')
         self.comr+=1
-        
+        print('BT operation 7')
         return d_pub * e_pub + d_pub*r[1] + e_pub*r[0] + r[2]
     
     def legendreComp(self,a,b):
@@ -155,6 +161,7 @@ class party(Thread):
         input_sharesI10=self.get_share('I10'+str(self.i)).n
         input_sharesI11=self.get_share('I11'+str(self.i)).n
 
+        print('Shares from data owner have been recieved')
         self.broadcast('AAA'+str(self.comr), input_sharesa00)
         #print("Cloud ping 2")
         result=self.reconstruct_secret('AAA'+str(self.comr))
@@ -190,7 +197,7 @@ class party(Thread):
         r = []
         
         for k in range(mu):
-                
+            print('Broadcast for semi secure equality test')    
             broad_ckk= self.mult_shares(ra_share,C_shares[k,k]).n
             self.broadcast('c_kk' + str(self.comr), broad_ckk)
             
@@ -210,14 +217,15 @@ class party(Thread):
             C_shares[mu+k,k] = h_share
     
             f.append(h_share)
-         
+            print(' ')
+            print('Beaver´s Triplet multiplication')
             t_share = self.mult_shares(t_share,h_share).n     # mult shares med Beavers
           #  print('shares ok')
 
 
             c_kk = (C_shares[k,k]+1-r[k])    # when c_kk !=0 then r will be 1 
                                                  # and 1-r will cancel out
-          
+            
             h_share = self.mult_shares(h_share,c_kk).n 
     
               
@@ -252,6 +260,7 @@ class party(Thread):
         # inverting securely, [BIB89]
         test_in=self.mult_shares(ra_share,inv_temp).n
         
+        print('Broadcast random product to securely invert scalar')
         self.broadcast('yinv' + str(self.comr), test_in)
         ww= self.reconstruct_secret('yinv'+str(self.comr)).n
         
@@ -266,12 +275,14 @@ class party(Thread):
             self.distribute_shares(s_w_inv)
         #    print('if entered:', i)
        
+        
         sw_inv_share=self.get_share('input0')  # error it gets stock
         self.broadcast('test_1' + str(self.comr), sw_inv_share)
         test_11= self.reconstruct_secret('test_1'+str(self.comr))
         
         
        # print('recon 11 test', test_11)  # OOK
+        print('Beaver´s Triplet multiplication')
         g=self.mult_shares(sw_inv_share, ra_share).n
         f_diag=np.diag(f)
         
@@ -310,5 +321,5 @@ class party(Thread):
             sock.TCPclient(self.party_addr[3][0], self.party_addr[3][1], ['x1' + str(self.i) , int(str(X[0,0]))])
             sock.TCPclient(self.party_addr[3][0], self.party_addr[3][1], ['x2' + str(self.i) , int(str(X[1,0]))])
         
-        
+        print('Share of result has been send to data owner') 
         
