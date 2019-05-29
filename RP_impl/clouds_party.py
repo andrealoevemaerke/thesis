@@ -98,21 +98,21 @@ class party(Thread):
         self.c += 1
         
         d_local = a - r[0]
-        print('BT operation 1')
+        #print('BT operation 1')
         self.broadcast('d' + str(self.comr), d_local)
-        print('BT operation 2')
+        #print('BT operation 2')
         d_pub = self.reconstruct_secret('d' + str(self.comr))
-        print('BT operation 3')
+        #print('BT operation 3')
         self.comr +=1
         
         e_local = b - r[1]
-        print('BT operation 4')
+        #print('BT operation 4')
         self.broadcast('e' + str(self.comr), e_local)
-        print('BT operation 5')
+        #print('BT operation 5')
         e_pub = self.reconstruct_secret('e' + str(self.comr))
-        print('BT operation 6')
+        #print('BT operation 6')
         self.comr+=1
-        print('BT operation 7')
+        #print('BT operation 7')
         return d_pub * e_pub + d_pub*r[1] + e_pub*r[0] + r[2]
     
     def legendreComp(self,a,b):
