@@ -47,15 +47,13 @@ class commsThread (Thread):
 
    def run(self):
 #      print("Starting " + self.name)      
-      #Create TCP socket
+      #Create TCP sockets
       tcpsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
       tcpsock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
       tcpsock.bind(tuple(self.server_info))
       #Communication loop - Wait->Receive->Put to queue
       while not self.stop:
          Rx_packet = sock.TCPserver(tcpsock)
-#         print("Client info:",Rx_packet[0])
-#         print("Data recv:",Rx_packet[1])
          if not self.q.full():
             self.q.put(Rx_packet)
       print("Exiting " + self.name)
@@ -78,18 +76,13 @@ q3 = que.Queue()
 server_info = party_addr[pnr]#(TCP_IP, TCP_PORT)
 
 
-# Create new threads..
 t1_comms = commsThread(1, "Communication Thread", server_info,q)
 
-
-
-
-# Start new Threads
 
 p = party(F,int(x),n, t, pnr, q, q2, q3, party_addr, server_addr)
 
 t1_comms.start()
-#print('cloud main ping 2')
+
 
 for i in range(n+1):
     while True:
@@ -102,9 +95,8 @@ for i in range(n+1):
 #print('Cloud server ', pnr)
 #print(' ')
 #print('Connection established')
-#rint('cloud main ping 3')       
+      
 p.start()
-#p.join()
-#print('cloud main ping 4')
+
 
 
