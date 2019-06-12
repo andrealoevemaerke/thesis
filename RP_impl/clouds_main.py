@@ -70,16 +70,8 @@ class commsThread (Thread):
             self.q.put(Rx_packet)
       print("Exiting " + self.name)
 
-      
 
-        
-        
  
-        
-    def distribute_shares(self, name, s):
-        for i in range(self.n):
-            sock.TCPclient(party_addr[i][0], party_addr[i][1], [name , int(str(s[i]))])
-    
 
 m =  792606555396977 #27449#7979490791
 F = field.GF(m)            
