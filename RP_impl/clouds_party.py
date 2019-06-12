@@ -232,7 +232,7 @@ class party(Thread):
 
         w_inv=1/ww
         
-        s_w_inv= w_inv*(792606555396977 -1)+0.5
+        s_w_inv= w_inv*10E10 +0.5
         s_w_inv=int(s_w_inv)
 
         if self.i ==0:
