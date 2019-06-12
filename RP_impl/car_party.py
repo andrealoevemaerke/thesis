@@ -107,6 +107,7 @@ class party(Thread):
         return c
     
     def run(self):
+        time_start=time.clock()
         #print('starting party ', self.i)
         n=3
         m = 2   # number of A rows
@@ -133,20 +134,20 @@ class party(Thread):
         
         AA=np.array([[A00, A01],[A10, A11]])
         bb= np.array([[b0],[b1]])
-        print(' ')
-        print('Input matrix A:')
-        print(AA)
-        print('Observation vector b:')
-        print(bb)
+       # print(' ')
+       # print('Input matrix A:')
+       # print(AA)
+       # print('Observation vector b:')
+       # print(bb)
         AB=np.hstack((AA,bb))
     
         rankAB=np.array(matrix_rank(AB))
         rankA= np.array(matrix_rank(AA))
         
-        if rankA == rankAB:
-            print('Precondition satisfied: the system is solvable')
-        else:
-            print('Preconditioning fails, system not solvable')
+       # if rankA == rankAB:
+        #    print('Precondition satisfied: the system is solvable')
+        #else:
+        #    print('Preconditioning fails, system not solvable')
         
         s_A00= ss.share(self.F, A00, self.t, self.n)
         s_A01= ss.share(self.F, A01, self.t, self.n)
@@ -179,15 +180,15 @@ class party(Thread):
             sock.TCPclient(self.party_addr[i][0], self.party_addr[i][1], ['I11'+str(i) , int(str(s_I11[i]))])
      
     #    print('car party ping 3')
-        print(' ')
-        print('Shares have been send to cloud servers')
+       # print(' ')
+       # print('Shares have been send to cloud servers')
         
         resx1= self.get_shares('x1')
         resx2= self.get_shares('x2')
         
-        print('...')
-        print('...')
-        print('Shares of computed result recieved')
+        #print('...')
+        #print('...')
+        #print('Shares of computed result recieved')
         
         #print('shares from clouds:', resx1)
         x1_res=ss.rec(self.F, resx1)
@@ -210,8 +211,8 @@ class party(Thread):
 #        
         finalX1=res1/10E10
         finalX2=res2/10E10
-        print(' ')
-        print('Solution:')
-        print(np.array([[finalX1],[finalX2]]))
+        #print(' ')
+        #print('Solution:')
+        #print(np.array([[finalX1],[finalX2]]))
 
           

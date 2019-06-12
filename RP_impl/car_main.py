@@ -19,13 +19,13 @@ from car_party import party
 import matplotlib.pyplot as plt
 import os
 
-time_start=time.clock()
+
 port = 62
 
 party_addr = [
-              ['192.168.100.4', 62], # cloud1
-              ['192.168.100.5', 62], # cloud2
-              ['192.168.100.6', 62], # cloud3
+              ['192.168.100.4', 62], # cloud0
+              ['192.168.100.3', 62], # cloud1
+              ['192.168.100.2', 62], # cloud2
               ['192.168.100.1', 62], # car
               ['192.168.100.2', 62], #P1
               ['192.168.100.3', 62] #P2
@@ -190,14 +190,15 @@ for i in range(n):
         except:
             time.sleep(1)
             continue
-print('Data owner, autonomous vehicle')
-print(' ')
-print('Connection established')        
+#print('Data owner, autonomous vehicle')
+#print(' ')
+#print('Connection established')        
 #print('car main ping 3')    
-deal = dealer(F,n,t,24) # 50
+deal = dealer(F,n,t,50)# 50
+
 p.start()
 #print('car main ping 4')
 p.join()
 #print('car main ping 5')
 time_elapsed=(time.clock()-time_start)
-#print('time elapsed:', time_elapsed)
+print('time elapsed:', time_elapsed)
