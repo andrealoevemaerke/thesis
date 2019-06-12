@@ -16,12 +16,10 @@ import TcpSocket5 as sock
 import time
 import queue as que
 from car_party import party
-#import matplotlib.pyplot as plt
 import os
 
 
 port = 62
-
 party_addr = [
               ['192.168.100.4', 62], # cloud0
               ['192.168.100.3', 62], # cloud1
@@ -42,8 +40,6 @@ server_addr = [
                [ccu_adr, 4041] #P2
               ]
 
-
-
 class commsThread (Thread):
    stop = False  
    def __init__(self, threadID, name, server_info,q):
@@ -54,8 +50,7 @@ class commsThread (Thread):
       self.server_info = server_info  # (Tcp_ip, Tcp_port)
       self.Rx_packet = [] # tuple [[client_ip, client_port], [Rx_data[n]]]
 
-   def run(self):
-#      print("Starting " + self.name)      
+   def run(self):      
       #Create TCP socket
       tcpsock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
       tcpsock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -63,15 +58,10 @@ class commsThread (Thread):
       #Communication loop - Wait->Receive->Put to queue
       while not self.stop:
          Rx_packet = sock.TCPserver(tcpsock)
-#         print("Client info:",Rx_packet[0])
-#         print("Data recv:",Rx_packet[1])
+         
          if not self.q.full():
             self.q.put(Rx_packet)
       print("Exiting " + self.name)
-
-# use ggplot style for more sophisticated visuals
-plt.style.use('ggplot')
-
 
 class dealer():
     def __init__(self,F, n, t, numTrip):
@@ -90,7 +80,7 @@ class dealer():
             sock.TCPclient(party_addr[i][0], party_addr[i][1], [name , int(str(s[i]))])
     
 
-m =  792606555396977#27449#7979490791
+m =  792606555396977
 F = field.GF(m)            
 n = 3
 t = 1
@@ -119,15 +109,14 @@ for i in range(n):
         except:
             time.sleep(1)
             continue
-#print('Data owner, autonomous vehicle')
-#print(' ')
-#print('Connection established')        
-#print('car main ping 3')    
-deal = dealer(F,n,t,50)# 50
+print('Data owner, autonomous vehicle')
+print(' ')
+print('Connection established')        
+   
+deal = dealer(F,n,t,50)
 time_start=time.clock()
 p.start()
-#print('car main ping 4')
 p.join()
-#print('car main ping 5')
-time_elapsed=(time.clock()-time_start)
-print('time elapsed:', time_elapsed)
+
+#time_elapsed=(time.clock()-time_start) #comment all print commands before timing
+#print('time elapsed:', time_elapsed)
