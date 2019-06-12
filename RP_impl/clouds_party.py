@@ -15,7 +15,7 @@ import proc
 import TcpSocket5 as sock
 import time
 import queue as que
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import os
 
 
@@ -161,11 +161,11 @@ class party(Thread):
         input_sharesI10=self.get_share('I10'+str(self.i)).n
         input_sharesI11=self.get_share('I11'+str(self.i)).n
 
-        print('Shares from data owner have been recieved')
-        print(' ')
-        print('Computing secure Gaussian elimination')
-        print('...')
-        print('...')
+       # print('Shares from data owner have been recieved')
+        #print(' ')
+        #print('Computing secure Gaussian elimination')
+        #print('...')
+        #print('...')
         self.broadcast('AAA'+str(self.comr), input_sharesa00)
         #print("Cloud ping 2")
         result=self.reconstruct_secret('AAA'+str(self.comr))
@@ -221,7 +221,7 @@ class party(Thread):
             C_shares[mu+k,k] = h_share
     
             f.append(h_share)
-            print(' ')
+            #print(' ')
             #print('Beaver´s Triplet multiplication')
             t_share = self.mult_shares(t_share,h_share).n     # mult shares med Beavers
           #  print('shares ok')
@@ -319,14 +319,14 @@ class party(Thread):
          
 
         X=np.reshape(X, (2, 1))
-        print('Result shares are:')
-        print(X)
-        print(' ')
+       # print('Result shares are:')
+        #print(X)
+        #print(' ')
         
         for i in range(self.n):
            
             sock.TCPclient(self.party_addr[3][0], self.party_addr[3][1], ['x1' + str(self.i) , int(str(X[0,0]))])
             sock.TCPclient(self.party_addr[3][0], self.party_addr[3][1], ['x2' + str(self.i) , int(str(X[1,0]))])
         
-        print('Shares of result have been send to data owner') 
+        #print('Shares of result have been send to data owner') 
         
