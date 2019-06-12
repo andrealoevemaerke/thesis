@@ -17,7 +17,7 @@ import TcpSocket5 as sock
 import time
 import queue as que
 from clouds_party import party
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import os
 
 
@@ -70,62 +70,11 @@ class commsThread (Thread):
             self.q.put(Rx_packet)
       print("Exiting " + self.name)
 
-
-plt.style.use('ggplot')
-
-class plotter(Thread):
-    def __init__(self,q):
-      Thread.__init__(self)
-#      self.line1 = []
-      self.xdata = np.arange(0,100)
-      self.y0 = np.zeros(100)-1
-      self.y1 = np.zeros(100)-1
-      self.y2 = np.zeros(100)-1
-      self.y3 = np.zeros(100)-1
-      self.q = q
       
-    def run(self):
-        # this is the call to matplotlib that allows dynamic plotting
-        plt.ion()
-        self.fig = plt.figure(figsize=(13,6))
-        ax = self.fig.add_subplot(111)
-        # create a variable for the line so we can later update it
-        line0, = ax.plot(self.y0,'bo',alpha=0.8)   
-        line1, = ax.plot(self.y1,'ro',alpha=0.8) 
-        line2, = ax.plot(self.y2,'go',alpha=0.8) 
-        line3, = ax.plot(self.y3,'yo',alpha=0.8) 
-        #update plot label/title
-        plt.ylim(0,1)
-        plt.ylabel('data')
-        plt.xlabel('time')
-        plt.title('Received data')
-        plt.show()
-        
-        
-        while True:
-            if not self.q.empty():
-                b = self.q.get()
-                if b[0] == '0':
-                    self.y0 = self.ploting(line0, self.y0, b[1])
-                if b[0] == '1':
-                    self.y1 = self.ploting(line1, self.y1, b[1])                                                                                                                                                                                              
-                if b[0] == '2':
-                    self.y2 = self.ploting(line2, self.y2, b[1])
-                if b[0] == '3':
-                    self.y3 = self.ploting(line3, self.y3, b[1])
-            
-    def ploting(self, line, ydata, y):
-        if not isinstance(y, list):
-            yl = ydata[:-1]
-            ydata = np.insert(yl,0, y/float(m))
 
-        else:
-           return ydata
-       
-        # after the figure, axis, and line are created, we only need to update the y-data
-        line.set_ydata(ydata)
-        self.fig.canvas.draw()
-        return ydata
+        
+        
+ 
         
     def distribute_shares(self, name, s):
         for i in range(self.n):
@@ -174,9 +123,9 @@ for i in range(n+1):
         except:
           time.sleep(1)
           continue
-print('Cloud server ', pnr)
-print(' ')
-print('Connection established')
+#print('Cloud server ', pnr)
+#print(' ')
+#print('Connection established')
 #rint('cloud main ping 3')       
 p.start()
 #p.join()
