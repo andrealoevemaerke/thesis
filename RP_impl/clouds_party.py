@@ -15,7 +15,7 @@ import proc
 import TcpSocket5 as sock
 import time
 import queue as que
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 import os
 
 
