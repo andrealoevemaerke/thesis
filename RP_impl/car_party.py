@@ -14,7 +14,6 @@ import proc
 import TcpSocket5 as sock
 import time
 import queue as que
-import matplotlib.pyplot as plt
 import os
 from numpy.linalg import matrix_rank
 
@@ -89,25 +88,10 @@ class party(Thread):
         
         return d_pub * e_pub + d_pub*r[1] + e_pub*r[0] + r[2]
     
-    def legendreComp(self,a,b):
-        r = self.triplets[self.c]
-        self.c+=1
-        t = self.tt
-        g = a - b
-        k = self.mult_shares(t, self.mult_shares(r[0], r[0]))
-        j_loc = self.mult_shares(g, k)
-        self.broadcast('j'+ str(self.comr), j_loc)
-        j_pub = self.reconstruct_secret('j'+str(self.comr))
-        self.comr+=1
-        
-        ex = (self.F.p-1)/2
-        sym = pow(int(str(j_pub)),int(ex), self.F.p)
-        f = sym * t
-        c = self.mult_shares((f+1), self.F(2).inverse())
-        return c
+    
     
     def run(self):
-        time_start=time.clock()
+        
         #print('starting party ', self.i)
         n=3
         m = 2   # number of A rows
