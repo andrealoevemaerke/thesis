@@ -17,7 +17,6 @@ import TcpSocket5 as sock
 import time
 import queue as que
 from clouds_party import party
-#import matplotlib.pyplot as plt
 import os
 
 
@@ -33,15 +32,6 @@ party_addr = [
               ]
 
 ccu_adr = '192.168.100.246'
-
-server_addr = [
-               [ccu_adr, 4050], #cloud 1
-               [ccu_adr, 4060], #cloud 2
-               [ccu_adr, 4061], #cloud 3
-               [ccu_adr, 4031], #car
-               [ccu_adr, 4040], #P1
-               [ccu_adr, 4041] #P2
-              ]
 
 
 
@@ -85,18 +75,12 @@ q = que.Queue()
 q2 = que.Queue()
 q3 = que.Queue()
 
-#Initialization..
-#TCP_IP = '192.168.100.246'
-#TCP_PORT = 62
 server_info = party_addr[pnr]#(TCP_IP, TCP_PORT)
 
 
 # Create new threads..
 t1_comms = commsThread(1, "Communication Thread", server_info,q)
-#ploting = plotter(q3)
-#ploting.start()
-#print('cloud main ping 1')
-#print(server_addr)
+
 
 
 
