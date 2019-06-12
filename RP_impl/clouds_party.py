@@ -46,7 +46,7 @@ class party(Thread):
     def distribute_shares_car(self, sec):
         shares = ss.share(self.F, sec, self.t, self.n)
         for i in range(self.n):
-            #print('input dist ID', i)
+           
             sock.TCPclient(self.party_addr[3][0], self.party_addr[3][1], ['car' + str(self.i), int(str(shares[i]))])    
     def broadcast(self, name, s):
         for i in range(self.n):
@@ -61,7 +61,7 @@ class party(Thread):
     def get_shares(self, name):
         
         res = []
-        #print('def ping 1')
+        
         for i in range(self.n):
          #   print('def ping 2', i)
             while name + str(i) not in self.recv:
@@ -131,7 +131,7 @@ class party(Thread):
         U=np.array(([1,8],[0,1]))
         
 
-        input_sharesa00=self.get_share('A00'+str(self.i)).n  # reconstruct OK
+        input_sharesa00=self.get_share('A00'+str(self.i)).n 
         input_sharesa01=self.get_share('A01'+str(self.i)).n
         input_sharesa10=self.get_share('A10'+str(self.i)).n
         input_sharesa11=self.get_share('A11'+str(self.i)).n
@@ -139,20 +139,18 @@ class party(Thread):
         input_sharesb1=self.get_share('b1'+str(self.i)).n
         h_share=self.get_share('hh'+str(self.i)).n
         t_share=self.get_share('tt'+str(self.i)).n
-        ra_share=self.get_share('ran'+str(self.i)).n  # shares of random variable 
-        input_sharesI00=self.get_share('I00'+str(self.i)).n  # reconstruct OK
+        ra_share=self.get_share('ran'+str(self.i)).n   
+        input_sharesI00=self.get_share('I00'+str(self.i)).n  
         input_sharesI01=self.get_share('I01'+str(self.i)).n
         input_sharesI10=self.get_share('I10'+str(self.i)).n
         input_sharesI11=self.get_share('I11'+str(self.i)).n
 
-       # print('Shares from data owner have been recieved')
-        #print(' ')
-        #print('Computing secure Gaussian elimination')
-        #print('...')
-        #print('...')
-     
-       # print('Reconstruction of A00:', result)
-        
+        print('Shares from data owner have been recieved')
+        print(' ')
+        print('Computing secure Gaussian elimination')
+        print('...')
+        print('...')
+
         
         # Gaussian Elimination without pivoting
         
@@ -160,11 +158,6 @@ class party(Thread):
         bb= np.array([[input_sharesb0],[input_sharesb1]])
         I_n=np.array([[input_sharesI00, input_sharesI01],[input_sharesI10, input_sharesI11]])
         
-        #print('matrix form ok')
-        
-        #print('U type',type(U[0,0]))
-        #print('AA type',type(AA[0,0]))
-        #print('L type',type(L[0,0]))
         e11= np.array(U@AA@L)
         e12=np.array(U@bb)         
         e21= np.array(I_n)
@@ -179,7 +172,7 @@ class party(Thread):
         r = []
         
         for k in range(mu):
-            #print('Broadcast for semi secure equality test')    
+              
             broad_ckk= self.mult_shares(ra_share,C_shares[k,k]).n
             self.broadcast('c_kk' + str(self.comr), broad_ckk)
             
@@ -194,19 +187,19 @@ class party(Thread):
             else: 
                 print('error message')
 
-         #   print('if ok ! ')
+  
             
             C_shares[mu+k,k] = h_share
     
             f.append(h_share)
-            #print(' ')
-            #print('Beaver´s Triplet multiplication')
-            t_share = self.mult_shares(t_share,h_share).n     # mult shares med Beavers
-          #  print('shares ok')
+            print(' ')
+
+            t_share = self.mult_shares(t_share,h_share).n    
+          
 
 
-            c_kk = (C_shares[k,k]+1-r[k])    # when c_kk !=0 then r will be 1 
-                                                 # and 1-r will cancel out
+            c_kk = (C_shares[k,k]+1-r[k])   
+                                                 
             
             h_share = self.mult_shares(h_share,c_kk).n 
     
@@ -214,57 +207,43 @@ class party(Thread):
             for i in range(0, mu+k):
                 for j in range(k+1, nn+l):
                     if i!= k and (i<= mu or j <= nn-1):
-                        # protocol line 13:
+                       
                         dummy=np.matrix( np.vstack((C_shares[i,j],-(C_shares[i,k]))))
                         temp= np.matrix(np.hstack(((C_shares[k,k]+1-r[k]), C_shares[k,j])))
                         temp_C1=self.mult_shares(temp[0,0],dummy[0,0]).n
                         temp_C2=self.mult_shares(temp[0,1],dummy[1,0]).n
-                        C_shares[i,j]=temp_C1 +temp_C2 #manuel computation 1x2 2x1 = 1x1
+                        C_shares[i,j]=temp_C1 +temp_C2 
 
-        #print('for loop ok')
-      
-        #self.broadcast('test' + str(self.comr), C_shares[0,0])
-        #res_test=self.reconstruct_secret('test'+str(self.comr))
-        #print('C update reconstruct', res_test) # ok 
+
        
         g = []               
         ss = []
 
-        # protocol line 16:
-        X = np.asarray(C_shares[(0,1), -1]) # array (ligger ned)
+
+        X = np.asarray(C_shares[(0,1), -1]) 
         
-        # protocol line 17 not implemented
-        
-        # protocol line 18:
+     
         inv_temp=self.mult_shares(t_share,h_share).n
     
-    
-        # inverting securely, [BIB89]
         test_in=self.mult_shares(ra_share,inv_temp).n
         
-        #print('Broadcast random product to securely invert scalar')
         self.broadcast('yinv' + str(self.comr), test_in)
         ww= self.reconstruct_secret('yinv'+str(self.comr)).n
-        
-        #print('inverse reconstruct:', ww)  # OK 
+
         w_inv=1/ww
         
-        
-        s_w_inv= w_inv*10E10
+        s_w_inv= w_inv*(792606555396977 -1)+0.5
         s_w_inv=int(s_w_inv)
 
         if self.i ==0:
             self.distribute_shares(s_w_inv)
-        #    print('if entered:', i)
-       
+
         
-        sw_inv_share=self.get_share('input0')  # error it gets stock
+        sw_inv_share=self.get_share('input0')  
         self.broadcast('test_1' + str(self.comr), sw_inv_share)
         test_11= self.reconstruct_secret('test_1'+str(self.comr))
         
-        
-       # print('recon 11 test', test_11)  # OOK
-        #print('Beaver´s Triplet multiplication')
+
         g=self.mult_shares(sw_inv_share, ra_share).n
         f_diag=np.diag(f)
         
@@ -278,33 +257,29 @@ class party(Thread):
         for k in range(mu):
             fx[k] = self.mult_shares(f[k], X[k]).n
 
-        
-       # print('fx original:', fx[0])
-
   
         fx=fx.astype(np.int64)
 
-        [ra,ca]=gtL.shape    # dimension OK
+        [ra,ca]=gtL.shape    
         [rb]=fx.shape
         cb=1
         
-        #print('before mul loops')
         for ii in range(0,ra):
             for jj in range(0,cb):
                 for kk in range(0,ca):
                     X[ii]=X[ii]+self.mult_shares(gtL[ii,kk],fx[kk]).n
-             ## OKK
+             
          
 
         X=np.reshape(X, (2, 1))
-       # print('Result shares are:')
-        #print(X)
-        #print(' ')
+        print('Result shares are:')
+        print(X)
+        print(' ')
         
         for i in range(self.n):
            
             sock.TCPclient(self.party_addr[3][0], self.party_addr[3][1], ['x1' + str(self.i) , int(str(X[0,0]))])
             sock.TCPclient(self.party_addr[3][0], self.party_addr[3][1], ['x2' + str(self.i) , int(str(X[1,0]))])
         
-        #print('Shares of result have been send to data owner') 
+        print('Shares of result have been send to data owner') 
         
